@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="sema_big_box">
+    <link name="sema_big_box_link">
+      <visual name="sema_big_box_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh> 
+            <uri>model://sema_big_box/mesh/sema_big_box.dae</uri>
+          </mesh>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </visual>
+      <collision name="sema_big_box_collision">
+        <geometry>
+          <box>
+            <size>0.5 0.3 0.4</size>
+          </box>
+        </geometry>
+         <surface>
+          <friction>
+            <ode>
+              <mu>100.0</mu>
+              <mu2>100.0</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <inertial>
+        <mass>13.89</mass>
+        <inertia>
+          <ixx>0.28935</ixx>
+          <iyy>0.47454</iyy>
+          <izz>0.39352</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+    </link>
+  </model>
+</sdf>

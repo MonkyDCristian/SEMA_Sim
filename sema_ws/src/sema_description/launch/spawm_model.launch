@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  
+  <!-- set params -->
+  <arg name="name"       default="oak_d"/> <!-- conveyor_belt, oak_d, sema, ur10, vgc10-->
+  <arg name="joint_gui"  default="true" />
+  <arg name="rvizconfig" default="$(find urdf_tutorial)/rviz/urdf.rviz" />
+  <arg name="load_conveyor_belt_ctrl"  default="false" />
+
+  <!-- Load robot model -->
+  <arg name="model"               default="$(find sema_description)/urdf/$(arg name).xacro"/>
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
+  
+  <!-- Start in a default namespace -->
+  <arg name="namespace" default="model"/>
+  
+  <!-- Initial robot pose respect the world-->
+  <arg name="x" default="0" />
+  <arg name="y" default="0" />
+  <arg name="z" default="0" />
+  <arg name="P" default="0" />
+  <arg name="R" default="0" />
+  <arg name="Y" default="0" />
+
+  <!-- launch Gazebo simulator -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+   <arg name="gui" default="true"/>
+  </include>
+
+  <!-- Spawn model in Gazebo -->
+  <node name="spawn_model" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-x $(arg x) -y $(arg y) -z $(arg z)
+              -R $(arg R) -P $(arg P) -Y $(arg Y)
+              -urdf -param robot_description -model $(arg namespace)"/>
+
+  <node if="$(arg joint_gui)" name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+  <!-- Spawn conveyor controllers -->
+  <include file="$(find sema_description)/launch/set_conveyor_belt_ctrl.launch" if="$(arg load_conveyor_belt_ctrl)"/>
+
+</launch>
+

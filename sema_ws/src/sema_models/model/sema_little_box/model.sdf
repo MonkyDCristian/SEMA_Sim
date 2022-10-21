@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="sema_little_box">
+    <link name="sema_little_box_link">
+      <visual name="sema_little_box_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh> 
+            <uri>model://sema_little_box/mesh/sema_little_box.dae</uri>
+          </mesh>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </visual>
+      <collision name="sema_little_box_collision">
+        <geometry>
+          <box>
+            <size>0.12 0.15 0.12</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>100.0</mu>
+              <mu2>100.0</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <inertial>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.00154</ixx>
+          <iyy>0.00120</iyy>
+          <izz>0.00154</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+    </link>
+  </model>
+</sdf>

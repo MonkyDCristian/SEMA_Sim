@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="sema_vgc10">
+   
+   <xacro:include filename="$(find sema_description)/urdf/macro/vgc10_macro.xacro"/>
+   <xacro:vgc10 name="vgc10/" prefix="sema/"/>  
+
+</robot>

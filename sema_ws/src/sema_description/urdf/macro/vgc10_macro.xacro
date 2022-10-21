@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+  
+   <xacro:macro name="vgc10" 
+   params="
+   name:=vgc10/
+   prefix:=sema/ 
+   lower_ex:=-0.1 
+   upper_ex=0.31 
+   hw_interface:=hardware_interface/PositionJointInterface">
+   
+	<link name="${prefix}${name}base_link"/>
+	    
+	<joint name="${prefix}${name}base_joint" type="fixed">
+		<parent link="${prefix}${name}base_link"/>
+		<child link="${prefix}${name}_link"/>
+	</joint>
+	
+	<link name="${prefix}${name}_link">
+		<visual>
+			<origin xyz="0 0 -0.062" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="package://sema_models/model/sema_vgc10/mesh/sema_vgc10.dae"/>
+			</geometry>
+		</visual>
+		
+		<collision>
+			<geometry>
+				<box size="0.1 0.1 0.122"/>
+			</geometry>
+		</collision>
+		
+		<inertial>
+			<origin rpy="0 0 -0.062" xyz="0 0 0"/>
+			<mass value="0.84"/>
+			<inertia ixx="0.00355" ixy="0" ixz="0" iyy="0.00281" iyz="0" izz="0.00434"/>
+		</inertial>
+	</link>
+
+	<link name="${prefix}${name}extension_link">
+		<origin rpy="0 0 0" xyz="0 0 0"/>
+		
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<geometry>
+				<box size="0.01 0.01 0.01"/>
+			</geometry>
+			
+			<material name="white">
+			<color rgba="1 1 1 1"/>
+			</material>
+		</visual>
+		
+		<inertial>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<mass value="0.0001"/>
+			<inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+		</inertial>
+	</link>
+	
+	<gazebo reference="${prefix}${name}extension_link">
+   		<turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+	<joint name="${prefix}${name}extension_joint" type="prismatic">
+		<axis xyz="0 0 1" />
+		<parent link="${prefix}${name}_link"  />
+		<child link="${prefix}${name}extension_link"     />
+		<origin rpy="0 0 0" xyz="0 0 0.05" />
+		<limit effort="30" velocity="0.3" lower="${lower_ex}" upper="${upper_ex}" />
+	</joint>
+
+	<transmission name="${prefix}${name}extension_trans">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="${prefix}${name}extension_joint">
+			<hardwareInterface>${hw_interface}</hardwareInterface>
+		</joint>
+		<actuator name="${prefix}${name}extension_motor">
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
+	<!--
+	<gazebo>
+		<plugin name="ros_control" filename="libgazebo_ros_control.so"/>
+	</gazebo>
+	--> 
+
+   </xacro:macro>
+</robot>

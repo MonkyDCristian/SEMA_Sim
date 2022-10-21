@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+   <xacro:macro name="conveyor_belt" 
+    params="
+    name prefix:=sema/
+    radius:=3.0 
+    length:=0.08 
+    mass:=100.0 
+    heigh_world:=0.46">
+        
+    <link name="${prefix}${name}base_link"/>
+    
+    <joint name="${prefix}${name}base_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="${prefix}${name}base_link" />
+        <child link="${prefix}${name}dummy_link" />
+    </joint>
+
+    <link name="${prefix}${name}dummy_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length="${length}" radius="${radius}"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length="${length}" radius="${radius}"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="${mass}"/>
+            <inertia ixx="${(mass / 12) * (3 * radius * radius + length * length) }" ixy="0.0" ixz="0.0" iyy="${(mass / 12) * (3 * radius * radius + length * length) }" iyz="0.0" izz="${(mass / 12) * (radius * radius)}"/>
+        </inertial>
+    </link>
+
+    <link name="${prefix}${name}conveyor_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length="${length}" radius="${radius}"/>
+            </geometry>
+            <material name="Black">
+                <color rgba="0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length="${length}" radius="${radius}"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="${mass}"/>
+            <inertia ixx="${(mass / 12) * (3 * radius * radius + length * length) }" ixy="0.0" ixz="0.0" iyy="${(mass / 12) * (3 * radius * radius + length * length) }" iyz="0.0" izz="${(mass / 12) * (radius * radius)}"/>
+        </inertial>
+    </link>
+
+    <gazebo reference="${prefix}${name}conveyor_link">
+        <material>Gazebo/Black</material>
+        <mu1>1000.0</mu1>
+        <mu2>1000.0</mu2>
+    </gazebo>
+
+    <joint name="${prefix}${name}dummy_joint" type="continuous">
+        <origin xyz="0 0 ${heigh_world}" rpy="0 0 0"/>
+        <parent link="${prefix}${name}base_link" />
+        <child link="${prefix}${name}conveyor_link" />
+        <axis xyz="0 0 1"/>
+        <dynamics damping="0.7"/>
+    </joint>
+    
+    <transmission name="${prefix}${name}trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        
+        <joint name="${prefix}${name}dummy_joint">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+        
+        <actuator name="${prefix}${name}motor">
+            <mechanicalReduction>1</mechanicalReduction>
+            <hardwareInterface>VelocityJointInterface</hardwareInterface> <!-- ** -->
+        </actuator>
+    </transmission>
+    
+    <!--
+    <gazebo>
+        <plugin name="ros_control" filename="libgazebo_ros_control.so"/>
+    </gazebo>
+    -->
+       
+   </xacro:macro>
+</robot>

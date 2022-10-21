@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="conveyor">
+
+    <xacro:include filename="$(find sema_description)/urdf/macro/conveyor_belt_macro.xacro"/>
+    <xacro:conveyor_belt name="cb/" prefix="sema/" radius="3.0"/>  
+    
+    <link name="world"/>
+
+    <joint name="sema/cb/world_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="world"/>
+        <child link="sema/cb/base_link"/>
+    </joint>
+    
+</robot>

@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<launch>
+  <!--
+    Main entry point for loading a SEMA system into Gazebo, in isolation, in the
+    empty world.
+
+    NOTE 1: as this is not a real robot, there are limits to the faithfulness
+    of the simulation. Dynamic behaviour will be different from a real robot.
+    Only a subset of topics, actions and services is supported. Specifically,
+    interaction with the Control Box itself is not supported, as Gazebo does not
+    simulate a Control Box. This means: no Dashboard server, no URScript topic
+    and no force-torque sensor among other things.
+  -->
+  
+  <!-- devices enabled -->
+  <arg name="vgc10_enabled"         default="true" />
+  <arg name="conveyor_belt_enabled" default="true" />
+  <arg name="oak_d_enabled"         default="true" />
+
+  <!--
+  Set Controllers
+
+  Controller to publish joint state: joint_state_controller  (use always) 
+  UR10 Position Controller: pos_joint_traj_controller
+  VGC10 attach Center Position Controller: vgc_joint_traj_controller
+  Conveyor Belt Velocity Controller: cb_joint_vel_controller
+  
+  Declare the controllers that are you going to use. 
+  Example: Just UR10 position controller
+  <arg name="robot_ctrl"   value="joint_state_controller pos_joint_traj_controller"/>
+  joint_state_controller pos_joint_traj_controller vgc_joint_traj_controller cb_joint_vel_controller
+  -->
+
+  <arg name="robot_ctrl"   value="joint_state_controller pos_joint_traj_controller vgc_joint_traj_controller cb_joint_vel_controller"/>
+  
+
+  <!-- World Configuration --> 
+  <include file="$(find sema_gzsim)/launch/set_word.launch">
+  	<arg name="gazebo_world" value="$(find sema_gzsim)/world/sema_empty.world"/>
+  </include>
+  
+  <!-- Spawm Robot --> 
+  <include file="$(find sema_gzsim)/launch/set_robot.launch"> 
+    <arg name="xacro_robot_model"     value="$(find sema_description)/urdf/sema.xacro"/>
+    <arg name="vgc10_enabled"         value="$(arg vgc10_enabled)"                    />
+    <arg name="conveyor_belt_enabled" value="$(arg conveyor_belt_enabled)"            />
+    <arg name="oak_d_enabled"         value="$(arg oak_d_enabled)"                    />
+  </include> 
+
+  <!-- Controller Configuration -->  
+  <include file="$(find sema_gzsim)/launch/set_ctrl.launch">
+    <arg name="controller_cfg_file" value="$(find sema_control)/config/sema_controllers.yaml"/>
+    <arg name="controllers"         value="$(arg robot_ctrl)"                                         />
+    <arg name="stopped_controllers" value="joint_group_pos_controller"                                />
+  </include>
+
+  <!-- Set Moveit! planner-->
+  <include file="$(find sema_moveit)/launch/sema_moveit_planning.launch">
+    <arg name="xacro_robot_model"     value="$(find sema_description)/urdf/sema.xacro"/>
+    <arg name="vgc10_enabled"         value="$(arg vgc10_enabled)"                    />
+    <arg name="conveyor_belt_enabled" value="$(arg conveyor_belt_enabled)"            />
+    <arg name="oak_d_enabled"         value="$(arg oak_d_enabled)"                    />
+    <arg name="sim"                   value="true"                                    />
+  </include>
+
+  <!-- Set Moveit! Rviz-->
+  <include file="$(find sema_moveit)/launch/moveit_rviz.launch"/>
+
+  <!-- launch box Rviz viewer -->
+  <node name="publish_markers" pkg="sema_gzsim" type="publish_markers.py">
+       <param name="robot_z" value="0"/>
+  </node>
+
+  <!-- launch Box Spawner Action Service-->
+  <node name="box_spawner_act_srv" pkg="sema_gzsim" type="box_spawner_act_srv.py"/>
+  
+  <!-- launch Box Attacher Node
+  <node name="box_attacher" pkg="sema_gzsim" type="box_attacher.py"/>
+  -->
+
+</launch>

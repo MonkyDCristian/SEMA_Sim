@@ -1,0 +1,15 @@
+#goal definition
+string sequence #=l,ml,m,bm,b
+float32 hz      #=0.2
+float32 x       #=-2.8
+float32 y       #=-2.2
+float32 z       #=1.0
+float32 yaw     #=0.0
+
+---
+#result definition
+string result
+
+---
+#feedback
+string feedback

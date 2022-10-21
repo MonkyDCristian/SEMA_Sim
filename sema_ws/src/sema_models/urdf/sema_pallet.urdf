@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot name="sema_pallet">
+    <link name="sema_pallet_link">
+      <visual name="sema_pallet_visual">
+        <origin xyz="-0.08 0 -0.085" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://sema_models/model/sema_pallet/mesh/sema_pallet.dae"/>
+        </geometry>
+      </visual>
+      <collision name="sema_pallet_collision">
+        <geometry>
+          <box size="0.8 1.2 0.144"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="13.44" />
+        <inertia  ixx="0.73875" ixy="0.0"  ixz="0.0"  iyy="1.6347"  iyz="0.0"  izz="2.3296" />
+      </inertial>
+    </link>
+</robot>

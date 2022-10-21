@@ -1,0 +1,46 @@
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: &loop_hz 125
+
+pos_joint_traj_controller:
+  type: position_controllers/JointTrajectoryController
+  joints: &robot_joints
+    - sema/shoulder_pan_joint
+    - sema/shoulder_lift_joint
+    - sema/elbow_joint
+    - sema/wrist_1_joint
+    - sema/wrist_2_joint
+    - sema/wrist_3_joint
+  constraints:
+    goal_time: 0.6
+    stopped_velocity_tolerance: 0.05
+    sema/shoulder_pan_joint: {trajectory: 0.1, goal: 0.1}
+    sema/shoulder_lift_joint: {trajectory: 0.1, goal: 0.1}
+    elbow_joint: {trajectory: 0.1, goal: 0.1}
+    sema/wrist_1_joint: {trajectory: 0.1, goal: 0.1}
+    sema/wrist_2_joint: {trajectory: 0.1, goal: 0.1}
+    sema/wrist_3_joint: {trajectory: 0.1, goal: 0.1}
+  stop_trajectory_duration: 0.5
+  state_publish_rate: *loop_hz
+  action_monitor_rate: 10
+
+joint_group_pos_controller:
+  type: position_controllers/JointGroupPositionController
+  joints: *robot_joints
+
+vgc_joint_traj_controller:
+  type: position_controllers/JointTrajectoryController
+  joints: &vgc_joints
+    - sema/vgc10/extension_joint
+  constraints:
+    goal_time: 0.6
+    stopped_velocity_tolerance: 0.05
+    sema/vgc10/extension_joint: {trajectory: 0.1, goal: 0.1}
+  stop_trajectory_duration: 0.5
+  state_publish_rate: *loop_hz
+  action_monitor_rate: 10
+
+cb_joint_vel_controller:
+  type: velocity_controllers/JointVelocityController
+  joint: sema/conveyor_belt/dummy_joint
+  pid: {p: 100.0, i: 0.01, d: 10.0}

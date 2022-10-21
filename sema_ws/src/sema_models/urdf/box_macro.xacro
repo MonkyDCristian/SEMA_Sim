@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="box" params="name mass ixx iyy  izz size_x size_y size_z">
+    <link name="${name}/base_link">
+    </link>
+
+    <joint name="${name}/base_joint" type="fixed">
+      <parent link="${name}/base_link"/>
+      <child link="${name}/link"/>
+      <axis xyz="0 0 1" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <link name="${name}/link">
+      <inertial>
+        <origin xyz="0 0 0" />
+        <mass value="${mass}" />
+        <inertia  ixx="${ixx}" ixy="0.0"  ixz="0.0"  iyy="${iyy}"  iyz="0.0"  izz="${izz}" />
+      </inertial>
+      
+      <visual>
+        <origin xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://sema_models/model/{name}/mesh/{name}.dae"/>
+        </geometry>
+      </visual>
+      
+      <collision>
+        <origin xyz="0 0 0"/>
+        <geometry>
+            <box size="${size_x} ${size_y} ${size_z}" />
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="${name}/base_link">
+      <gravity>0</gravity>
+    </gazebo>
+  </xacro:macro>
+</robot>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- By default we do not overwrite the URDF. Change the following to true to change the default behavior -->
+  <arg name="load_robot_description" default="false"/>
+
+  <!-- The name of the parameter under which the URDF is loaded -->
+  <arg name="robot_description" default="robot_description"/>
+  
+  <!--Robot description and related parameter files -->
+  <arg name="xacro_robot_model"     default="$(find sema_description)/urdf/sema.xacro" />
+  <arg name="vgc10_enabled"         default="false" />
+  <arg name="conveyor_belt_enabled" default="false" />
+  <arg name="oak_d_enabled"         default="false" />
+  
+  <arg name="joint_limit_params" default="$(find sema_description)/config/ur10/joint_limits.yaml"/>
+  <arg name="kinematics_params" default="$(find sema_description)/config/ur10/default_kinematics.yaml"/>
+  <arg name="physical_params" default="$(find sema_description)/config/ur10/physical_parameters.yaml"/>
+  <arg name="visual_params" default="$(find sema_description)/config/ur10/visual_parameters.yaml"/>
+
+  
+  <!--Common parameters  -->
+  <arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface" doc="The hardware_interface to expose for each joint in the simulated robot (one of: [PositionJointInterface, VelocityJointInterface, EffortJointInterface])"/>
+  <arg name="safety_limits"     default="false" doc="If True, enable the safety limits controller"/>
+  <arg name="safety_pos_margin" default="0.15"  doc="The lower/upper limits in the safety controller" />
+  <arg name="safety_k_position" default="20"    doc="Used to set k position in the safety controller" />
+  
+  <!-- Load universal robot description format (URDF) -->
+  <param if="$(arg load_robot_description)" name="robot_description" command="$(find xacro)/xacro '$(arg xacro_robot_model)'
+    vgc10_enabled:=$(arg vgc10_enabled)
+    conveyor_belt_enabled:=$(arg conveyor_belt_enabled)
+    oak_d_enabled:=$(arg oak_d_enabled)       
+    joint_limit_params:=$(arg joint_limit_params)
+    kinematics_params:=$(arg kinematics_params)
+    physical_params:=$(arg physical_params)
+    visual_params:=$(arg visual_params)
+    transmission_hw_interface:=$(arg transmission_hw_interface)
+    safety_limits:=$(arg safety_limits)
+    safety_pos_margin:=$(arg safety_pos_margin)
+    safety_k_position:=$(arg safety_k_position)"/>
+
+  <!-- The semantic description that corresponds to the URDF * -->
+  <param name="$(arg robot_description)_semantic" textfile="$(find sema_moveit)/config/semaur.srdf" />
+
+  <!-- Load updated joint limits (override information from URDF) * -->
+  <group ns="$(arg robot_description)_planning">
+    <rosparam command="load" file="$(find sema_moveit)/config/joint_limits.yaml"/>
+  </group>
+
+  <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace * -->
+  <group ns="$(arg robot_description)_kinematics">
+    <rosparam command="load" file="$(find sema_moveit)/config/kinematics.yaml"/>
+  </group>
+
+</launch>

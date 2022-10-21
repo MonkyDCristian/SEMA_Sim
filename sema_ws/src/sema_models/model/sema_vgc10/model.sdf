@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="sema_vgc10">
+    <link name="sema_vgc10_link">
+      <visual name="sema_vgc10_visual">
+        <pose>0 0 -0.062 0 0 0</pose>
+        <geometry>
+          <mesh> 
+            <uri>model://sema_vgc10/mesh/sema_vgc10.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="sema_vgc10_collision">
+        <geometry>
+          <box>
+            <size>0.1 0.1 0.122</size>
+          </box>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass>0.84</mass>
+        <inertia>
+          <ixx>0.00355</ixx>
+          <iyy>0.00281</iyy>
+          <izz>0.00434</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+    </link>
+  </model>
+</sdf>

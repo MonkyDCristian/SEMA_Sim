@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="sim"                   default="true" />
+  <arg name="debug"                 default="false" />
+  <arg name="xacro_robot_model"     default="$(find sema_description)/urdf/ur10_with_vgc10.xacro"/>
+  <arg name="vgc10_enabled"         default="false" />
+  <arg name="conveyor_belt_enabled" default="false" />
+  <arg name="oak_d_enabled"         default="false" />
+
+  
+  <!-- Remap follow_joint_trajectory -->
+  <remap if="$(arg sim)" from="/scaled_pos_joint_traj_controller/follow_joint_trajectory" to="/pos_joint_traj_controller/follow_joint_trajectory"/>
+
+  <!-- Launch moveit -->
+  <include file="$(find sema_moveit)/launch/move_group.launch">
+    <arg name="debug"                 value="$(arg debug)" />
+    <arg name="xacro_robot_model"     value="$(arg xacro_robot_model)" />
+    <arg name="vgc10_enabled"         value="$(arg vgc10_enabled)" />
+    <arg name="conveyor_belt_enabled" value="$(arg conveyor_belt_enabled)" />
+    <arg name="oak_d_enabled"         value="$(arg oak_d_enabled)" />
+  </include>
+</launch>
