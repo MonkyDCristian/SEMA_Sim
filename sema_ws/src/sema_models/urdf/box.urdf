@@ -7,14 +7,20 @@
           <mesh filename="package://sema_models/model/sema_type_box/mesh/sema_type_box.dae"/>
         </geometry>
       </visual>
+      
       <collision name="sema_type_box_collision">
         <geometry>
           <box size="box_size"/>
         </geometry>
       </collision>
+      
       <inertial>
         <mass value="mass_" />
         <inertia  ixx="ixx_" ixy="0.0"  ixz="0.0"  iyy="iyy_"  iyz="0.0"  izz="izz_" />
       </inertial>
     </link>
+    
+    <gazebo>
+    	<static>false</static>
+    </gazebo>
 </robot>

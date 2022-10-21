@@ -3,7 +3,7 @@
 import rospy
 import numpy as np
 
-from geometry_msgs.msg import Pose, Twist
+from geometry_msgs.msg import Pose, Twist, Vector3
 from std_msgs.msg      import String
 from gazebo_msgs.msg   import ModelStates
 
@@ -24,7 +24,7 @@ class BoxAttacher():
 	def variables_init(self):
 		self.model_states_tc = "/gazebo/model_states" 
 
-		self.reference_frame  = "sema/wrist_3_link"
+		self.reference_frame  = "sema/vgc10/extension_link"
 
 		self.get_link_properties_req = GetLinkPropertiesRequest()
 		self.get_link_properties_req.link_name = ""
@@ -62,7 +62,7 @@ class BoxAttacher():
 		self.box_name = ""
 		self.box_type = ""
 		self.dist_to_closer = 0.0
-		self.ideal_attach = True
+		self.ideal_attach = False
 		self.box_attached = False
 		self.vg_box_relative_pose = None
 
@@ -117,6 +117,7 @@ class BoxAttacher():
 	def run(self, extension, enable):
 		pass
 
+
 	def create_attach(self):
 
 		res = self.costum_and_send_set_properties_req(gravity=False)
@@ -149,8 +150,12 @@ class BoxAttacher():
 		
 		else:
 			self.set_link_state_req.link_state.pose = Pose()
-			#self.set_link_state_req.link_state.pose.orientation = self.vg_box_relative_pose.orientation
-			self.set_link_state_req.link_state.twist = Twist()
+		
+		twist_msg = Twist()
+		twist_msg.linear  = Vector3(0,0,0)
+		twist_msg.angular = Vector3(0,0,0)
+
+		self.set_link_state_req.link_state.twist = twist_msg
 
 
 	def get_vg_box_relative_pose(self):	

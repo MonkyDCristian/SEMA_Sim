@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 import rospy
+
 from std_msgs.msg import Header
 from gazebo_msgs.msg import ModelStates
 from visualization_msgs.msg import Marker, MarkerArray
-
 
 class PubMarkers():
 
@@ -53,9 +53,8 @@ class PubMarkers():
                         {"type": Marker().CUBE , "color": self.colors["red"], 
                         "size":{"x": 0.8, "y": 1.2, "z":0.144}}}
         
-        self.model_names = list(self.models.keys())
-        
-        self.robot_z = int(rospy.get_param(f"{rospy.get_name()}/robot_z"))
+        self.model_types = list(self.models.keys())
+
 
     def connections_init(self):
         rospy.Subscriber("/gazebo/model_states", ModelStates, self.publish_markers)
@@ -63,20 +62,30 @@ class PubMarkers():
 
 
     def publish_markers(self, models_data):
-
         markerArray = MarkerArray()
 
         for _id ,model_name in enumerate(models_data.name):
-            if model_name in self.model_names:
-                viz_model = self.models[model_name]
+
+            model_type = self.take_out_digits(model_name)
+
+            if model_type in self.model_types:
+
+                viz_model = self.models[model_type]
                 model_data = models_data.pose[_id]
                 
                 marker = self.create_obj_marker(_id, viz_model, model_data)
                 markerArray.markers.append(marker) 
 
-
         self.header.stamp = rospy.Time.now()
         self.pub_markers.publish(markerArray)
+
+    
+    def take_out_digits(self, model_name):
+        if model_name[-1].isdigit():
+            model_name = model_name[:-1]
+            model_name = self.take_out_digits(model_name)
+
+        return model_name
     
 
     def create_obj_marker(self, _id, viz_model, model_data):

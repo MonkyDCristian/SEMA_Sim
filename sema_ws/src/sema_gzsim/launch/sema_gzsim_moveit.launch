@@ -13,6 +13,8 @@
   -->
   
   <!-- devices enabled -->
+  <arg name="demo"                  default="false"/>
+  
   <arg name="vgc10_enabled"         default="true" />
   <arg name="conveyor_belt_enabled" default="true" />
   <arg name="oak_d_enabled"         default="true" />
@@ -47,14 +49,14 @@
     <arg name="oak_d_enabled"         value="$(arg oak_d_enabled)"                    />
   </include> 
 
-  <!-- Controller Configuration -->  
+  <!-- launch Controller Configuration -->  
   <include file="$(find sema_gzsim)/launch/set_ctrl.launch">
     <arg name="controller_cfg_file" value="$(find sema_control)/config/sema_controllers.yaml"/>
-    <arg name="controllers"         value="$(arg robot_ctrl)"                                         />
-    <arg name="stopped_controllers" value="joint_group_pos_controller"                                />
+    <arg name="controllers"         value="$(arg robot_ctrl)"                                />
+    <arg name="stopped_controllers" value="joint_group_pos_controller"                       />
   </include>
 
-  <!-- Set Moveit! planner-->
+  <!-- launch Moveit! planner-->
   <include file="$(find sema_moveit)/launch/sema_moveit_planning.launch">
     <arg name="xacro_robot_model"     value="$(find sema_description)/urdf/sema.xacro"/>
     <arg name="vgc10_enabled"         value="$(arg vgc10_enabled)"                    />
@@ -63,19 +65,24 @@
     <arg name="sim"                   value="true"                                    />
   </include>
 
-  <!-- Set Moveit! Rviz-->
+  <!-- launch Moveit! Rviz-->
   <include file="$(find sema_moveit)/launch/moveit_rviz.launch"/>
 
   <!-- launch box Rviz viewer -->
-  <node name="publish_markers" pkg="sema_gzsim" type="publish_markers.py">
-       <param name="robot_z" value="0"/>
-  </node>
-
+  <node name="publish_markers" pkg="sema_gzsim" type="publish_markers.py"/>
+  
   <!-- launch Box Spawner Action Service-->
   <node name="box_spawner_act_srv" pkg="sema_gzsim" type="box_spawner_act_srv.py"/>
+  
+  <!-- launch Box Spawner Action Client-->
+  <node name="box_spawner_act_clt" pkg="sema_gzsim" type="box_spawner_act_clt.py"/>
+  
   
   <!-- launch Box Attacher Node
   <node name="box_attacher" pkg="sema_gzsim" type="box_attacher.py"/>
   -->
+  
+  <!-- launch Demo Node-->
+  <node name="sema_demo" pkg="sema_gzsim" type="sema_demo.py" if="$(arg demo)"/>
 
 </launch>
