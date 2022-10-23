@@ -37,7 +37,7 @@ class PalletSpawner():
 		print(self.spawn_urdf_srv("sema_pallet", pallet_urdf, '', pose, 'world'))
 	
 
-	def set_spawn_params(self, params):
+	def set_params(self, params):
 		self.x = params["x"]
 		self.y = params["y"] 
 		self.z = params["z"] 
@@ -49,7 +49,7 @@ if __name__ == "__main__":
 	spawn_params = {"x":0.3, "y":0.8, "z":0.1, "yaw":0.0}
 	
 	pallet_spawner = PalletSpawner()
-	pallet_spawner.set_spawn_params(spawn_params)
+	pallet_spawner.set_params(spawn_params)
 	pallet_spawner.run()
 
 	

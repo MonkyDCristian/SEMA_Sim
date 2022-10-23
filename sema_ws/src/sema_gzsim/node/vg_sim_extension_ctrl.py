@@ -5,7 +5,7 @@ import rospy
 from std_msgs.msg        import Float32
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
-class VGCSimExtensionCtrl():
+class VGSimExtensionCtrl():
 	def __init__(self):
 		self.variables_init()
 		self.connections_init()
@@ -18,7 +18,10 @@ class VGCSimExtensionCtrl():
 
 	def connections_init(self): 
 		rospy.Subscriber("vg_sim_extension/cmd", Float32, self.callback)
-		self.pub_vgc_cmd =rospy.Publisher('/vgc_joint_traj_controller/command', JointTrajectory, queue_size=3)	
+		self.pub_vg_cmd =rospy.Publisher('/vgc_joint_traj_controller/command', JointTrajectory, queue_size=3)	
+		
+		while self.pub_vg_cmd.get_num_connections() == 0 and not rospy.is_shutdown():
+			rospy.sleep(0.2)
 		
 
 	def create_jt_msg(self):
@@ -44,12 +47,12 @@ class VGCSimExtensionCtrl():
 		self.extension = extension
 		self.jt_msg.points[0].positions = [self.extension]
 		self.jt_msg.header.stamp = rospy.Time.now()
-		self.pub_vgc_cmd.publish(self.jt_msg)
+		self.pub_vg_cmd.publish(self.jt_msg)
 
 
 if __name__ == '__main__':
 	rospy.init_node('vg_sim_extension_controller')
-	vg_sim_extension_controller = VGCSimExtensionCtrl()
+	vg_sim_extension_controller = VGSimExtensionCtrl()
 	extension = 0.15 # mt
 	vg_sim_extension_controller.run(extension)
 	rospy.spin()

@@ -2,7 +2,7 @@
 
 import rospy
 
-from box_spawner_act_clt import BoxSpawnerAct
+from box_spawner_act_clt import BoxSpawnerActClt
 from conveyor_belt_vel_ctrl import ConveyorBeltVelocityCtrl
 from pallet_spawner import PalletSpawner
 
@@ -24,17 +24,17 @@ class SemaDemo(object):
 
 	def connections_init(self): 
 		self.pallet_spawner = PalletSpawner()
-		self.box_spawner = BoxSpawnerAct()
+		self.box_spawner = BoxSpawnerActClt()
 		self.cb_vel_ctrl = ConveyorBeltVelocityCtrl()
 
 
 	def run(self):
 		self.cb_vel_ctrl.run(self.cb_vel)
 
-		self.pallet_spawner.set_spawn_params(self.pallet_spawn_prms)
+		self.pallet_spawner.set_params(self.pallet_spawn_prms)
 		self.pallet_spawner.run()
 
-		self.box_spawner.set_spawn_params(self.box_spawn_prms)
+		self.box_spawner.set_params(self.box_spawn_prms)
 		self.box_spawner.run()
 
 

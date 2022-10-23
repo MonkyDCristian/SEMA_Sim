@@ -1,7 +1,5 @@
 #goal definition
 string obj_link
-string ref_link
-string ref_tf_link
 bool ideal_attach
 
 ---

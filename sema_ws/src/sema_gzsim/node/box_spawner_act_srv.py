@@ -23,7 +23,7 @@ class BoxSpawnerActSrv(object):
 		self.box_path = self.rospack.get_path('sema_models')+"/urdf/box.urdf"
 		
 		# pose parameters 
-		self.x, self.y, self.z = -2.8, -2.2, 1.0
+		self.x, self.y, self.z = 0, 0, 0
 		self.yaw = 0
 
 		self.posible_boxes = ["l", "ml", "m", "bm", "b"]
