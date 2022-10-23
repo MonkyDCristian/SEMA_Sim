@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 
 import rospy
-import numpy as np
 
-from geometry_msgs.msg import Pose, Twist, Vector3
+from nav_msgs.msg      import Odometry
+from geometry_msgs.msg import Twist
 from std_msgs.msg      import String
 from gazebo_msgs.msg   import ModelStates
 
 
-class BoxAttacher():
+class ShowMoveData():
 	def __init__(self):
-		rospy.init_node('box_attacher')
+		rospy.init_node('show_move_data')
 		self.variables_init()
 		self.connections_init()
 		rospy.spin()
@@ -18,46 +18,31 @@ class BoxAttacher():
 
 	def variables_init(self):
 		
-		self.posible_boxes = ["l", "ml", "m", "bm", "b"]
-		self.dict_box = {"l":{"name":"sema_little_box"},
-					     "ml":{"name": "sema_middle_little_box"},
-						 "m":{"name": "sema_middle_box"},
-					 	 "bm":{"name": "sema_big_middle_box"},
-					  	 "b":{"name": "sema_big_box"}}
-		
-		self.box_type = ""
-		self.box_name = ""
-		self.box_seted = False
+		self.model_name = ""
+		self.model_seted = False
 
 
 	def connections_init(self): 
-		rospy.Subscriber("/gazebo/model_states", String, self.pub_move_data)
-		rospy.Subscriber("move/box/type", String, self.set_box)
+		rospy.Subscriber("/show_move_data/model_name", String, self.set_box)
+		rospy.Subscriber("/gazebo/model_states", ModelStates, self.publish_move_data)
+		self.pub_move_data = rospy.Publisher("/move/data/twist", Twist, queue_size=2)
 		
 
 	def set_box(self, cmd):
-		if cmd.data not in self.posible_boxes:
-			self.box_seted = False
 		
-		else:
-			self.box_seted = True
-			self.box_type = cmd.data[:-1]
-			self.box_name = self.dict_box[self.box_type] + cmd.data[-1]
-	
+		self.model_seted = True
+		self.model_name = cmd.data
 
-	def pub_move_data(self, models_data):
+	def publish_move_data(self, models_data):
 
-		for n, model_name in enumerate(models_data.name):
-			if model_name == self.box_name:
-				box_pose = models_data.pose[n]
-				box_twist = models_data.twist[n]
-				break
-		
-		
-				
-	
-	
+		if self.model_seted:
 			
+			for n, model_name in enumerate(models_data.name):
+				if model_name == self.model_name:
+					move_data_twist = models_data.twist[n]
+					self.pub_move_data.publish(move_data_twist)
+					break
+
 
 if __name__ == '__main__':
-	box_attacher = BoxAttacher()
+	show_move_data = ShowMoveData()

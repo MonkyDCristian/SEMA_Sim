@@ -51,11 +51,11 @@ class BoxAttacher():
 		self.set_link_properties_req.iyz = 0
 		self.set_link_properties_req.izz = 0
 		
-		self.dict_box = {"l":{"name":"sema_little_box"},
-					     "ml":{"name": "sema_middle_little_box"},
-						 "m":{"name": "sema_middle_box"},
-					 	 "bm":{"name": "sema_big_middle_box"},
-					  	 "b":{"name": "sema_big_box"}}
+		self.dict_box = {"l":{"name":"sema_little_box", "dist": 0.075},
+					     "ml":{"name": "sema_middle_little_box", "dist":0.075},
+						 "m":{"name": "sema_middle_box", "dist":0.09},
+					 	 "bm":{"name": "sema_big_middle_box", "dist":0.14},
+					  	 "b":{"name": "sema_big_box", "dist":0.215}}
 
 		self.hz = 20
 		self.rate = rospy.Rate(self.hz) #Hz

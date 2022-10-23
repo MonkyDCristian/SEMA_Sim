@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 
-import rospy, tf, rospkg
+import rospy, rospkg
 
 from actionlib import SimpleActionServer
 from gazebo_msgs.srv import SpawnModel
 from geometry_msgs.msg import Quaternion, Pose, Point
+from tf.transformations import quaternion_from_euler
 
 from sema_gzsim.msg import BoxSpawnerAction ,BoxSpawnerFeedback, BoxSpawnerResult
 
 class BoxSpawnerActSrv(object):
 
-	def __init__(self) -> None:
+	def __init__(self):
 		rospy.init_node("box_spawner_act_srv")
 		self.variables_init()
 		self.connections_init()
@@ -99,7 +100,7 @@ class BoxSpawnerActSrv(object):
 		
 		box_urdf = self.costum_box(box)
 
-		quat = tf.transformations.quaternion_from_euler(0, 0, self.yaw)
+		quat = quaternion_from_euler(0, 0, self.yaw)
 		orient = Quaternion(quat[0], quat[1], quat[2], quat[3])
 		pose = Pose(Point(x=self.x, y=self.y, z=self.z), orient)
 		
