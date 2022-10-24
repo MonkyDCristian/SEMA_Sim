@@ -95,11 +95,13 @@ class BoxAttacher():
 
 
 if __name__ == '__main__':
+
 	rospy.init_node('box_attacher')
 	box_attacher = BoxAttacher()
 
+	rospy.sleep(5)
 	box_attach_sequence = ["l", "ml", "m", "bm", "b"]
 	for box_type in box_attach_sequence:
 		box_attacher.run(box_type)
-		rospy.sleep(5)
+		rospy.sleep(2)
 		box_attacher.stop()
