@@ -18,3 +18,7 @@ cd
 echo "source {PATH_TO}SEMA_sim/sem_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
+## Demo 
+```
+roslaunch sema_gzsim sema_gzsim_moveit.launch demo:=true
+```
