@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 
-import rospy, rospkg, tf
+import rospy
+
+from rospkg import RosPack
 
 from gazebo_msgs.srv   import SpawnModel
 from geometry_msgs.msg import Quaternion, Pose, Point
+
+from tf.transformations import quaternion_from_euler
 
 class PalletSpawner():
 
@@ -13,7 +17,7 @@ class PalletSpawner():
 		
 
 	def variables_init(self):
-		self.rospack = rospkg.RosPack()
+		self.rospack = RosPack()
 		self.path = self.rospack.get_path('sema_models')+"/urdf/"
 		self.pallet = self.path +"sema_pallet.urdf"
 		self.x = None
@@ -31,7 +35,7 @@ class PalletSpawner():
 		with open(self.pallet,"r") as f:
 			pallet_urdf = f.read()
 		
-		quat = tf.transformations.quaternion_from_euler(0, 0, self.yaw)
+		quat = quaternion_from_euler(0, 0, self.yaw)
 		orient = Quaternion(quat[0], quat[1], quat[2], quat[3])
 		pose = Pose(Point(x=self.x, y=self.y, z=self.z), orient)
 		print(self.spawn_urdf_srv("sema_pallet", pallet_urdf, '', pose, 'world'))

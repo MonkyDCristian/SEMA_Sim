@@ -95,7 +95,7 @@ generate_messages(
 
 ## Generate dynamic reconfigure parameters in the 'cfg' folder
 generate_dynamic_reconfigure_options(
-   cfg/vg_control.cfg
+   cfg/URPoseRegister.cfg
 #   cfg/DynReconf2.cfg
 )
 

@@ -1,52 +1,86 @@
 #!/usr/bin/env python3
 
-import rospy
+import rospy 
 
+from rospkg  import RosPack
+
+from gazebo_msgs.srv import GetLinkState, GetLinkStateRequest
 from sensor_msgs.msg  import JointState
 
+from sema_gzsim.cfg import save_pose_registerConfig 
+from dynamic_reconfigure.server import Server as DRServer
 
 class URJointsRegiter():
 	def __init__(self):
+		rospy.init_node('ur_joint_register')
 		self.variables_init()
 		self.connections_init()
+		rospy.spin()
 		
 
 	def variables_init(self):
-		self.ur_joints_name = ["sema/elbow_joint", "sema/shoulder_lift_joint", "sema/shoulder_pan_joint",
-		                       "sema/wrist_1_joint", "sema/wrist_2_join", "sema/wrist_3_joint"]
+		self.rospack = RosPack()
+		self.path = self.rospack.get_path('sema_gzsim')+"/node/pose_compilation/"
+		self.save_file = ""
 
-		self.joints_regiter = {}
-		self.save_file = "pick_box_poses.py"
+		self.ur_joints_name = ["sema/elbow_joint", "sema/shoulder_lift_joint", "sema/shoulder_pan_joint",
+		                       "sema/wrist_1_joint", "sema/wrist_2_joint", "sema/wrist_3_joint"]
+		
+		self.ur_eef_name = "sema/wrist_3_link"
+		
+		self.ur_pose_data = {}
 
 
 	def connections_init(self): 
-		pass
+		self.get_link_state_srv = rospy.ServiceProxy('/gazebo/get_link_state', GetLinkState)
+		srv = DRServer(save_pose_registerConfig, self.dynamic_config_callback)
+
+
+	def dynamic_config_callback(self, cfg, level):
+		if cfg["enable"]:
+			self.run(cfg["file_name"], cfg["pose_name"])
+
+		return cfg
+
+
+	def run(self, file_name, pose_name):
+		
+		self.file_name = file_name
+
+		ur_joints = self.get_ur_joints()
+		eef_pose = self.get_eef_pose()
+
+		self.ur_pose_data[pose_name] = {"ur_joints":ur_joints, "eef_pose":eef_pose} 
+		
+		self.save_ur_pose_data()
+
 	
-
-	def callback(self, joint_msg):
-		pass
-
-
-	def run(self, pose_name):
+	def get_ur_joints(self):
 		joint_state_msg = rospy.wait_for_message("/joint_states", JointState, timeout=3)
 		
-		dict_joints = {}
+		ur_joints = {}
 		for n, joint_name in enumerate(joint_state_msg.name):
 			if joint_name in self.ur_joints_name:
-				dict_joints[joint_name] = joint_state_msg.position[n]
+				ur_joints[joint_name] = joint_state_msg.position[n]
 		
-		self.joints_regiter[pose_name] = dict_joints
+		return ur_joints
 
-		self.save_joint_regiter()
+	
+	def get_eef_pose(self):
+		link_state_msg = self.get_link_state_srv(GetLinkStateRequest(self.ur_eef_name, "world"))
+		pose_msg = link_state_msg.link_state.pose
+		
+		eef_pose = {"position":{"x":pose_msg.position.x, "y":pose_msg.position.y, "z":pose_msg.position.z}, 
+		            "orientation": {"x":pose_msg.orientation.x,"y":pose_msg.orientation.y,
+					                "z":pose_msg.orientation.z,"w":pose_msg.orientation.w}}
+
+		return eef_pose
 	
 
-	def save_joint_regiter(self):
-		with open(self.save_file, 'w') as f:
-			f.write(f"{self.save_file[:-3]}={str(self.joints_regiter)}")
+	def save_ur_pose_data(self):
+		with open(self.path + self.file_name, 'w') as f:
+			f.write(f"{self.file_name[:-3]}={str(self.ur_pose_data)}")
 		
 
 if __name__ == '__main__':
-	rospy.init_node('ur_joint_register')
 	ur_joint_register = URJointsRegiter()
-	pose_name = "pose0"
-	ur_joint_register.run(pose_name)
