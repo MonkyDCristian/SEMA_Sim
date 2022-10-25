@@ -24,8 +24,8 @@ source ~/.bashrc
 - [Python3 Tutorial](https://app.theconstructsim.com/Course/58)
 - [Linux Tutorial](https://app.theconstructsim.com/Course/40)
 - [ROS Tutorials](http://wiki.ros.org/ROS/Tutorials)
-- [Gazebosim Tutorial](https://classic.gazebosim.org/tutorials?cat=get_started)
-- [Move!](https://ros-planning.github.io/moveit_tutorials/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html)
+- [Gazebo simulator Tutorials](https://classic.gazebosim.org/tutorials?cat=get_started)
+- [Moveit! with Rviz Tutorial](https://ros-planning.github.io/moveit_tutorials/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html)
 
 ## Demo 
 ```
