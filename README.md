@@ -22,3 +22,10 @@ source ~/.bashrc
 ```
 roslaunch sema_gzsim sema_gzsim_moveit.launch demo:=true
 ```
+
+## Getting Started
+* The instructions assume familiarity with the Robotic opetaion system (ROS) environment, Rviz and Gazebo.  If these tools are new to you, you shouldwith the excellent [ROS Tutorials](http://wiki.ros.org/ROS/Tutorials)
+
+## Contact 
+
+ * Cristian Nova Santoya <cristian.nova@uc.cl>
