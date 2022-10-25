@@ -3,6 +3,8 @@
 import sys
 import rospy
 import numpy as np
+
+# http://docs.ros.org/en/noetic/api/moveit_commander/html/move__group_8py_source.html
 import moveit_commander
 
 from geometry_msgs.msg import PoseStamped, Pose
@@ -46,7 +48,6 @@ class MoveGroupPythonInterface(object):
     def __init__(self):
         moveit_commander.roscpp_initialize(sys.argv)
         self.init_variables()
-        self.show_variable()
         
 
     def init_variables(self):
@@ -206,3 +207,9 @@ class MoveGroupPythonInterface(object):
         ## We can remove the box from the world.
         self.scene.remove_world_object(obj_name)
         return self.wait_for_state_update(obj_is_known=False, obj_is_attached=False)
+
+
+if __name__ == "__main__":
+    rospy.init_node("move_group_python_interface")
+    mgpi = MoveGroupPythonInterface()
+    mgpi.show_variable()
