@@ -23,6 +23,11 @@ echo "source {PATH_TO}/SEMA_sim/sem_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
 
+## Demo 
+```
+roslaunch sema_gzsim sema_gzsim_moveit.launch demo:=true
+```
+
 ## Getting Started
 * The Instructions assume familiarity with Python3, Linux environment, Robotic Operating System (ROS) framework, Gazebo11, and Moveit! in Rviz. If you're new to these tools, you can get started with these great tutorials:
   * [Python3 Tutorial](https://app.theconstructsim.com/Course/58)
@@ -31,10 +36,6 @@ source ~/.bashrc
   * [Gazebo simulator Tutorials](https://classic.gazebosim.org/tutorials?cat=get_started)
   * [Moveit! with Rviz Tutorial](https://ros-planning.github.io/moveit_tutorials/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html)
 
-## Demo 
-```
-roslaunch sema_gzsim sema_gzsim_moveit.launch demo:=true
-```
 ## Tutorials
 * [Lear how  to change simulator mode.]()
 
