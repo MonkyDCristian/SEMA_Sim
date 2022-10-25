@@ -37,19 +37,20 @@ roslaunch sema_gzsim sema_gzsim_moveit.launch demo:=true
   * [Moveit! with Rviz Tutorial](https://ros-planning.github.io/moveit_tutorials/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html)
 
 ## Tutorials
-* [Lear how  to change simulator mode.]()
+### Lear how  to
+* [change simulator mode.]()
 
-* [Lear how to spawn a platform in gazebo.]()
+* [spawn a platform in gazebo.]()
 
-* [Lear how to spawn a box, or a sequence of boxes, in the simulation.]()
+* [spawn a box, or a sequence of boxes, in the simulation.]()
 
-* [Lear how to control the conveyor belt.]()
+* [control the conveyor belt.]()
 
-* [Lear how to create an ideal or  a realistic attach between the vacuum gripper and a box.]()
+* [create an ideal or  a realistic attach between the vacuum gripper and a box.]()
 
-* [Lear how to save reference points and robot joint states for a motion sequence project.]()
+* [save reference points and robot joint states for a motion sequence project.]()
 
-* [Lear how control the robot by Moveit! with Python3.]()
+* [control the robot by Moveit! with Python3.]()
 
 ## Contact 
 
