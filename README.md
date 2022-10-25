@@ -1,4 +1,4 @@
-# SEMA_Sim
+# SEMA Simulator
 Simulator of the Automated Mobile Packaging System developed at the "Universidad de Los Andes de Colombia".
 
 ![Alt text](/imgs/gzsim_rviz_view.png)
