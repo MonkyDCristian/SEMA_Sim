@@ -11,7 +11,7 @@ The objective of this simulator is to serve as a safe and malleable space where 
 
 * Operating system: [Ubuntu 20.04](https://releases.ubuntu.com/focal/)
 * Communication Software: [ROS Noetic (full-desktop)](http://wiki.ros.org/noetic/Installation/Ubuntu)
-* Robot arm control software: [Moveit](https://ros-planning.github.io/moveit_tutorials/doc/getting_started/getting_started.html)
+* Robot arm control software: [Moveit!](https://ros-planning.github.io/moveit_tutorials/doc/getting_started/getting_started.html)
 
 ## Install and Compile
 ```
