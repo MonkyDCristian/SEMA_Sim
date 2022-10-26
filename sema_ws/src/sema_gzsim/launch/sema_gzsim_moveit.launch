@@ -74,14 +74,9 @@
   <!-- launch Box Spawner Action Service-->
   <node name="box_spawner_act_srv" pkg="sema_gzsim" type="box_spawner_act_srv.py"/>
   
-  <!-- launch Object Attacher Action Client -->
+  <!-- launch Object Attacher Action Service-->
   <node name="obj_attacher_act_srv" pkg="sema_gzsim" type="obj_attacher_act_srv.py"/>
  
-  
-  <!-- launch Box Spawner Action Client
-  <node name="box_spawner_act_clt" pkg="sema_gzsim" type="box_spawner_act_clt.py"/>
-  -->
-  
   <!-- launch Demo Node-->
   <node name="sema_demo" pkg="sema_gzsim" type="sema_demo.py" if="$(arg demo)"/>
 

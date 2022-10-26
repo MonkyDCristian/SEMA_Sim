@@ -13,6 +13,7 @@
   -->
   
   <!-- Params --> 
+  <arg name="demo"      default="false"/>
   <arg name="rviz"      default="0"/>
   
   <!-- devices enabled -->
@@ -56,6 +57,16 @@
   
   <include file="$(find sema_gzsim)/launch/set_rviz.launch" if="$(arg rviz)"/> 
   
+  <!-- launch box Rviz viewer -->
+  <node name="publish_markers" pkg="sema_gzsim" type="publish_markers.py"/>
+  
+  <!-- launch Box Spawner Action Service-->
   <node name="box_spawner_act_srv" pkg="sema_gzsim" type="box_spawner_act_srv.py"/>
+  
+  <!-- launch Object Attacher Action Service -->
+  <node name="obj_attacher_act_srv" pkg="sema_gzsim" type="obj_attacher_act_srv.py"/>
+ 
+  <!-- launch Demo Node-->
+  <node name="sema_demo" pkg="sema_gzsim" type="sema_demo.py" if="$(arg demo)"/>
   
 </launch>
