@@ -25,6 +25,7 @@ For this, and other SEMA simulation tools, it was developed a python class that 
 For example, we can set the angular velocity of the conveyor belt in 0.1 rad/sec with the code below
 ```
 #!/usr/bin/env python3
+
 import rospy
 from sema_gzsim.conveyor_belt_vel_ctrl import ConveyorBeltVelocityCtrl
 
