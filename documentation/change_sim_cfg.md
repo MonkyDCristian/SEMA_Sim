@@ -32,3 +32,6 @@ roslaunch sema_gzsim sema_gzsim.launch conveyor_belt_enabled:=false oak_d_enable
 ![Alt text](/imgs/all_disable.png)
 
 **Note:** It will appear errors with the VGC10 controller and the conveyor belt controller, you can just ignore it or fix it by editing the **robot_ctrl** argument in the launch file, more information inside the launch file.
+
+## Next tutorial
+ [control the conveyor belt.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/conveyor_belt%20_control.md)
