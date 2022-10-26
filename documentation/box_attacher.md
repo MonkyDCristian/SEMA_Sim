@@ -17,5 +17,31 @@ BoxSpawnerActSrv is the python class that allows you to spawn a sequence of boxe
 [~/SEMA_Sim/sema_ws/src/sema_gzsim/node/box_spawner_act_srv.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/box_spawner_act_srv.py)
 
 ## Spawn boxes by topic 
+You can publish a BoxSpawnerActionGoal message to the /box_spawner_act_srv/goal to spawn a box topic. In this message, you must configure: the sequence using the abbreviation box name, the frequency at which the boxes are generated, using the hz parameter, and the box pose.
 
-## Spawn boxes by /box_spawner_act_srv
+### Test it
+**T1:**
+```
+roslaunch sema_gzsim sema_gzsim.launch oak_d_enabled:=false vgc10_enabled:=false  
+```
+**T2:**
+```
+rosrun sema_gzsim conveyor_belt_vel_ctrl.py
+```
+**T3:**
+```
+rostopic pub /box_spawner_act_srv/goal sema_gzsim/BoxSpawnerActionGoal "header:
+  seq: 0
+  stamp:
+    secs: 0
+    nsecs: 0
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs: 0
+  id: ''
+goal: {sequence: 'l,ml,m,bm,b', hz: 0.2, x: -0.6, y: -0.3, z: 0.8, yaw: 0.0}" 
+```
+
+## Spawn boxes by box_spawner_act_clt
