@@ -36,7 +36,7 @@ vel = 0.1 #rad/s
 cb_vel_ctrl.run(vel)
 ```
 
-To test it you can run:
+### Test it
 
 **T1:**
 ```
