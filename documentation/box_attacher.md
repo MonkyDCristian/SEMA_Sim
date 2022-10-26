@@ -4,7 +4,7 @@ The simulation features 5 box models, all with the same appearance but with diff
 
 ![Alt text](/imgs/box_models.png)
 
-|Name          |abbreviation| mass | size x mt | size y mt | size z mt |
+|Name          |abbreviation| mass (kg) | size x (mt) | size y (mt) | size z (mt) |
 |--------------|------------|------|-----------|-----------|-----------|
 |little        |l           |0.5   |   0.12    |     0.15  |   0.12    |        
 |middle_little |ml          |0.84  |   0.16    |     0.19   |   0.12   |
