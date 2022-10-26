@@ -31,3 +31,6 @@ roslaunch sema_gzsim sema_gzsim.launch oak_d_enabled:=false vgc10_enabled:=false
 rosrun sema_gzsim pallet_spawner.py
 ```
 **Note:** Check the Gazebo [SpawnModel service](http://docs.ros.org/en/electric/api/gazebo/html/srv/SpawnModel.html) if you want to add spawn parameters.
+
+### Next tutorial 
+[spawn a box, or a sequence of boxes, in the simulation.]( https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_spawner.md)
