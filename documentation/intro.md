@@ -16,11 +16,11 @@ to start it using Moveit! motion planner.
 
 In any of this two launch you can add the parameters:
 
-*conveyor_belt_enabled:=true/false
+* conveyor_belt_enabled:=true/false
 
-*oak_d_enabled:=true/false     
+* oak_d_enabled:=true/false     
 
-*vgc10_enabled:=true/false  
+* vgc10_enabled:=true/false  
 
 By default all parameters are set to true.
 
