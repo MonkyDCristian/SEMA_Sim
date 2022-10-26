@@ -39,7 +39,7 @@ roslaunch sema_gzsim sema_gzsim.launch demo:=true
 
 ## Tutorials
 ### Lear how  to
-* [change simulator configuration.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/change_sim_cfg.md)
+* [change simulator settings.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/change_sim_cfg.md)
 
 * [spawn a platform in gazebo.]()
 
