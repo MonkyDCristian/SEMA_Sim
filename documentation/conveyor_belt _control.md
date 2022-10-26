@@ -14,14 +14,13 @@ Now set the velocity for the conveyor belt by publish the ros command:
 ```
 rostopic pub /cb_joint_vel_controller/command std_msgs/Float64 "data: 0.1"
 ```
-the conveyor should start to move at 0.1 rad/sec. You can insert an object into the simulation and place it on the protractor to get a better view of the result.
+the conveyor should start to move at 0.1 rad/sec. You can insert an object into the simulation and place it on the conveyor to get a better view of the result.
 
 ## Control the conveyor belt by python code 
-~/SEMA_Sim/sema_ws/src/sema_gzsim/node/conveyor_belt_vel_ctrl.py
 
 For this, and other SEMA simulation tools, it was developed a python class that you can copy and modified or just import it to your python file to easily use it. You can access to the conveyor controller code with the next path:
 
-[~/SEMA_Sim/sema_ws/src/sema_gzsim/node/conveyor_belt_vel_ctrl.py]()
+[~/SEMA_Sim/sema_ws/src/sema_gzsim/node/conveyor_belt_vel_ctrl.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/conveyor_belt_vel_ctrl.py)
 
 For example, we can set the angular velocity of the conveyor belt in 0.1 rad/sec with the code below
 ```
