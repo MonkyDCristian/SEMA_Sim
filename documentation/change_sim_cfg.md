@@ -1,6 +1,6 @@
-# Change simulator configuration
+# Change simulator setting
 
-Whenever you want to start a simulation, you can customize the widgets that are available to optimize the simulation environment, for example, if you want to develop trajectory algorithms, you don't need to waste computing power simulating the depth perception view of the camera model Oak-D. In the same way, if you only want to test the vision system, you may not need the vacuum gripper.
+Whenever you want to start a simulation, you can customize the widgets that are available to optimize the simulation environment, for example, if you want to develop trajectory algorithms, you don't need to waste computing power simulating the depth perception view of the camera. In the same way, if you only want to test the vision system, you may not need use the vacuum gripper.
 
 **Note:** This simulator, as a university project, was developed with the aim of being multipurpose, so it can be reconfigured to be applied in other automation or research projects.
 
