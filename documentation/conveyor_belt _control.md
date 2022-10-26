@@ -22,7 +22,7 @@ For this, and other SEMA simulation tools, it was developed a python class that 
 
 [~/SEMA_Sim/sema_ws/src/sema_gzsim/node/conveyor_belt_vel_ctrl.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/conveyor_belt_vel_ctrl.py)
 
-For example, we can set the angular velocity of the conveyor belt in 0.1 rad/sec with the code below
+### Use example
 ```
 #!/usr/bin/env python3
 
