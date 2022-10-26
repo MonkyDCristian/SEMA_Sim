@@ -19,6 +19,7 @@ pallet_spawner.run()
 ```
 
 To test it you can run:
+
 **T1:**
 ```
 roslaunch sema_gzsim sema_gzsim.launch oak_d_enabled:=false vgc10_enabled:=false  
