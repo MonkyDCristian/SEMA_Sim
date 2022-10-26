@@ -42,7 +42,7 @@ roslaunch sema_gzsim sema_gzsim.launch demo:=true
 * [change simulator settings.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/change_sim_cfg.md)
 
 * [control the conveyor belt.]()
-* 
+
 * [spawn a platform in gazebo.]()
 
 * [spawn a box, or a sequence of boxes, in the simulation.]()
