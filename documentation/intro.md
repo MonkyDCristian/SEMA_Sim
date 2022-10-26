@@ -25,6 +25,7 @@ In any of this two launch you can add the parameters:
 By default all parameters are set to true.
 
 ### Example
+```
 roslaunch sema_gzsim sema_gzsim.launch conveyor_belt_enabled:=false oak_d_enabled:=false vgc10_enabled:=false  
-
+```
 **Note:** It will appear errors with the VGC10 controller and the conveyor belt controller, you can just ignore it or fix it by editing the **robot_ctrl** argument in the launch file, more information inside the launch file.
