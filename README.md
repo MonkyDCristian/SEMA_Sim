@@ -39,7 +39,7 @@ roslaunch sema_gzsim sema_gzsim_moveit.launch demo:=true
 
 ## Tutorials
 ### Lear how  to
-* [change simulator mode.]()
+* [change simulator configuration.]()
 
 * [spawn a platform in gazebo.]()
 
