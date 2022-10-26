@@ -1,5 +1,5 @@
 # Pallet Spawner
-To make it easy to customize your packaging environment, the python 3 class **Pallet Spawner** was developed. This class allows you to place a horizontal pallet wherever you want in space.
+To make it easy to customize your packaging environment, the python 3 class **Pallet Spawner** was developed. This class allows you to place a horizontal pallet wherever you want with respect to the global position and orientation.
 
 [~/SEMA_Sim/sema_ws/src/sema_gzsim/node/pallet_spawner.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/pallet_spawner.py)
 
