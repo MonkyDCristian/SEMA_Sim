@@ -28,4 +28,7 @@ By default all parameters are set to true.
 ```
 roslaunch sema_gzsim sema_gzsim.launch conveyor_belt_enabled:=false oak_d_enabled:=false vgc10_enabled:=false  
 ```
+
+![Alt text](/imgs/all_disable.png)
+
 **Note:** It will appear errors with the VGC10 controller and the conveyor belt controller, you can just ignore it or fix it by editing the **robot_ctrl** argument in the launch file, more information inside the launch file.
