@@ -2,6 +2,7 @@
 Simulator of the Automated Mobile Packaging System developed at the "Universidad de Los Andes de Colombia".
 
 ![Alt text](/imgs/gzsim_rviz_view.png)
+
 ## Introduction
 This simulator replicates a physical environment of autonomous palletizing. It counts with a recursive conveyor belt, a UR10 cobot arm, a VGC10 (Vacuum Gipper), a Kinect camera, different box models and a pallet.
 
