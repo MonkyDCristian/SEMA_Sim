@@ -3,6 +3,8 @@ To make it easy to customize your packaging environment, the python 3 class **Pa
 
 [~/SEMA_Sim/sema_ws/src/sema_gzsim/node/pallet_spawner.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/pallet_spawner.py)
 
+![Alt text](/imgs/pallet_spawner.png)
+
 ## Code example
 ```
 #!/usr/bin/env python3
