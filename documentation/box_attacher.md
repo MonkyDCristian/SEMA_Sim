@@ -12,7 +12,9 @@ The simulation features 5 box models, all with the same appearance but with diff
 |big_middle    |bm          |6.94  |   0.3     |      0.4  |   0.25    |
 |big_box       |b           |13.89 |   0.5     |      0.8  |   0.4     |
 
-BoxSpawnerActSrv is the python class that allows you to spawn a sequence of boxes with respect to global position and orientation, just like PalletSpawner, but in this case the boxes are not static. This class was developed using the ROS action, so it does not interfere with the execution of the main program.
+**Note**: The maximum piload that the UR10 can move with a VGC10 is around 7 to 8 kg, so you shouldn't be aviable to move the big box model in real life. Any way it is there if you want to experiment with big boxes, just don't try it with the real robot.
+
+BoxSpawnerActSrv is the python class that allows you to spawn a sequence of boxes with respect to global position and orientation, just like PalletSpawner, but in this case the boxes are not static. This class was developed using the [ROS action](http://wiki.ros.org/actionlib), so it does not interfere with the execution of the main program.
 
 [~/SEMA_Sim/sema_ws/src/sema_gzsim/node/box_spawner_act_srv.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/box_spawner_act_srv.py)
 
@@ -45,3 +47,48 @@ goal: {sequence: 'l,ml,m,bm,b', hz: 0.2, x: -0.6, y: -0.3, z: 0.8, yaw: 0.0}"
 ```
 
 ## Spawn boxes by box_spawner_act_clt
+
+As we are working with a ROS action service, we need a ROS action client to interact with it by code. The  BoxSpawnerActCllt is the class that you can use for this purpose. 
+
+[~/SEMA_Sim/sema_ws/src/sema_gzsim/node/box_spawner_act_clt.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/box_spawner_act_clt.py)
+
+### Use example
+```
+#!/usr/bin/env python3
+
+import rospy
+from sema_gzsim.box_spawner_act_clt import BoxSpawnerActClt
+
+rospy.init_node("box_spawner_act_clt")
+box_spawner = BoxSpawnerActClt()
+
+box_sequence = ["ml", "m", "ml"]
+spawn_params = {"sequence":"", "hz":1.0, "x":-0.6, "y":-0.3, "z":0.8, "yaw":0.0}
+
+for box_type in box_sequence:
+  spawn_params["sequence"] = box_type
+
+  box_spawner.set_params(spawn_params)
+  box_spawner.run()
+
+  spawn_params["y"] += 0.5
+```
+### Test it
+
+**T1:**
+```
+roslaunch sema_gzsim sema_gzsim.launch oak_d_enabled:=false vgc10_enabled:=false  
+```
+**T2:**
+```
+rosrun sema_gzsim conveyor_belt_vel_ctrl.py
+```
+**T3:**
+```
+rosrun sema_gzsim box_spawner_act_clt.py
+```
+
+**Note:** Now it is the perfect time for you to overview the [SEMA demo code](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/sema_demo.py), that combine conveyor control, pallet spawner and box spawner.
+
+
+
