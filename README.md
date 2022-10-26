@@ -2,9 +2,8 @@
 Simulator of the Automated Mobile Packaging System developed at the "Universidad de Los Andes de Colombia".
 
 ![Alt text](/imgs/gzsim_rviz_view.png)
-
 ## Introduction
-This simulator replicates a physical environment of autonomous palletizing. It counts with a recursive conveyor belt, a [UR10 cobot arm](https://www.robots.com/robots/universal-robots-ur10), a [VGC10 (Vacuum Gipper)](https://onrobot.com/us/products/vgc10), a [Oak-D camera](https://store.opencv.ai/products/oak-d-poe), different box models and a pallet.
+This simulator replicates a physical environment of autonomous palletizing. It counts with a recursive conveyor belt, a UR10 cobot arm, a VGC10 (Vacuum Gipper), a Kinect camera, different box models and a pallet.
 
 The objective of this simulator is to serve as a safe and malleable space where vision, trajectory and paking algorithms can be integrated and tested before being taken to the field-testing phase. In addition, it is expected to be used to test simulated hardware parts, such as grippers, cameras, even other robot arm models, in order to evaluate their value for the project.
 
@@ -26,7 +25,7 @@ source ~/.bashrc
 
 ## Demo 
 ```
-roslaunch sema_gzsim sema_gzsim_moveit.launch demo:=true
+roslaunch sema_gzsim sema_gzsim.launch demo:=true
 ```
 
 ## Getting Started
@@ -39,7 +38,7 @@ roslaunch sema_gzsim sema_gzsim_moveit.launch demo:=true
 
 ## Tutorials
 ### Lear how  to
-* [change simulator configuration.]()
+* [change simulator mode.]()
 
 * [spawn a platform in gazebo.]()
 
