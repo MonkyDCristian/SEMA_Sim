@@ -41,17 +41,17 @@ roslaunch sema_gzsim sema_gzsim.launch demo:=true
 ### Lear how  to
 * [change simulator settings.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/change_sim_cfg.md)
 
-* [control the conveyor belt.]()
+* [control the conveyor belt.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/conveyor_belt%20_control.md)
 
-* [spawn a platform in gazebo.]()
+* [spawn a pallet platform in gazebo.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/pallet_spawner.md)
 
-* [spawn a box, or a sequence of boxes, in the simulation.]()
+* [spawn a box, or a sequence of boxes, in the simulation.]( https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_spawner.md)
 
-* [create an ideal or  a realistic attach between the vacuum gripper and a box.]()
+* [create an ideal or  a realistic attach between the vacuum gripper and a box.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_attacher.md)
 
-* [save reference points and robot joint states for a motion sequence project.]()
+* [save reference points and robot joint states for a motion sequence project.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/save_robot_pose.md)
 
-* [control the robot by Moveit! with Python3.]()
+* [control the robot by Moveit! with Python3.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/moveit.md
 
 ## Contact 
 
