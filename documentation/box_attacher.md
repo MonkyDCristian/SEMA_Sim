@@ -51,7 +51,7 @@ for box_type in box_attach_sequence:
   rospy.sleep(2)
   box_attacher.stop()
 ```
-### Test an ideal attach
+### Test it
 **T1:**
 ```
 roslaunch sema_gzsim sema_gzsim.launch oak_d_enabled:=false demo:=true          
@@ -61,9 +61,12 @@ roslaunch sema_gzsim sema_gzsim.launch oak_d_enabled:=false demo:=true
 rosrun sema_gzsim box_attacher.py
 ```
 
+### Ideal Attach Example
+
 ![Alt text](/imgs/ideal_attach.png)
+
 ### Ideal Attach Example
 To test a realtive attach, simply switch box_attacher.attach_params["ideal_attach"] value to False.
 
-### Ideal Attach Example
 ![Alt text](/imgs/not_ideal_attach.png)
+
