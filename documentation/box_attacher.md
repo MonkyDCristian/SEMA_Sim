@@ -30,9 +30,7 @@ rosrun rqt_joint_trajectory_controller rqt_joint_trajectory_controller
 sudo apt install ros-noetic-rqt-joint-trajectory-controller
 ```
 
-
-## Create a realistic attach ObjAttacherActSrv
-
-
 ![Alt text](/imgs/ideal_attach.png)
+
+
 ![Alt text](/imgs/not_ideal_attach.png)
