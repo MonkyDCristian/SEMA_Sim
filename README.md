@@ -39,19 +39,19 @@ roslaunch sema_gzsim sema_gzsim.launch demo:=true
 
 ## Tutorials
 ### Lear how  to
-* [change simulator settings.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/change_sim_cfg.md)
+* [Change simulator settings.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/change_sim_cfg.md)
 
-* [control the conveyor belt.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/conveyor_belt%20_control.md)
+* [Control the conveyor belt.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/conveyor_belt%20_control.md)
 
-* [spawn a pallet platform in gazebo.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/pallet_spawner.md)
+* [Spawn a pallet platform in gazebo.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/pallet_spawner.md)
 
-* [spawn a box, or a sequence of boxes, in the simulation.]( https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_spawner.md)
+* [Spawn a box, or a sequence of boxes, in the simulation.]( https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_spawner.md)
 
-* [create an ideal or  a realistic attach between the vacuum gripper and a box.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_attacher.md)
+* [Create an ideal or a relative attach between the vacuum gripper and a box.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_attacher.md)
 
-* [save reference points and robot joint states for a motion sequence project.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/save_robot_pose.md)
+* [Save reference points and robot joint states for a motion sequence project.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/save_robot_pose.md)
 
-* [control the robot by Moveit! with Python3.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/moveit.md)
+* [Control the robot by Moveit! with Python3.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/moveit.md)
 
 ## Contact 
 
