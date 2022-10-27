@@ -7,7 +7,9 @@ There are two types of attach you can use, an **ideal attach** and a **realistic
 
 ## Create an ideal attach by code
 The BoxSpawner class is the combination of two classes, VGSimExtensionCtrl and ObjAttacherActSrv. The VGSimExtensionCtrl control the position of a little box relative to the eef_link, this box doesn't have collisions and it is the point where the box is teleport when we create an ideal attach.
+
 ![Alt text](/imgs/eef_extension.png)
+
 You can try to control the little box position by running this commands
 
 **T1:**
