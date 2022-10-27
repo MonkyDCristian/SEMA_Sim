@@ -14,7 +14,7 @@ You can try to control the little box position by running this commands
 
 **T1:**
 ```
-roslaunch sema_gzsim sema_gzsim.launch conveyor_belt_enabled=false oak_d_enabled=false          
+roslaunch sema_gzsim sema_gzsim.launch conveyor_belt_enabled:=false oak_d_enabled:=false          
 ```
 **T2:**
 ```
