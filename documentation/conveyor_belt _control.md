@@ -20,7 +20,7 @@ the conveyor should start to move at 0.1 rad/sec. You can insert an object into 
 
 For this, and other SEMA simulation tools, it was developed a python class that you can copy and modified or just import it to your python file to easily use it. You can access to the conveyor controller code with the next path:
 
-[~/SEMA_Sim/sema_ws/src/sema_gzsim/node/conveyor_belt_vel_ctrl.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/conveyor_belt_vel_ctrl.py)
+[~/SEMA_Sim/sema_ws/src/sema_gzsim/src/sema_gzsim/conveyor_belt_vel_ctrl.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/src/sema_gzsim/conveyor_belt_vel_ctrl.py)
 
 ### Use example
 ```
