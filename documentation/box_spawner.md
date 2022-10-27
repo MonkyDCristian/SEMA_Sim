@@ -91,4 +91,4 @@ rosrun sema_gzsim box_spawner_act_clt.py
 **Note:** Now it is the perfect time for you to overview the [SEMA demo code](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/sema_demo.py), that combine conveyor control, pallet spawner and box spawner.
 
 ## Next tutorial
-[create an ideal or a realistic attach between the vacuum gripper and a box.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_attacher.md)
+[create an ideal or a relative attach between the vacuum gripper and a box.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_attacher.md)
