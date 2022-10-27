@@ -72,4 +72,4 @@ To test a realtive attach, simply switch box_attacher.attach_params["ideal_attac
 
 ## Next Tutorial
 
-[save reference points and robot joint states for a motion sequence project.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/save_robot_pose.md)
+[Save reference points and robot joint states for a motion sequence project.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/save_robot_pose.md)
