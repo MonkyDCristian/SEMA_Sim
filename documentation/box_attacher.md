@@ -16,7 +16,7 @@ The BoxSpawner class is the combination of two classes, VGSimExtensionCtrl and O
 
 The VGSimExtensionCtrl class apply a [Position Joint trajectory contorller](http://wiki.ros.org/joint_trajectory_controller), so it is easy to operate by the rqt_joint_trajectory_controller GUI. 
 
-Control by topic 
+### Test it
 **T1:**
 ```
 roslaunch sema_gzsim sema_gzsim.launch conveyor_belt_enabled:=false oak_d_enabled:=false          
