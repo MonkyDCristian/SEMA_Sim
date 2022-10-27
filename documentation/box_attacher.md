@@ -9,7 +9,7 @@ The BoxSpawner class is the combination of two classes, VGSimExtensionCtrl and O
 
 **Note:** part of the algorithm was inspired by this [blog](https://erdalpekel.de/?p=178).
 
-### Understanding VGSimExtensionCtrl
+### VGSimExtensionCtrl
 
 ![Alt text](/imgs/eef_extension.png)
 
