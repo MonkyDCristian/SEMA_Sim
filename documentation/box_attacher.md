@@ -5,6 +5,8 @@ There are two types of attach you can use, an **ideal attach** and a **realistic
 
 The BoxSpawner class is the combination of two classes, VGSimExtensionCtrl and ObjAttacherActSrv. The VGSimExtensionCtrl control the position of a little box relative to the eef_link, this box doesn't have collisions and it is the point where the box is teleport when we create an ideal attach. ObjAttacherActSrv is a [ROS action](http://wiki.ros.org/actionlib) that creates and maintains a connection between eef_link and a free object model, its goal message is given by the name of the free model's parent link and a boolean value, this last one indicate whether the connection is ideal or not.
 
+[~/SEMA_Sim/sema_ws/src/sema_gzsim/src/sema_gzsim/box_attacher.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/src/sema_gzsim/box_attacher.py)
+
 **Note:** part of the algorithm was inspired by this [blog](https://erdalpekel.de/?p=178).
 
 ### Understanding VGSimExtensionCtrl
