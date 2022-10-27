@@ -50,4 +50,4 @@ rosrun sema_gzsim conveyor_belt_vel_ctrl.py
 **Note:** For physic stability, don't set the angular velocity higher than 0.1 rad/sec.
 
 ## Next tutorial 
-[spawn a pallet platform in gazebo.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/pallet_spawner.md)
+[Spawn a pallet platform in gazebo.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/pallet_spawner.md)
