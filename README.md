@@ -23,7 +23,7 @@ git clone https://github.com/MonkyDCristian/SEMA_Sim.git
 cd ~/SEMA_sim/sema_ws
 catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
 cd
-echo "source {PATH_TO}/SEMA_sim/sema_ws/devel/setup.bash" >> ~/.bashrc
+echo "source {PATH_TO}/SEMA_Sim/sema_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
 
