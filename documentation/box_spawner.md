@@ -16,7 +16,7 @@ The simulation features 5 box models, all with the same appearance but with diff
 
 BoxSpawnerActSrv is the python class that allows you to spawn a sequence of boxes with respect to global position and orientation, just like PalletSpawner, but in this case the boxes are not static. This class was developed using the [ROS action](http://wiki.ros.org/actionlib), so it does not interfere with the execution of the main program.
 
-[~/SEMA_Sim/sema_ws/src/sema_gzsim/src/sema_gzsim/box_spawner_act_srv.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/box_spawner_act_clt.py)
+[~/SEMA_Sim/sema_ws/src/sema_gzsim/src/sema_gzsim/box_spawner_act_srv.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/src/sema_gzsim/box_spawner_act_clt.py)
 
 ## Spawn boxes by topic 
 You can publish a BoxSpawnerActionGoal message to the /box_spawner_act_srv/goal to spawn a box topic. In this message, you must configure: the sequence using the abbreviation box name, the frequency at which the boxes are generated, using the hz parameter, and the box pose.
