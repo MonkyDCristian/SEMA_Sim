@@ -15,7 +15,7 @@ from sema_moveit.move_group_python_interface import MoveGroupPythonInterface
 mgpi = MoveGroupPythonInterface()
 ```
 
-## Use the register poses
+## Use registered poses
 
 Image that we already have registered a compilation of pose, now we want the robot to change from one pose to another. To do that we can executive a sequence of poses using the MoveGroupPythonInterface:
 
