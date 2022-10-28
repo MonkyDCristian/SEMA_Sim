@@ -20,7 +20,7 @@ The objective of this simulator is to serve as a safe and malleable space where 
 ## Install and Compile
 ```
 git clone https://github.com/MonkyDCristian/SEMA_Sim.git
-cd ~/SEMA_im/sema_ws
+cd ~/SEMA_Sim/sema_ws
 catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
 cd
 echo "source {PATH_TO}/SEMA_Sim/sema_ws/devel/setup.bash" >> ~/.bashrc
