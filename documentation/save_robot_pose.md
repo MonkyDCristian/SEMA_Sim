@@ -1,5 +1,5 @@
 # Save Robot Pose
-**Note:** up to this point, you have probably already learned how to control the UR10 by rqt_joint_trajetory_controller or by Movit! interface with Rviz, anyway, if you haven't, I highly recommend you to check this quick start [Moveit. tutorial](https://ros-planning.github.io/moveit_tutorials/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html), to learn the basic of this motion planning program.
+**Note:** up to this point, you have probably already learned how to control the UR10 by rqt_joint_trajetory_controller or by Movit! interface with Rviz, anyway, if you haven't, I highly recommend you to check this quick start [Moveit! tutorial](https://ros-planning.github.io/moveit_tutorials/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html), to learn the basic of this motion planning program.
 
 Working with motion planners in robotic arms usually has some problems, such as [singularity](https://www.mecademic.com/what-are-the-singularities-in-a-robot-arm-of-six-axis) poses, in simple words, poses where the robot gets stuck. 
 
