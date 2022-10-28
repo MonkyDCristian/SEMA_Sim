@@ -27,10 +27,10 @@ For all these reason, the URPoseRegister class was created, this program allow y
   ...
   }}}}
  ```
- 
-[~/SEMA_Sim/sema_ws/src/sema_gzsim/node/ur_pose_register.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/ur_pose_register.py)
 
 This program run along with the simulation, and you can operate by using the rqt_reconfing GUI tool.
+
+[~/SEMA_Sim/sema_ws/src/sema_gzsim/node/ur_pose_register.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/ur_pose_register.py)
 
 ## Test it
 T1:
