@@ -1,31 +1,11 @@
 #!/usr/bin/env python3
 
 import rospy
-
 from sensor_msgs.msg import JointState
 
 # https://roboticsbackend.com/ros-import-python-module-from-another-package/
 from sema_moveit.move_group_python_interface import MoveGroupPythonInterface
-from pose_compilation.example import example
-
-class SemaDemo2(object):
-	
-	def __init__(self):
-		rospy.init_node("sema_demo2")
-		self.variables_init()
-		self.connections_init()
-		
-
-	def variables_init(self):
-		self.mgpi = MoveGroupPythonInterface()
-
-
-	def connections_init(self): 
-		pass
-	
-
-	def run(self):
-		pass
+from pose_compilation.pick_box_poses import pick_box_poses
 
 
 def tf2joint_state_msg(lib_poses, pose_name):
@@ -38,28 +18,32 @@ def tf2joint_state_msg(lib_poses, pose_name):
 		
 
 if __name__ == "__main__":
-	sema_demo2 = SemaDemo2()
-	#sema_demo2.mgpi.show_variable()
+	rospy.init_node("move_group_python_interface")
+	mgpi = MoveGroupPythonInterface()
+	mgpi.show_variable()
 	
-	goal_joints_0 = tf2joint_state_msg(example, "pose0")
-	goal_joints_1 = tf2joint_state_msg(example, "pose1")
+	goal_joints_0 = tf2joint_state_msg(pick_box_poses, "pick_pose")
+	goal_joints_1 = tf2joint_state_msg(pick_box_poses, "middle_place_pose")
+	goal_joints_2 = tf2joint_state_msg(pick_box_poses, "final_place_pose")
 	
 	enter_msg = input("READY TO PLANNING: Press enter to planning a trayectory")
 	 
-	plan = sema_demo2.mgpi.move_group.plan(joints=goal_joints_0)
-	print(plan)
-	# or 
+	plan = mgpi.move_group.plan(joints=goal_joints_0)
+	# or use:
 	#sema_demo2.mgpi.move_group.set_joint_values_target(goal_joints_0)
 	#plan = sema_demo2.mgpi.move_group.plan()
 
 	trajectory = plan[1]
-	sema_demo2.mgpi.display_trajectory(trajectory)
-
+	mgpi.display_trajectory(trajectory)
 
 	enter_msg = input("READY TO MOVE: Press enter to move the UR10")
 
-	sema_demo2.mgpi.move_group.go(wait=True)
+	mgpi.move_group.go(wait=True)
 
 	enter_msg = input("READY TO MOVE: Press enter to plan and move with one comand")
 
-	sema_demo2.mgpi.move_group.go(joints=goal_joints_1 , wait=True)
+	mgpi.move_group.go(joints=goal_joints_1 , wait=True)
+
+	enter_msg = input("READY TO MOVE: Great! Press enter one more time to move the robot to its final position")
+
+	mgpi.move_group.go(joints=goal_joints_2 , wait=True)

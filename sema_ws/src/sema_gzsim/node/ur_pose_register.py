@@ -45,8 +45,10 @@ class URJointsRegiter():
 
 	def run(self, file_name, pose_name):
 		
-		self.file_name = file_name
-
+		if file_name != self.file_name:
+			self.file_name = file_name
+			self.ur_pose_data = {}
+			
 		ur_joints = self.get_ur_joints()
 		eef_pose = self.get_eef_pose()
 
