@@ -50,7 +50,7 @@ goal: {sequence: 'l,ml,m,bm,b', hz: 0.2, x: -0.6, y: -0.3, z: 0.8, yaw: 0.0}"
 
 As we are working with a ROS action service, we need a ROS action client to interact with it by code. The  BoxSpawnerActClt is the class that you can use for this purpose. 
 
-[~/SEMA_Sim/sema_ws/src/sema_gzsim/src/sema_gzsim/box_spawner_act_clt.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/box_spawner_act_clt.py)
+[~/SEMA_Sim/sema_ws/src/sema_gzsim/src/sema_gzsim/box_spawner_act_clt.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/src/sema_gzsim/box_spawner_act_clt.py)
 
 ### Use example
 ```
