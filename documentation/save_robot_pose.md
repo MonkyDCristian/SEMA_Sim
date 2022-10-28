@@ -7,7 +7,7 @@ A common technique to avoid these conflicting poses is to have a set of safe pos
 
 There are others cases where having a set of poses can be useful, for example when you are setting up a repetitive motion or when you want the robot to start in some specifics pose to do an experiment.
 
-For all these reason, the URPoseRegister class was created, this proggram allow you to save the actual pose data of the robot as a [dictionary](https://www.w3schools.com/python/python_dictionaries.asp) inside a python file with he next structure:
+For all these reason, the URPoseRegister class was created, this program allow you to save the actual pose data of the robot as a [dictionary](https://www.w3schools.com/python/python_dictionaries.asp) inside a python file with he next structure:
  ```
  example_directory =
   {'pose0': {'ur_joints': {'sema/elbow_joint': elbow_ang,
