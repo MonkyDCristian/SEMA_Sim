@@ -25,6 +25,7 @@ For all these reason, the URPoseRegister class was created, this program allow y
                                           'w': eef_w_orientation}}}, 
   'pose1':...
   ...
+  }}}}
  ```
  
 [~/SEMA_Sim/sema_ws/src/sema_gzsim/node/ur_pose_register.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/ur_pose_register.py)
