@@ -3,11 +3,11 @@
 
 Working with motion planners in robotic arms usually has some problems, such as [singularity](https://www.mecademic.com/what-are-the-singularities-in-a-robot-arm-of-six-axis) poses, in simple words, poses where the robot gets stuck. 
 
-A common technique to avoid these conflicting poses is to have a set of safe poses, these are poses that the robot can take that are far from the singularity zone and make it easier to apply motion planners.
+A common technique to avoid these conflicting poses is to have a set of safe poses, these are poses the robot can take that are far from the singularity zones and make it easier to apply motion planners.
 
-There are other cases where having a set of poses can be useful, for example when you are setting up a repetitive motion or when you want the robot to start in some specifics pose to do an experiment.
+There are others cases where having a set of poses can be useful, for example when you are setting up a repetitive motion or when you want the robot to start in some specifics pose to do an experiment.
 
-For all these reason, the URPoseRegister class was created, This proggram allow you to save the actual pose data of the robot in the as a [dictionary](https://www.w3schools.com/python/python_dictionaries.asp) inside a python file with he next structure:
+For all these reason, the URPoseRegister class was created, this proggram allow you to save the actual pose data of the robot as a [dictionary](https://www.w3schools.com/python/python_dictionaries.asp) inside a python file with he next structure:
  ```
  example_directory =
   {'pose0': {'ur_joints': {'sema/elbow_joint': elbow_ang,
