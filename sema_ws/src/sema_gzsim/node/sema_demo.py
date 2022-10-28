@@ -2,9 +2,9 @@
 
 import rospy
 
-from box_spawner_act_clt import BoxSpawnerActClt
-from conveyor_belt_vel_ctrl import ConveyorBeltVelocityCtrl
-from pallet_spawner import PalletSpawner
+from sema_gzsim.box_spawner_act_clt import BoxSpawnerActClt
+from sema_gzsim.conveyor_belt_vel_ctrl import ConveyorBeltVelocityCtrl
+from sema_gzsim.pallet_spawner import PalletSpawner
 
 
 class SemaDemo(object):

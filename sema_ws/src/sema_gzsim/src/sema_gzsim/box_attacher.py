@@ -4,8 +4,9 @@ import rospy
 import numpy as np
 
 from std_msgs.msg      import String
-from gazebo_msgs.msg   import ModelStates
 
+# https://classic.gazebosim.org/tutorials?tut=ros_comm&cat=connect_ros
+from gazebo_msgs.msg   import ModelStates
 from gazebo_msgs.srv import GetLinkState, GetLinkStateRequest
 
 from sema_gzsim.vg_sim_extension_ctrl import VGSimExtensionCtrl
@@ -98,6 +99,7 @@ if __name__ == '__main__':
 
 	rospy.init_node('box_attacher')
 	box_attacher = BoxAttacher()
+	box_attacher.attach_params["ideal_attach"] =  True
 
 	rospy.sleep(5)
 	box_attach_sequence = ["l", "ml", "m", "bm", "b"]

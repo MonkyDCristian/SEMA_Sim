@@ -2,7 +2,6 @@
 
 import rospy
 
-from nav_msgs.msg      import Odometry
 from geometry_msgs.msg import Twist
 from std_msgs.msg      import String
 from gazebo_msgs.msg   import ModelStates

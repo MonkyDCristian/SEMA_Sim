@@ -76,7 +76,7 @@ class ObjAttacherActSrv():
 		self.costum_obj_properties(gravity=False)
 
 		if not self.ideal_attach:
-			self.pose_tf.pose = self.get_link_pose(self.obj_link, self.ref_link)
+			self.pose_tf.pose = self.get_link_pose(self.obj_link, self.pose_tf.header.frame_id)
 		
 		self.stop = False
 		while not rospy.is_shutdown() and not self.stop:

@@ -20,7 +20,9 @@
   <arg name="vgc10_enabled"         default="true" />
   <arg name="conveyor_belt_enabled" default="true" />
   <arg name="oak_d_enabled"         default="true" />
-
+  
+  <arg name="gazebo_gui"            default="true" />
+  
  <!--
  Controller to publish joint state: joint_state_controller  (use always) 
  UR10 Position Controller: pos_joint_traj_controller
@@ -38,6 +40,7 @@
   <!-- World Configuration --> 
   <include file="$(find sema_gzsim)/launch/set_word.launch">
   	<arg name="gazebo_world" value="$(find sema_gzsim)/world/sema_empty.world"/>
+  	<arg name="gui"   value="$(arg gazebo_gui)" />
   </include>
   
   <!-- Spawm Robot --> 
@@ -65,7 +68,10 @@
   
   <!-- launch Object Attacher Action Service -->
   <node name="obj_attacher_act_srv" pkg="sema_gzsim" type="obj_attacher_act_srv.py"/>
- 
+  
+  <!-- launch UR Pose Register -->
+  <node name="ur_pose_register" pkg="sema_gzsim" type="ur_pose_register.py"/>
+  
   <!-- launch Demo Node-->
   <node name="sema_demo" pkg="sema_gzsim" type="sema_demo.py" if="$(arg demo)"/>
   

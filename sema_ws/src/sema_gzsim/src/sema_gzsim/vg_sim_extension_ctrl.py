@@ -2,7 +2,9 @@
 
 import rospy
 
-from std_msgs.msg        import Float32
+from std_msgs.msg import Float32
+
+# http://wiki.ros.org/joint_trajectory_controller
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
 class VGSimExtensionCtrl():
@@ -55,4 +57,3 @@ if __name__ == '__main__':
 	vg_sim_extension_controller = VGSimExtensionCtrl()
 	extension = 0.15 # mt
 	vg_sim_extension_controller.run(extension)
-	rospy.spin()
