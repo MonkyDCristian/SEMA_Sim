@@ -50,7 +50,7 @@ class PalletSpawner():
 
 if __name__ == "__main__":
 	rospy.init_node("pallet_spawner")
-	spawn_params = {"x":0.3, "y":0.8, "z":0.1, "yaw":0.0}
+	spawn_params = {"x":0.3, "y":0.8, "z":0.5, "yaw":0.0}
 	
 	pallet_spawner = PalletSpawner()
 	pallet_spawner.set_params(spawn_params)
