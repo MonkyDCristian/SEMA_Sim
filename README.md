@@ -20,10 +20,10 @@ The objective of this simulator is to serve as a safe and malleable space where 
 ## Install and Compile
 ```
 git clone https://github.com/MonkyDCristian/SEMA_Sim.git
-cd /SEMA_sim/sema_ws
+cd ~/SEMA_Sim/sema_ws
 catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
 cd
-echo "source {PATH_TO}/SEMA_sim/sem_ws/devel/setup.bash" >> ~/.bashrc
+echo "source {PATH_TO}/SEMA_Sim/sema_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -55,6 +55,13 @@ roslaunch sema_gzsim sema_gzsim.launch demo:=true
 * [Save reference points and robot joint states for a motion sequence project.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/save_robot_pose.md)
 
 * [Control the robot by Moveit! with Python3.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/moveit.md)
+
+## Improves for future version:
+
+* Improves stability for box collision.
+* Add attached constraint.
+* Add a tutorial for camera setup.
+* Pass the simulation to Gazebo Ignition with ROS2 environmental.
 
 ## Author 
 

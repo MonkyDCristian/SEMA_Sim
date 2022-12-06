@@ -4,7 +4,7 @@ Whenever you want to start a simulation, you can customize the widgets that are 
 
 **Note:** This simulator, as a university project, was developed with the aim of being multipurpose, so it can be reconfigured to be applied in other automation or research projects.
 
-To start the simulation you can launch
+You can launch the command
 ```
 roslaunch sema_gzsim sema_gzsim.launch
 ```

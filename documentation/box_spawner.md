@@ -12,7 +12,7 @@ The simulation features 5 box models, all with the same appearance but with diff
 |big_middle    |bm          |6.94  |   0.3     |      0.4  |   0.25    |
 |big_box       |b           |13.89 |   0.5     |      0.8  |   0.4     |
 
-**Note**: The maximum piload that the UR10 can move with a VGC10 is around 7 to 8 kg, so you shouldn't be aviable to move the big box model in real life. Any way it is there if you want to experiment with big boxes, just don't try it with the real robot.
+**Note**: The maximum piload that the UR10 can move with a VGC10 is around 7 to 8 kg, so you shouldn't be available to move the big box model in real life. Anyway it is there if you want to experiment with big boxes, just don't try it with the real robot.
 
 BoxSpawnerActSrv is the python class that allows you to spawn a sequence of boxes with respect to global position and orientation, just like PalletSpawner, but in this case the boxes are not static. This class was developed using the [ROS action](http://wiki.ros.org/actionlib), so it does not interfere with the execution of the main program.
 
@@ -50,7 +50,7 @@ goal: {sequence: 'l,ml,m,bm,b', hz: 0.2, x: -0.6, y: -0.3, z: 0.8, yaw: 0.0}"
 
 As we are working with a ROS action service, we need a ROS action client to interact with it by code. The  BoxSpawnerActClt is the class that you can use for this purpose. 
 
-[~/SEMA_Sim/sema_ws/src/sema_gzsim/node/box_spawner_act_clt.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/box_spawner_act_clt.py)
+[~/SEMA_Sim/sema_ws/src/sema_gzsim/src/sema_gzsim/box_spawner_act_clt.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/src/sema_gzsim/box_spawner_act_clt.py)
 
 ### Use example
 ```

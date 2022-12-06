@@ -23,10 +23,11 @@ class URJointsRegiter():
 		self.path = self.rospack.get_path('sema_gzsim')+"/node/pose_compilation/"
 		self.file_name = ""
 
-		self.joint_state_msg = None
-
 		self.ur_joints_name = ["sema/elbow_joint", "sema/shoulder_lift_joint", "sema/shoulder_pan_joint",
 		                       "sema/wrist_1_joint", "sema/wrist_2_joint", "sema/wrist_3_joint"]
+		
+		self.real_ur_joints_name = ["elbow_joint", "shoulder_lift_joint", "shoulder_pan_joint",
+		                       "wrist_1_joint", "wrist_2_joint", "wrist_3_joint"]
 		
 		self.ur_eef_name = "sema/wrist_3_link"
 		
@@ -36,11 +37,6 @@ class URJointsRegiter():
 	def connections_init(self): 
 		self.get_link_state_srv = rospy.ServiceProxy('/gazebo/get_link_state', GetLinkState)
 		srv = DRServer(save_pose_registerConfig, self.dynamic_config_callback)
-		rospy.Subscriber("/joint_states", JointState, self.callback)
-	
-
-	def callback(self, joint_state_msg):
-		self.joint_state_msg = joint_state_msg
 
 
 	def dynamic_config_callback(self, cfg, level):
@@ -51,26 +47,31 @@ class URJointsRegiter():
 
 
 	def run(self, file_name, pose_name):
-		if self.joint_state_msg is not None:
-			if file_name != self.file_name:
-				self.file_name = file_name
-				self.ur_pose_data = {}
-				
-			ur_joints = self.get_ur_joints()
-			eef_pose = self.get_eef_pose()
-
-			self.ur_pose_data[pose_name] = {"ur_joints":ur_joints, "eef_pose":eef_pose} 
+		
+		if file_name != self.file_name:
+			self.file_name = file_name
+			self.ur_pose_data = {}
 			
-			self.save_ur_pose_data()
+		ur_joints, real_ur_joints = self.get_ur_joints()
+		eef_pose = self.get_eef_pose()
+
+		self.ur_pose_data[pose_name] = {"ur_joints":ur_joints, "eef_pose":eef_pose}
+		self.ur_pose_data["real_" + pose_name] = {"ur_joints":real_ur_joints, "eef_pose":eef_pose} 
+		
+		self.save_ur_pose_data()
 
 	
 	def get_ur_joints(self):
-		ur_joints = {}
-		for n, joint_name in enumerate(self.joint_state_msg.name):
-			if joint_name in self.ur_joints_name:
-				ur_joints[joint_name] = self.joint_state_msg.position[n]
+		joint_state_msg = rospy.wait_for_message("/joint_states", JointState, timeout=3)
 		
-		return ur_joints
+		ur_joints = {}
+		real_ur_joints = {}
+		for n, joint_name in enumerate(joint_state_msg.name):
+			if joint_name in self.ur_joints_name:
+				ur_joints[joint_name] = joint_state_msg.position[n]
+				real_ur_joints[joint_name.replace("sema/","")] = joint_state_msg.position[n]
+		
+		return ur_joints, real_ur_joints
 
 	
 	def get_eef_pose(self):

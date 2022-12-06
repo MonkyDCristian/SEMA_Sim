@@ -40,7 +40,7 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: world
       Value: true
-    - Acceleration_Scaling_Factor: 0.1
+    - Acceleration_Scaling_Factor: 0.7
       Class: moveit_rviz_plugin/MotionPlanning
       Enabled: true
       Move Group Namespace: ""
@@ -107,19 +107,6 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          sema/oak_d_pro/base_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          sema/oak_d_pro/link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          sema/oak_d_pro/link_optical:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           sema/shoulder_link:
             Alpha: 1
             Show Axes: false
@@ -249,19 +236,6 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          sema/oak_d_pro/base_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-          sema/oak_d_pro/link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          sema/oak_d_pro/link_optical:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           sema/shoulder_link:
             Alpha: 1
             Show Axes: false
@@ -313,7 +287,7 @@ Visualization Manager:
         Show Robot Collision: false
         Show Robot Visual: true
       Value: true
-      Velocity_Scaling_Factor: 0.5
+      Velocity_Scaling_Factor: 0.7
     - Class: rviz/MarkerArray
       Enabled: true
       Marker Topic: /marker_array
@@ -410,5 +384,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1200
-  X: 352
-  Y: 174
+  X: 1235
+  Y: 485
