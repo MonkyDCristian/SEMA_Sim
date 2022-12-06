@@ -45,7 +45,7 @@
   
   <!-- Spawm Robot --> 
   <include file="$(find sema_gzsim)/launch/set_robot.launch"> 
-  	<arg name="xacro_robot_model"     value="$(find sema_description)/urdf/sema.xacro"/>
+  	<arg name="xacro_robot_model" value="$(find sema_description)/urdf/sema.xacro"/>
     <arg name="vgc10_enabled"         value="$(arg vgc10_enabled)" />
     <arg name="conveyor_belt_enabled" value="$(arg conveyor_belt_enabled)" />
     <arg name="oak_d_enabled"         value="$(arg oak_d_enabled)" />

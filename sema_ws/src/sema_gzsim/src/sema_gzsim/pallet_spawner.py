@@ -20,10 +20,10 @@ class PalletSpawner():
 		self.rospack = RosPack()
 		self.path = self.rospack.get_path('sema_models')+"/urdf/"
 		self.pallet = self.path +"sema_pallet.urdf"
-		self.x = None
-		self.y = None 
-		self.z = None 
-		self.yaw = None
+		self.x, self.y, self.z, self.yaw = None, None, None, None
+	
+		self.scale = {"x":1.0, "y":1.0, "z":1.0}
+		self.size = {"x":0.8, "y":1.2, "z":0.14}
 
 	
 	def connections_init(self): 
@@ -35,6 +35,12 @@ class PalletSpawner():
 		with open(self.pallet,"r") as f:
 			pallet_urdf = f.read()
 		
+		str_scale = "scale='" + str(self.scale["x"]) + " " + str(self.scale["y"]) + " " +  str(self.scale["z"]) +"'"
+		str_size = "size='" + str(self.size["x"]) + " " + str(self.size["y"]) + " " +  str(self.size["z"]) +"'"
+		
+		pallet_urdf = pallet_urdf.replace("scale='1.0 1.0 1.0'", str_scale)
+		pallet_urdf = pallet_urdf.replace("size='0.8 1.2 0.144'", str_size)
+
 		quat = quaternion_from_euler(0, 0, self.yaw)
 		orient = Quaternion(quat[0], quat[1], quat[2], quat[3])
 		pose = Pose(Point(x=self.x, y=self.y, z=self.z), orient)
@@ -47,10 +53,21 @@ class PalletSpawner():
 		self.z = params["z"] 
 		self.yaw = params["yaw"]
 
+		if "size_x" in params:
+			self.scale["x"] =(params["size_x"]*self.scale["x"])/self.size["x"]
+			self.size["x"] = params["size_x"]
+		
+		if "size_y" in params:
+			self.scale["y"] =(params["size_y"]*self.scale["y"])/self.size["y"]
+			self.size["y"] = params["size_y"]
+		
+		if "size_z" in params:
+			self.scale["z"] =(params["size_z"]*self.scale["z"])/self.size["z"]
+			self.size["z"] = params["size_z"]
 
 if __name__ == "__main__":
 	rospy.init_node("pallet_spawner")
-	spawn_params = {"x":0.3, "y":0.8, "z":0.5, "yaw":0.0}
+	spawn_params = {"x":0.1, "y":0.6, "z":0.5, "yaw":0.0, "size_x":0.6, "size_y":0.9}
 	
 	pallet_spawner = PalletSpawner()
 	pallet_spawner.set_params(spawn_params)

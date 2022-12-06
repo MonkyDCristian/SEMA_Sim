@@ -18,7 +18,7 @@ class SemaDemo(object):
 
 	def variables_init(self):
 		self.cb_vel = 0.1 
-		self.pallet_spawn_prms = {"x":0.3, "y":0.8, "z":0.1, "yaw":0.0}
+		self.pallet_spawn_prms = {"x":0.1, "y":0.6, "z":0.5, "yaw":0.0, "size_x":0.6, "size_y":0.9}
 		self.box_spawn_prms = {"sequence":"l,ml,m,bm,b", "hz":0.2, "x":-2.8, "y":-2.2, "z":0.8, "yaw":0.0}
 
 
