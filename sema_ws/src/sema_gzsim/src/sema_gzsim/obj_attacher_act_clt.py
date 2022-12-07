@@ -5,6 +5,7 @@ import rospy
 # http://wiki.ros.org/actionlib
 from actionlib import SimpleActionClient
 from sema_gzsim.msg import ObjAttacherAction ,ObjAttacherGoal
+from sema_gzsim.box_spawner import get_box_link_name
 
 class ObjAttacherActClt(object):
 	def __init__(self):
@@ -41,7 +42,11 @@ if __name__ == "__main__":
 	rospy.init_node("obj_attacher_act_clt")
 	obj_attacher = ObjAttacherActClt()
 
-	attach_params = {"obj_link":"sema_middle_little_box_link1", "ideal_attach": True}
+	box = "ml"
+	box_id = 1
+
+	get_box_link_name
+	attach_params = {"obj_link": get_box_link_name(box, box_id), "ideal_attach": True}
 	
 	obj_attacher.set_params(attach_params)
 	obj_attacher.run()

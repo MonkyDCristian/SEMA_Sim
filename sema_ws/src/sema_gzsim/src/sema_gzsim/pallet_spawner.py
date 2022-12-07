@@ -53,17 +53,19 @@ class PalletSpawner():
 		self.z = params["z"] 
 		self.yaw = params["yaw"]
 
-		if "size_x" in params:
-			self.scale["x"] =(params["size_x"]*self.scale["x"])/self.size["x"]
-			self.size["x"] = params["size_x"]
-		
-		if "size_y" in params:
-			self.scale["y"] =(params["size_y"]*self.scale["y"])/self.size["y"]
-			self.size["y"] = params["size_y"]
-		
-		if "size_z" in params:
-			self.scale["z"] =(params["size_z"]*self.scale["z"])/self.size["z"]
-			self.size["z"] = params["size_z"]
+		if "size" in params:
+			if "x" in params["size"]:
+				self.scale["x"] =(params["size"]["x"]*self.scale["x"])/self.size["x"]
+				self.size["x"] = params["size"]["x"]
+			
+			if "y" in params["size"]:
+				self.scale["y"] =(params["size"]["y"]*self.scale["y"])/self.size["y"]
+				self.size["y"] = params["size"]["y"]
+			
+			if "z" in params["size"]:
+				self.scale["z"] =(params["size"]["z"]*self.scale["z"])/self.size["z"]
+				self.size["z"] = params["size"]["z"]
+
 
 if __name__ == "__main__":
 	rospy.init_node("pallet_spawner")

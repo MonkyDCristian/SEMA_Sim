@@ -180,7 +180,7 @@ class MoveGroupPythonInterface(object):
         return False
 
     
-    def add_object_to_scen(self, object):
+    def add_object_to_scene(self, object):
         self.scene.add_box(object["name"], object["pose"], size=object["size"])
 
         self.obj_name = object["name"]

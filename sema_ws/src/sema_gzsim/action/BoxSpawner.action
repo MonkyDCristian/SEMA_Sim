@@ -5,6 +5,7 @@ float32 x       #=-2.8
 float32 y       #=-2.2
 float32 z       #=1.0
 float32 yaw     #=0.0
+bool static     #=False
 
 ---
 #result definition

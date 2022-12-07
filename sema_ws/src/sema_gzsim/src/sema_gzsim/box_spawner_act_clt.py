@@ -43,18 +43,24 @@ class BoxSpawnerActClt(object):
 		self.as_goal.z = params["z"]
 		self.as_goal.yaw = params["yaw"]
 
+		if "static" in params:
+			self.as_goal.static = params["static"]
+		
+		else:
+			self.as_goal.static = False
+
 
 if __name__ == "__main__":
 	rospy.init_node("box_spawner_act_clt")
-	box_spawner = BoxSpawnerActClt()
+	box_spawner_clt = BoxSpawnerActClt()
 	
-	box_sequence = ["ml", "ml", "ml"]
+	box_sequence = ["ml", "ml", "ml"] # ["l","ml","m","mb","b"]
 	spawn_params = {"sequence":"", "hz":1.0, "x":-0.6, "y":-0.3, "z":0.8, "yaw":0.0}
 
-	for box_type in box_sequence:
-		spawn_params["sequence"] = box_type
+	for box_model in box_sequence:
+		spawn_params["sequence"] = box_model
 		
-		box_spawner.set_params(spawn_params)
-		box_spawner.run()
+		box_spawner_clt.set_params(spawn_params)
+		box_spawner_clt.run()
 
 		spawn_params["y"] += 0.5
