@@ -15,7 +15,7 @@ class URJointsRegiter():
 		rospy.init_node('ur_joint_register')
 		self.variables_init()
 		self.connections_init()
-		rospy.spin()
+		#rospy.spin()
 		
 
 	def variables_init(self):
@@ -56,7 +56,7 @@ class URJointsRegiter():
 			self.ur_pose_data = {}
 			
 		ur_joints, real_ur_joints = self.get_ur_joints()
-		eef_pose = self.get_eef_pose()
+		eef_pose = "" #self.get_eef_pose()
 
 		self.ur_pose_data[pose_name] = {"ur_joints":ur_joints, "eef_pose":eef_pose}
 		self.ur_pose_data["real_" + pose_name] = {"ur_joints":real_ur_joints, "eef_pose":eef_pose} 
@@ -106,3 +106,6 @@ class URJointsRegiter():
 
 if __name__ == '__main__':
 	ur_joint_register = URJointsRegiter()
+	ur_joint_register.file_name = "beta_poses.py"
+	ur_joint_register.in_simulation = False
+	ur_joint_register.run(ur_joint_register.file_name, "vision_pose")
