@@ -60,6 +60,9 @@
   
   <include file="$(find sema_gzsim)/launch/set_rviz.launch" if="$(arg rviz)"/> 
   
+  <!-- launch box poses -->
+  <node name="box_pose_pub" pkg="sema_gzsim" type="box_pose_publisher.py"/>
+  
   <!-- launch box Rviz viewer -->
   <node name="publish_markers" pkg="sema_gzsim" type="publish_markers.py"/>
   

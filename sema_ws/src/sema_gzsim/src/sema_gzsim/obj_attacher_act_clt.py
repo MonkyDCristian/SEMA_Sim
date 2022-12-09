@@ -42,11 +42,11 @@ if __name__ == "__main__":
 	rospy.init_node("obj_attacher_act_clt")
 	obj_attacher = ObjAttacherActClt()
 
-	box = "ml"
+	box_model = "ml"
 	box_id = 1
 
 	get_box_link_name
-	attach_params = {"obj_link": get_box_link_name(box, box_id), "ideal_attach": True}
+	attach_params = {"obj_link": get_box_link_name(box_model, box_id), "ideal_attach": True}
 	
 	obj_attacher.set_params(attach_params)
 	obj_attacher.run()

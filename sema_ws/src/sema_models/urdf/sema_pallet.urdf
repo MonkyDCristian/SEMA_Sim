@@ -2,7 +2,7 @@
 <robot name="sema_pallet">
     <link name="sema_pallet_link">
       <visual name="sema_pallet_visual">
-        <origin xyz="-0.08 0 -0.085" rpy="0 0 0"/>
+        <origin xyz="-0.06 0 -0.085" rpy="0 0 0"/>
         <geometry>
           <mesh filename="package://sema_models/model/sema_pallet/mesh/sema_pallet.dae" scale='1.0 1.0 1.0'/>
         </geometry>

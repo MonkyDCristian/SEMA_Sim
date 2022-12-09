@@ -23,11 +23,13 @@ class URJointsRegiter():
 		self.path = self.rospack.get_path('sema_gzsim')+"/node/pose_compilation/"
 		self.file_name = ""
 
+		self.in_simulation = True
+
 		self.ur_joints_name = ["sema/elbow_joint", "sema/shoulder_lift_joint", "sema/shoulder_pan_joint",
 		                       "sema/wrist_1_joint", "sema/wrist_2_joint", "sema/wrist_3_joint"]
 		
 		self.real_ur_joints_name = ["elbow_joint", "shoulder_lift_joint", "shoulder_pan_joint",
-		                       "wrist_1_joint", "wrist_2_joint", "wrist_3_joint"]
+		                            "wrist_1_joint", "wrist_2_joint", "wrist_3_joint"]
 		
 		self.ur_eef_name = "sema/wrist_3_link"
 		
@@ -41,6 +43,7 @@ class URJointsRegiter():
 
 	def dynamic_config_callback(self, cfg, level):
 		if cfg["enable"]:
+			self.in_simulation = cfg["in_simulation"]
 			self.run(cfg["file_name"], cfg["pose_name"])
 
 		return cfg
@@ -63,13 +66,24 @@ class URJointsRegiter():
 	
 	def get_ur_joints(self):
 		joint_state_msg = rospy.wait_for_message("/joint_states", JointState, timeout=3)
+
+		if self.in_simulation:
+			ur_joints_name = self.ur_joints_name
+		
+		else:
+			ur_joints_name = self.real_ur_joints_name
 		
 		ur_joints = {}
 		real_ur_joints = {}
 		for n, joint_name in enumerate(joint_state_msg.name):
-			if joint_name in self.ur_joints_name:
-				ur_joints[joint_name] = joint_state_msg.position[n]
-				real_ur_joints[joint_name.replace("sema/","")] = joint_state_msg.position[n]
+			if joint_name in ur_joints_name:
+				if self.in_simulation:
+					ur_joints[joint_name] = joint_state_msg.position[n]
+					real_ur_joints[joint_name.replace("sema/","")] = joint_state_msg.position[n]
+				
+				else:
+					real_ur_joints[joint_name] = joint_state_msg.position[n]
+					ur_joints["sema/" + joint_name] = joint_state_msg.position[n]
 		
 		return ur_joints, real_ur_joints
 

@@ -11,6 +11,7 @@ from gazebo_msgs.srv import GetLinkState, GetLinkStateRequest
 
 from sema_gzsim.vg_sim_extension_ctrl import VGSimExtensionCtrl
 from sema_gzsim.obj_attacher_act_clt import ObjAttacherActClt
+from sema_gzsim.box_spawner import get_box_link_name
 
 
 class BoxAttacher():
@@ -31,7 +32,7 @@ class BoxAttacher():
 		self.hz = 20
 		self.rate = rospy.Rate(self.hz) #Hz
 		
-		self.box_type = ""
+		self.box_model = ""
 		self.dist_to_closer = 0.0
 
 		self.extension_ctrl = VGSimExtensionCtrl()
@@ -53,12 +54,22 @@ class BoxAttacher():
 			self.run(cmd.data)
 	
 
-	def run(self, box_type):
+	def run(self, box_model, box_id = False):
 		
-		self.box_type = box_type
-		self.extension_ctrl.run(self.dict_box[self.box_type]["extension"])
-		rospy.sleep(1.0)
-		self.attach_params["obj_link"] = self.get_box_link()
+		self.box_model =  box_model
+		self.extension_ctrl.run(self.dict_box[self.box_model]["extension"])
+		rospy.sleep(0.5)
+
+		print(box_id)
+		
+		if type(box_id) != bool:
+			self.attach_params["obj_link"] = get_box_link_name(box_model, box_id)
+		
+		else:
+			self.attach_params["obj_link"] = self.get_clouser_box_link()
+		
+		print(self.attach_params["obj_link"])
+
 		self.obj_attacher.set_params(self.attach_params)
 		self.obj_attacher.run()
 
@@ -67,8 +78,8 @@ class BoxAttacher():
 		self.obj_attacher.stop()
 
 
-	def get_box_link(self):
-		model_states_msg = rospy.wait_for_message("/gazebo/model_states", ModelStates, timeout = 3)
+	def get_clouser_box_link(self):
+		model_states_msg = rospy.wait_for_message("/box_poses", ModelStates, timeout = 3)
 		extension_state_msg = self.get_link_state_srv(GetLinkStateRequest(self.reference_frame, "world"))
 		self.ex_st_pos = extension_state_msg.link_state.pose
 		
@@ -76,7 +87,7 @@ class BoxAttacher():
 		model_names = []
 
 		for n, model_name in enumerate(model_states_msg.name):
-			if self.dict_box[self.box_type]["name"] in model_name:
+			if self.dict_box[self.box_model]["name"] in model_name:
 				model_poses.append(model_states_msg.pose[n])
 				model_names.append(model_name)
 		
@@ -103,7 +114,7 @@ if __name__ == '__main__':
 
 	rospy.sleep(5)
 	box_attach_sequence = ["l", "ml", "m", "bm", "b"]
-	for box_type in box_attach_sequence:
-		box_attacher.run(box_type)
+	for box_model in box_attach_sequence:
+		box_attacher.run(box_model)
 		rospy.sleep(2)
 		box_attacher.stop()

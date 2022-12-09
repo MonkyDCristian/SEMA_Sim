@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
 import rospy
+import numpy as np
 
-from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import PoseStamped, Quaternion
 
 # https://classic.gazebosim.org/tutorials?tut=ros_comm&cat=connect_ros
 from gazebo_msgs.srv import GetLinkState, GetLinkStateRequest
@@ -16,8 +17,7 @@ from sema_gzsim.msg import ObjAttacherAction, ObjAttacherFeedback , ObjAttacherR
 
 # https://wiki.ros.org/tf/Tutorials/tf%20and%20Time%20%28Python%29
 # http://docs.ros.org/en/jade/api/tf/html/python/transformations.html
-from tf.transformations import quaternion_from_euler
-from tf.transformations import euler_from_quaternion
+from tf.transformations import quaternion_from_euler, euler_from_quaternion
 from tf import TransformListener
 
 class ObjAttacherActSrv():
@@ -115,13 +115,9 @@ class ObjAttacherActSrv():
 			ref_quat = [obj_pose.orientation.x, obj_pose.orientation.y, obj_pose.orientation.z, obj_pose.orientation.w]
 			
 			row, pitch, yaw = euler_from_quaternion(ref_quat)
-			fix_quat = quaternion_from_euler(-row, pitch, yaw)
-			
-			obj_pose.orientation.x = fix_quat[0]
-			obj_pose.orientation.y = fix_quat[1]
-			obj_pose.orientation.z = fix_quat[2]
-			obj_pose.orientation.w = fix_quat[3]
-			
+			fix_quat = quaternion_from_euler(row + np.pi, pitch, yaw)
+			obj_pose.orientation = Quaternion(*fix_quat)
+
 		else:
 			self.tf_listener.waitForTransform("world", self.pose_tf.header.frame_id, rospy.Time(), rospy.Duration(10.0))
 			obj_pose = self.tf_listener.transformPose("world", self.pose_tf).pose

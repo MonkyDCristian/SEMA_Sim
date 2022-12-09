@@ -57,7 +57,7 @@ class PubMarkers():
 
 
     def connections_init(self):
-        rospy.Subscriber("/gazebo/model_states", ModelStates, self.publish_markers)
+        rospy.Subscriber("/box_poses", ModelStates, self.publish_markers)
         self.pub_markers = rospy.Publisher("/marker_array", MarkerArray, queue_size=5)
 
 
@@ -68,13 +68,11 @@ class PubMarkers():
 
             model_type = self.take_out_digits(model_name)
 
-            if model_type in self.model_types:
-
-                viz_model = self.models[model_type]
-                model_data = models_data.pose[_id]
-                
-                marker = self.create_obj_marker(_id, viz_model, model_data)
-                markerArray.markers.append(marker) 
+            viz_model = self.models[model_type]
+            model_data = models_data.pose[_id]
+            
+            marker = self.create_obj_marker(_id, viz_model, model_data)
+            markerArray.markers.append(marker) 
 
         self.header.stamp = rospy.Time.now()
         self.pub_markers.publish(markerArray)
