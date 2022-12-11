@@ -102,10 +102,22 @@ class URJointsRegiter():
 	def save_ur_pose_data(self):
 		with open(self.path + self.file_name, 'w') as f:
 			f.write(f"{self.file_name[:-3]}={str(self.ur_pose_data)}")
-		
+
+
+def main():
+	rospy.init_node('ur_joint_register')
+	ur_joint_register = URJointsRegiter()
+	rospy.spin()
+
+
+def manual_register():
+	rospy.init_node('ur_joint_register')
+	ur_joint_register = URJointsRegiter()
+	ur_joint_register.path = ur_joint_register.rospack.get_path('sema_gzsim')+"/node/pose_compilation/"
+	ur_joint_register.in_simulation = True
+	file_name, pose_name = "example.py", "pose0"
+	ur_joint_register.run(file_name, pose_name)
+
 
 if __name__ == '__main__':
-	ur_joint_register = URJointsRegiter()
-	ur_joint_register.file_name = "beta_poses.py"
-	ur_joint_register.in_simulation = False
-	ur_joint_register.run(ur_joint_register.file_name, "vision_pose")
+	main()
