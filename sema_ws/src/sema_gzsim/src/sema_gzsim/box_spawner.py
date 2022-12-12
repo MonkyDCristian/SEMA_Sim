@@ -5,7 +5,7 @@ from geometry_msgs.msg import Quaternion, Pose, Point
 from tf.transformations import quaternion_from_euler
 
 
-dict_boxes = {"l":{"type": "little", "mass":0.5, "size":{"x":0.12, "y":0.15, "z":0.12}},
+boxes_prms = {"l":{"type": "little", "mass":0.5, "size":{"x":0.12, "y":0.15, "z":0.12}},
 			  "ml":{"type": "middle_little", "mass":0.84, "size":{"x":0.16, "y":0.19, "z":0.12}},
 			  "m":{"type": "middle", "mass":2.08, "size":{"x":0.2, "y":0.3, "z":0.15}},
 			  "bm":{"type": "big_middle", "mass":6.94, "size":{"x":0.3, "y":0.4, "z":0.25}},
@@ -13,10 +13,10 @@ dict_boxes = {"l":{"type": "little", "mass":0.5, "size":{"x":0.12, "y":0.15, "z"
 
 
 def get_box_model_name(box_model, box_id):
-	return "sema_" + dict_boxes[box_model]["type"] + "_box" + str(box_id)
+	return "sema_" + boxes_prms[box_model]["type"] + "_box" + str(box_id)
 
 def get_box_link_name(box_model, box_id):
-	return "sema_" + dict_boxes[box_model]["type"] + "_box_link" + str(box_id)
+	return "sema_" + boxes_prms[box_model]["type"] + "_box_link" + str(box_id)
 
 
 class BoxSpawner(object):
@@ -46,7 +46,7 @@ class BoxSpawner(object):
 	def spawn(self, box_model, box_id):
 		name = get_box_model_name(box_model, box_id)
 		
-		dict_box = dict_boxes[box_model]
+		dict_box = boxes_prms[box_model]
 		box_urdf = self.costum_box(dict_box, box_id)
 
 		quat = quaternion_from_euler(0, 0, self.yaw)

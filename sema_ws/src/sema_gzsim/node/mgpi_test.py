@@ -5,16 +5,8 @@ from sensor_msgs.msg import JointState
 
 # https://roboticsbackend.com/ros-import-python-module-from-another-package/
 from sema_moveit.move_group_python_interface import MoveGroupPythonInterface
+from sema_gzsim.ur_pose_register import tf2joint_state_msg
 from pose_compilation.pick_box_poses import pick_box_poses
-
-
-def tf2joint_state_msg(lib_poses, pose_name):
-	goal_joints = JointState()
-	
-	goal_joints.name = list(lib_poses[ pose_name]["ur_joints"].keys())
-	goal_joints.position = list(lib_poses[ pose_name]["ur_joints"].values())
-
-	return goal_joints
 
 
 def sim_main():

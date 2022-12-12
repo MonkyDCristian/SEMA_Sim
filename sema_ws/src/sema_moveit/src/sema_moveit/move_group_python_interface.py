@@ -3,8 +3,6 @@
 import sys
 import rospy
 import numpy as np
-
-# http://docs.ros.org/en/noetic/api/moveit_commander/html/move__group_8py_source.html
 import moveit_commander
 
 from geometry_msgs.msg import PoseStamped, Pose
@@ -182,8 +180,19 @@ class MoveGroupPythonInterface(object):
         return False
 
     
-    def add_object_to_scen(self, object):
-        self.scene.add_box(object["name"], object["pose"], size=object["size"])
+    def add_object_to_scene(self, object, obj_type="box"):
+        
+        if obj_type == "box":
+            self.scene.add_box(object["name"], object["pose"], size=object["size"])
+        
+        elif obj_type == "cylinder":
+            self.scene.add_cylinder(object["name"], object["pose"], height=object["height"], radius=object["radius"])
+        
+        elif obj_type == "sphere":
+            self.scene.add_sphere(object["name"], object["pose"], radius=object["radius"])
+
+        elif obj_type == "plane":
+            self.scene.add_plane(object["name"], object["pose"])
 
         self.obj_name = object["name"]
         return self.wait_for_state_update(obj_is_known=True)
@@ -203,6 +212,7 @@ class MoveGroupPythonInterface(object):
         self.scene.remove_attached_object(self.eef_link, name= obj_name)
         return self.wait_for_state_update(obj_is_known=True, obj_is_attached=False)
 
+
     def remove_obj(self, obj_name):
         ## We can remove the box from the world.
         self.scene.remove_world_object(obj_name)
@@ -213,3 +223,4 @@ if __name__ == "__main__":
     rospy.init_node("move_group_python_interface")
     mgpi = MoveGroupPythonInterface()
     mgpi.show_variable()
+    

@@ -5,7 +5,7 @@ import rospy
 from actionlib import SimpleActionServer
 from sema_gzsim.msg import BoxSpawnerAction ,BoxSpawnerFeedback, BoxSpawnerResult
 
-from sema_gzsim.box_spawner import BoxSpawner, dict_boxes
+from sema_gzsim.box_spawner import BoxSpawner, boxes_prms
 
 class BoxSpawnerActSrv(object):
 
@@ -17,7 +17,7 @@ class BoxSpawnerActSrv(object):
 		
 
 	def variables_init(self):
-		self.posible_boxes = list(dict_boxes.keys())
+		self.posible_boxes = list(boxes_prms.keys())
 
 		self.box_id_register = {}
 		for box_model in self.posible_boxes:
@@ -58,7 +58,7 @@ class BoxSpawnerActSrv(object):
 				self.a_srv.publish_feedback(self.as_feedback)
 			
 			else:
-				box_type, box_id = dict_boxes[box_model]["type"], self.box_id_register[box_model]
+				box_type, box_id = boxes_prms[box_model]["type"], self.box_id_register[box_model]
 				self.as_feedback.feedback = f"spawn {box_type}{box_id}"
 				self.a_srv.publish_feedback(self.as_feedback)
 

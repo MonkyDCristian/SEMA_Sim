@@ -10,6 +10,16 @@ from sensor_msgs.msg  import JointState
 from sema_gzsim.cfg import save_pose_registerConfig 
 from dynamic_reconfigure.server import Server as DRServer
 
+
+def tf2joint_state_msg(lib_poses, pose_name):
+	goal_joints = JointState()
+	
+	goal_joints.name = list(lib_poses[pose_name]["ur_joints"].keys())
+	goal_joints.position = list(lib_poses[pose_name]["ur_joints"].values())
+
+	return goal_joints
+
+
 class URJointsRegiter():
 	def __init__(self):
 		rospy.init_node('ur_joint_register')
