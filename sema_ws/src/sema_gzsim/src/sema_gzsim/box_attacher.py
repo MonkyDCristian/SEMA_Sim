@@ -59,8 +59,6 @@ class BoxAttacher():
 		self.box_model =  box_model
 		self.extension_ctrl.run(self.dict_box[self.box_model]["extension"])
 		rospy.sleep(0.5)
-
-		print(box_id)
 		
 		if type(box_id) != bool:
 			self.attach_params["obj_link"] = get_box_link_name(box_model, box_id)
