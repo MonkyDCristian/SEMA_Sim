@@ -13,12 +13,13 @@ import rospy
 from sema_gzsim.pallet_spawner import PalletSpawner
 
 rospy.init_node("pallet_spawner")
-spawn_params = {"x":0.3, "y":0.8, "z":0.1, "yaw":0.0}
+spawn_params = {"x":0.3, "y":0.8, "z":0.1, "yaw":0.0, "size_x":0.6, "size_y":0.9}
 
 pallet_spawner = PalletSpawner()
 pallet_spawner.set_params(spawn_params)
 pallet_spawner.run()
 ```
+**Note:** If you don't add size parameters, it will set the default ones.
 
 To test it you can run:
 
@@ -30,7 +31,7 @@ roslaunch sema_gzsim sema_gzsim.launch oak_d_enabled:=false vgc10_enabled:=false
 ```
 rosrun sema_gzsim pallet_spawner.py
 ```
-**Note:** Check the Gazebo [SpawnModel service](http://docs.ros.org/en/electric/api/gazebo/html/srv/SpawnModel.html) if you want to add spawn parameters.
+**Note:** Check the Gazebo [SpawnModel service](http://docs.ros.org/en/electric/api/gazebo/html/srv/SpawnModel.html) if you want to add more spawn parameters.
 
 ### Next Tutorial 
 [Spawn a box, or a sequence of boxes, in the simulation.]( https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_spawner.md)
