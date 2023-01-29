@@ -70,6 +70,7 @@ roslaunch sema_gzsim sema_gzsim.launch demo:=true
 
 * [Use a very simple image processing algorithm to detect box with the camera.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_detector.md)
 
+#### Advance
 * [Develop a full palletizing system (with a demo).](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/palletiziting_develop.md)
 
 ## Improves for future version:
