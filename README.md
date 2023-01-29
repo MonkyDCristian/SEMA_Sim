@@ -42,6 +42,7 @@ roslaunch sema_gzsim sema_gzsim.launch demo:=true
 
 ## Tutorials
 ### Lear how  to
+#### Basic
 * [Change simulator settings.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/change_sim_cfg.md)
 
 * [Control the conveyor belt.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/conveyor_belt%20_control.md)
@@ -54,21 +55,22 @@ roslaunch sema_gzsim sema_gzsim.launch demo:=true
 
 * [Save reference points and robot joint states for a motion sequence project.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/save_robot_pose.md)
 
+* [Setup and use a simulated depth camera.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/depth_camera.md)
+
+#### Intermediate
 * [Control the robot by Moveit! with Python3.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/moveit.md)
 
-* [Adding objects to Moveit! planning scene.]()
+* [Adding objects to Moveit! planning scene.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/obj2scene.md)
 
-* [Create a setup environmental file in python.]()
+* [Create a setup environmental file in python.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/setup_env.md)
 
-* [Setup and use a simulated depth camera.]()
+* [Fast palletizing by teleportation and static positioning of boxes.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_teleport.md)
 
-* [Fast palletizing by teleportation and static positioning of boxes.]()
+* [Create an attached box inside Moveit! scene.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/moveit_attacher.md)
 
-* [Create an attached box inside Moveit! scene.]()
+* [Use a very simple image processing algorithm to detect box with the camera.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_detector.md)
 
-* [Use a very simple image processing algorithm to detect box with the camera.]()
-
-* [Develop a full palletizing system (with a demo).]()
+* [Develop a full palletizing system (with a demo).](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/palletiziting_develop.md)
 
 ## Improves for future version:
 
