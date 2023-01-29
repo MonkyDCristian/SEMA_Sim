@@ -23,7 +23,7 @@ class PalletSpawner():
 		self.x, self.y, self.z, self.yaw = None, None, None, None
 	
 		self.scale = {"x":1.0, "y":1.0, "z":1.0}
-		self.size = {"x":0.8, "y":1.2, "z":0.14}
+		self.size = {"x":0.8, "y":1.2, "z":0.144}
 
 	
 	def connections_init(self): 

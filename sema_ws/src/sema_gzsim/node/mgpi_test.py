@@ -41,8 +41,8 @@ def main():
 	mgpi = MoveGroupPythonInterface()
 	mgpi.show_variable()
 	
-	goal_joints_0 = tf2joint_state_msg(pick_box_poses, "real_pick_pose")
-	goal_joints_1 = tf2joint_state_msg(pick_box_poses, "real_final_pose")
+	goal_joints_0 = tf2joint_state_msg(pick_box_poses, "pick_pose")
+	goal_joints_1 = tf2joint_state_msg(pick_box_poses, "final_pose")
 	
 	enter_msg = input("READY TO PLANNING: Press enter to planning a trayectory")
 	 
