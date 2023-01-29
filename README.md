@@ -75,9 +75,7 @@ roslaunch sema_gzsim sema_gzsim.launch demo:=true
 
 ## Improves for future version:
 
-* Improves stability for box collision.
 * Add attached constraint.
-* Add a tutorial for camera setup.
 * Pass the simulation to Gazebo Ignition with ROS2 environmental.
 
 ## Author 
