@@ -60,6 +60,7 @@ roslaunch sema_gzsim sema_gzsim_moveit.launch oak_d_enabled:=false
 rosrun sema_gzsim mgpi_test.py
 ```
 
-
+## Next Tutorial 
+[Adding objects to Moveit! planning scene.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/obj2scene.md)
 
 

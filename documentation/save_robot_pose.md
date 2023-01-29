@@ -15,14 +15,7 @@ For all these reason, the URPoseRegister class was created, this program allow y
                            'sema/shoulder_pan_joint': shoulder_pan_ang, 
                            'sema/wrist_1_joint': wrist_1_ang, 
                            'sema/wrist_2_joint': wrist_2_ang, 
-                           'sema/wrist_3_joint': wrist_3_ang}, 
-             'eef_pose': {'position': {'x': eef_x_position, 
-                                       'y': eef_y_position, 
-                                       'z': eef_z_position}, 
-                          'orientation': {'x': eef_x_orientation, 
-                                          'y': eef_y_orientation, 
-                                          'z': eef_z_orientation, 
-                                          'w': eef_w_orientation}}}, 
+                           'sema/wrist_3_joint': wrist_3_ang}},
   'pose1':...
   ...
   }}}}
@@ -48,5 +41,4 @@ Now go to "ur_pose_register" inside the rqt_reconfigure gui and write the name o
 Any time you change the pose name and press enter, a new pose will be registered. Be careful not to overwrite a pose by pressing enter. You can also change the name of the file and create another pose collection. 
 
 ## Next Tutorial
-
-[Control the robot by Moveit! with Python3.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/moveit.md)
+[Setup and use a simulated depth camera.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/depth_camera.md)
