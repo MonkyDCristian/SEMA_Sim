@@ -56,6 +56,20 @@ roslaunch sema_gzsim sema_gzsim.launch demo:=true
 
 * [Control the robot by Moveit! with Python3.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/moveit.md)
 
+* [Adding objects to Moveit! planning scene.]()
+
+* [Create a setup environmental file in python.]()
+
+* [Setup and use a simulated depth camera.]()
+
+* [Fast palletizing by teleportation and static positioning of boxes.]()
+
+* [Create an attached box inside Moveit! scene.]()
+
+* [Use a very simple image processing algorithm to detect box with the camera.]()
+
+* [Develop a full palletizing system (with a demo).]()
+
 ## Improves for future version:
 
 * Improves stability for box collision.
