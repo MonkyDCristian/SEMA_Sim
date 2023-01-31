@@ -26,6 +26,10 @@ cd
 echo "source {PATH_TO}/SEMA_Sim/sema_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
+### ROS packages Dependencies
+```
+sudo apt install ros-noetic-depthai-ros ros-noetic-rqt-joint-trajectory-controller
+```
 
 ## Demo 
 ```
