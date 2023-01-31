@@ -1,5 +1,4 @@
 # Control the robot by Moveit! with Python3
-Note: Congratulations! You have arrived to the last tutorial of this first SEMA simulator version, put this [theme](https://www.youtube.com/watch?v=DsemU6yb7hA).
 
 The time has come to develop code that actually allows us to automate the palletizing process.
 As a development project,we are using Python3 as our prototyping language. C++ is the original Moveit! develop language but, conveniently, there's a [Move Group Python Interface](https://ros-planning.github.io/moveit_tutorials/doc/move_group_python_interface/move_group_python_interface_tutorial.html) that allows us to use Moveit! in the same way that we could with C++. Click on the link above and follow the tutorial to get a basic understanding of what you can do with this amazing interface.
