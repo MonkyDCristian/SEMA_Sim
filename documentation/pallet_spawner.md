@@ -1,7 +1,7 @@
 # Pallet Spawner
 To make it easy to customize your packaging environment, the python 3 class **Pallet Spawner** was developed. This class allows you to place a horizontal pallet wherever you want with respect to the global position and orientation.
 
-[~/SEMA_Sim/sema_ws/src/sema_gzsim/src/sema_gzsim/pallet_spawner.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/src/sema_gzsim/pallet_spawner.py)
+[~/SEMA_Sim/sema_ws/src/sema_gzsim/src/sema_gzsim/pallet_spawner.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/sema_ws/src/sema_gzsim/src/sema_gzsim/pallet_spawner.py)
 
 ![Alt text](/imgs/pallet_spawner.png)
 
@@ -34,4 +34,4 @@ rosrun sema_gzsim pallet_spawner.py
 **Note:** Check the Gazebo [SpawnModel service](http://docs.ros.org/en/electric/api/gazebo/html/srv/SpawnModel.html) if you want to add more spawn parameters.
 
 ### Next Tutorial 
-[Spawn a box, or a sequence of boxes, in the simulation.]( https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_spawner.md)
+[Spawn a box, or a sequence of boxes, in the simulation.]( https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/box_spawner.md)

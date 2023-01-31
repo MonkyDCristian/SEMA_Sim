@@ -19,4 +19,4 @@ rosrun sema_gzsim mgpi_test.py
 ```
 
 ## Next Tutorial 
-[Fast palletizing by teleportation and static positioning of boxes.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_teleport.md)
+[Fast palletizing by teleportation and static positioning of boxes.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/box_teleport.md)

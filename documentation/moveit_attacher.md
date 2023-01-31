@@ -19,4 +19,4 @@
 ```
 
 ## Next Tutorial 
-[Use a very simple image processing algorithm to detect box with the camera.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_detector.md)
+[Use a very simple image processing algorithm to detect box with the camera.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/box_detector.md)
