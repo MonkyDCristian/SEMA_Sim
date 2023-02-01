@@ -2,6 +2,6 @@
 <robot xmlns:xacro="http://wiki.ros.org/xacro" name="oak_d">
    
    <xacro:include filename="$(find sema_description)/urdf/macro/oak_d_macro.xacro"/>
-   <xacro:oak_d name="oak_d/" prefix="sema/" visualize="True"/>  
+   <xacro:oak_d name="oak_d/" prefix="sema/"/>  
 
 </robot>
