@@ -3,10 +3,11 @@ Congratulations, you've reached the last of the basic level tutorials. Recalling
 
 In this tutorial we will learn how to use a [depth camera](https://thesweetcamera.com/what-is-depth-camera/) through a [Gazebo plugin](https://classic.gazebosim.org/tutorials?tut=ros_gzplugins), the missing piece in the system that will allow us to detect incoming boxes and perform a palletizing mission using manual (non-autonomous) human control.
 
-First of all let's think about why we really need a depth camera, obviously it can be used to detect a dummy box and get its position through some kind of complicated algorithm, but actually we can access everyone's positions and orientations objects in real time by subscribing to the [Gazebo](http://wiki.ros.org/gazebo) topic ["gazebo/model_states"](http://docs.ros.org/en/api/gazebo_msgs/html/msg/ModelStates.html) or request a specific object position via the [gazebo/get_model_state](http://docs.ros.org/en/api/gazebo_msgs/html/srv/GetModelState.html) service.
+First of all let's think about why we really need a depth camera, obviously it can be used to detect a dummy box and get its position through some kind of complicated algorithm, but actually we can access to each positions and orientations object in real time by subscribing to the [Gazebo](http://wiki.ros.org/gazebo) topic ["gazebo/model_states"](http://docs.ros.org/en/api/gazebo_msgs/html/msg/ModelStates.html) or request a specific object information via the [gazebo/get_model_state](http://docs.ros.org/en/api/gazebo_msgs/html/srv/GetModelState.html) service.
 
 Note: The "gazebo/model_states" topic is used to display the box frames in RVIZ via the [Markers](http://wiki.ros.org/rviz/DisplayTypes/Marker).
 
+image of markers
 
 
 [~/SEMA_Sim/sema_ws/src/]()
