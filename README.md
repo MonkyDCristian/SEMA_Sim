@@ -28,7 +28,7 @@ source ~/.bashrc
 ```
 ### ROS packages Dependencies
 ```
-sudo apt install ros-noetic-ros-control ros-noetic-rqt-joint-trajectory-controller ros-noetic-depthai-ros
+sudo apt install ros-noetic-ros-control sudo apt install ros-noetic-joint-trajectory-controller ros-noetic-rqt-joint-trajectory-controller ros-noetic-depthai-ros 
 ```
 
 ## Demo 
