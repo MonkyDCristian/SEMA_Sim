@@ -26,9 +26,17 @@ cd
 echo "source {PATH_TO}/SEMA_Sim/sema_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
-### ROS packages Dependencies
+### ROS packages dependencies with rosdep
+install, start and update rosdep in case you haven't already
 ```
-sudo apt install ros-noetic-ros-control ros-noetic-joint-trajectory-controller ros-noetic-velocity-controllers ros-noetic-rqt-joint-trajectory-controller ros-noetic-depthai-ros
+sudo apt-get install python3-rosdep
+sudo rosdep init
+rosdep update
+```
+install dependencies in SEMA workspace
+```
+cd ~/SEMA_Sim/sema_ws
+rosdep install --from-paths src --ignore-src -r -y
 ```
 
 ## Demo 
