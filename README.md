@@ -32,8 +32,13 @@ sudo apt install ros-noetic-ros-control sudo apt install ros-noetic-joint-trajec
 ```
 
 ## Demo 
+Start de simulation
 ```
 roslaunch sema_gzsim sema_gzsim.launch demo:=true
+```
+Control UR10 joints by GUI
+```
+rosrun rqt_joint_trajectory_controller rqt_joint_trajectory_controller
 ```
 
 ## Getting Started
