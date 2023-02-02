@@ -26,8 +26,8 @@ cd
 echo "source {PATH_TO}/SEMA_Sim/sema_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
-### ROS packages dependencies with rosdep
-install, start and update rosdep in case you haven't already
+### Install ROS packages dependencies with rosdep
+install, init and update rosdep in case you haven't already
 ```
 sudo apt-get install python3-rosdep
 sudo rosdep init
