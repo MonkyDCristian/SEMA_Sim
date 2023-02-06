@@ -26,10 +26,27 @@ cd
 echo "source {PATH_TO}/SEMA_Sim/sema_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
+### Install ROS packages dependencies with rosdep
+install, init and update rosdep in case you haven't already
+```
+sudo apt-get install python3-rosdep
+sudo rosdep init
+rosdep update
+```
+install dependencies in SEMA workspace
+```
+cd ~/SEMA_Sim/sema_ws
+rosdep install --from-paths src --ignore-src -r -y
+```
 
 ## Demo 
+Start de simulation
 ```
 roslaunch sema_gzsim sema_gzsim.launch demo:=true
+```
+Control UR10 joints by GUI
+```
+rosrun rqt_joint_trajectory_controller rqt_joint_trajectory_controller
 ```
 
 ## Getting Started
