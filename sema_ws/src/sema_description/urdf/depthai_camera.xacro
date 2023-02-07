@@ -9,8 +9,8 @@
   <xacro:arg name="cam_pos_y"     default="0.0" />
   <xacro:arg name="cam_pos_z"     default="0.0" />
   <xacro:arg name="cam_roll"      default="0.0" />
-  <xacro:arg name="cam_pitch"     default="-1.57" />
-  <xacro:arg name="cam_yaw"       default="3.14" />
+  <xacro:arg name="cam_pitch"     default="0.0" />
+  <xacro:arg name="cam_yaw"       default="0.0" />
     
   
   <xacro:include filename="$(find sema_description)/urdf/macro/depthai_camera_macro.xacro"/>

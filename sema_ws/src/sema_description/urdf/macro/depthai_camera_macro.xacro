@@ -4,24 +4,15 @@
 <xacro:macro name="depthai_camera" params="camera_name camera_model parent base_frame 
                                            cam_pos_x cam_pos_y cam_pos_z 
                                            cam_roll cam_pitch cam_yaw
+                                           size_x:=0.091 size_y:=0.028 size_z:=0.0175
                                            r:=0.8 g:=0.8 b:=0.8 a:=0.8">
 
     <xacro:property name="baseline" value="0.075" />
     
     <!-- base_link of the sensor -->
-    <link name="${base_frame}"/>
-
-    <joint name="${camera_name}_center_joint" type="fixed">
-        <parent link="${parent}"/>
-        <child link="${base_frame}"/>
-        <origin xyz="${cam_pos_x} ${cam_pos_y} ${cam_pos_z}" rpy="${cam_roll} ${cam_pitch} ${cam_yaw}" />
-    </joint>
-    
-    
-    <!-- device Center -->
-    <link name="${camera_name}_model_origin">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
+    <link name="${base_frame}">
+      <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="${pi/2} 0.0  ${pi/2}"/>
             <geometry>
                 <mesh filename="package://depthai_bridge/urdf/models/${camera_model}.stl" />
             </geometry>
@@ -32,49 +23,42 @@
         </visual>
         
         <collision name="${camera_name}_collision">
-            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+            <origin xyz="-0.006 0.0 -0.0055" rpy="${pi/2} 0.0 ${pi/2}"/>
             <geometry>
-                <box size="0.13 0.035 0.1"/>
+                <box size="${size_x} ${size_y} ${size_z}"/>
             </geometry>
         </collision>
         
         <inertial>
-          <mass value="0.4"/>
+          <mass value="0.061"/>
           <inertia
-            ixx="0.0002046"
-            iyy="0.000095"
-            izz="0.0002046"
+            ixx="0.00001"
+            iyy="0.00004"
+            izz="0.00005"
             ixy="0"
             ixz="0"
             iyz="0"/>
         </inertial>
     </link>
 
-    <joint name="${camera_name}_model_origin_joint" type="fixed">
-        <parent link="${base_frame}"/>
-        <child link="${camera_name}_model_origin"/>
-        <origin xyz="0 0 0" rpy="1.5708 0 1.5708" />
+    <joint name="${camera_name}_center_joint" type="fixed">
+        <parent link="${parent}"/>
+        <child link="${base_frame}"/>
+        <origin xyz="${cam_pos_x} ${cam_pos_y} ${cam_pos_z}" rpy="${cam_roll} ${cam_pitch} ${cam_yaw}" />
     </joint>
-
-    <!-- RGB Camera -->
-    <link name="${camera_name}_rgb_camera_frame" />
     
-    <joint name="${camera_name}_rgb_camera_joint" type="fixed">
-        <parent link="${base_frame}"/>
-        <child link="${camera_name}_rgb_camera_frame"/>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-    </joint>
 
+    <!-- RGB Camera optical frame  -->
     <link name="${camera_name}_rgb_camera_optical_frame"/>
     
     <joint name="${camera_name}_rgb_camera_optical_joint" type="fixed">
-        <origin xyz="0 0 0" rpy="-${pi/2} 0.0 -${pi/2}"/>
-        <parent link="${camera_name}_rgb_camera_frame"/>
+        <origin xyz="0 0 0.003" rpy="0.0 0.0 0.0"/>
+        <parent link="${base_frame}"/>
         <child link="${camera_name}_rgb_camera_optical_frame"/>
     </joint>
 
     <!-- Gazebo camera setup -->
-    <gazebo reference="${camera_name}_rgb_camera_frame">
+    <gazebo reference="${base_frame}">
       <sensor type="depth" name="${camera_name}_sensor">
         <update_rate>18.0</update_rate>
     

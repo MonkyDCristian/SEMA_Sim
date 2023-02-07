@@ -134,6 +134,7 @@
   
   <!-- add Depth camera model and plugin  -->
   <xacro:if value="$(arg oak_d_enabled)">
+    <!--
     <xacro:include filename="$(find sema_description)/urdf/macro/oak_d_macro.xacro"/>
     <xacro:oak_d name="$(arg dc_name)" prefix="$(arg prefix)"/>  
 
@@ -142,6 +143,21 @@
       <parent link="$(arg prefix)wrist_3_link"/>
       <child link="$(arg prefix)$(arg dc_name)base_link"/>
     </joint>
+    -->
+    <xacro:arg name="camera_name"   default="oak" />
+    <xacro:arg name="camera_model"  default="OAK-D-LITE" />
+    <xacro:arg name="base_frame"    default="oak-d_frame" />
+    <xacro:arg name="parent_frame"  default="$(arg prefix)wrist_3_link" />
+    <xacro:arg name="cam_pos_x"     default="0.12" />
+    <xacro:arg name="cam_pos_y"     default="0.0" />
+    <xacro:arg name="cam_pos_z"     default="0.0" />
+    <xacro:arg name="cam_roll"      default="-${pi}" />
+    <xacro:arg name="cam_pitch"     default="-${pi/2}" />
+    <xacro:arg name="cam_yaw"       default="0.0" />
+    
+  
+    <xacro:include filename="$(find sema_description)/urdf/macro/depthai_camera_macro.xacro"/>
+    <xacro:depthai_camera camera_name = "$(arg camera_name)" parent = "$(arg parent_frame)" camera_model = "$(arg camera_model)" base_frame = "$(arg base_frame)" cam_pos_x = "$(arg cam_pos_x)" cam_pos_y = "$(arg cam_pos_y)" cam_pos_z = "$(arg cam_pos_z)" cam_roll = "$(arg cam_roll)" cam_pitch = "$(arg cam_pitch)" cam_yaw = "$(arg cam_yaw)"/>
     
   </xacro:if>
   
