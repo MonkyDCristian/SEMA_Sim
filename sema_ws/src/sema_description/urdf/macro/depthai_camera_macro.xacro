@@ -1,68 +1,96 @@
 <?xml version="1.0"?>
-<robot name="depthai_camera" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-<xacro:macro name="depthai_camera" params="camera_name camera_model parent base_frame 
-                                           cam_pos_x cam_pos_y cam_pos_z 
-                                           cam_roll cam_pitch cam_yaw
-                                           size_x:=0.091 size_y:=0.028 size_z:=0.0175
-                                           r:=0.8 g:=0.8 b:=0.8 a:=0.8">
+  <xacro:macro name="depthai_camera" params="camera_name parent base_frame prefix
+                                             camera_model:=OAK-D-LITE
+                                             x:=0 y:=0 z:=0 R:=0 P:=0 Y:=0 
+                                             r:=0.8 g:=0.8 b:=0.8 a:=0.8">
+      
+      <!-- https://docs.luxonis.com/projects/hardware/en/latest/ -->
+      <xacro:if value="${camera_model=='OAK-D-LITE'}">
+        <xacro:property name="mass"        value="0.061"  />
+        <xacro:property name="size_x"      value="0.091"  /> 
+        <xacro:property name="size_y"      value="0.0175" />
+        <xacro:property name="size_z"      value="0.028"  />
+        <xacro:property name="delta_x_col" value="-0.006" />
+        <xacro:property name="delta_y_col" value="0.0"    />
+        <xacro:property name="delta_z_col" value="-0.0055"/>
+      </xacro:if>
 
-    <xacro:property name="baseline" value="0.075" />
-    
-    <!-- base_link of the sensor -->
-    <link name="${base_frame}">
-      <visual>
-            <origin xyz="0.0 0.0 0.0" rpy="${pi/2} 0.0  ${pi/2}"/>
-            <geometry>
-                <mesh filename="package://depthai_bridge/urdf/models/${camera_model}.stl" />
-            </geometry>
-            
-            <material name="mat">
-                <color rgba="${r} ${g} ${b} ${a}"/>
-            </material>
-        </visual>
-        
-        <collision name="${camera_name}_collision">
-            <origin xyz="-0.006 0.0 -0.0055" rpy="${pi/2} 0.0 ${pi/2}"/>
-            <geometry>
-                <box size="${size_x} ${size_y} ${size_z}"/>
-            </geometry>
-        </collision>
-        
-        <inertial>
-          <mass value="0.061"/>
-          <inertia
-            ixx="0.00001"
-            iyy="0.00004"
-            izz="0.00005"
-            ixy="0"
-            ixz="0"
-            iyz="0"/>
-        </inertial>
-    </link>
+      <xacro:if value="${camera_model=='OAK-D-POE'}">
+        <xacro:property name="mass"        value="0.361" />
+        <xacro:property name="size_x"      value="0.131" /> 
+        <xacro:property name="size_y"      value="0.031" />
+        <xacro:property name="size_z"      value="0.101" />
+        <xacro:property name="delta_x_col" value="-0.014"  />
+        <xacro:property name="delta_y_col" value="0.0"  />
+        <xacro:property name="delta_z_col" value="-0.018"  />
+      </xacro:if>
 
-    <joint name="${camera_name}_center_joint" type="fixed">
-        <parent link="${parent}"/>
-        <child link="${base_frame}"/>
-        <origin xyz="${cam_pos_x} ${cam_pos_y} ${cam_pos_z}" rpy="${cam_roll} ${cam_pitch} ${cam_yaw}" />
-    </joint>
-    
+      <xacro:if value="${camera_model=='OAK-D-PRO'}">
+        <xacro:property name="mass"        value="0.091" />
+        <xacro:property name="size_x"      value="0.097" /> 
+        <xacro:property name="size_y"      value="0.0235" />
+        <xacro:property name="size_z"      value="0.0295" />
+        <xacro:property name="delta_x_col" value="-0.01"  />
+        <xacro:property name="delta_y_col" value="0.0"  />
+        <xacro:property name="delta_z_col" value="-0.0055"  />
+      </xacro:if>
 
-    <!-- RGB Camera optical frame  -->
-    <link name="${camera_name}_rgb_camera_optical_frame"/>
-    
-    <joint name="${camera_name}_rgb_camera_optical_joint" type="fixed">
-        <origin xyz="0 0 0.003" rpy="0.0 0.0 0.0"/>
-        <parent link="${base_frame}"/>
-        <child link="${camera_name}_rgb_camera_optical_frame"/>
-    </joint>
+      <!-- base_link of the sensor -->
+      <link name="${prefix}${base_frame}">
+        <visual>
+              <origin xyz="0.0 0.0 0.0" rpy="${pi/2} 0.0  ${pi/2}"/>
+              <geometry>
+                  <mesh filename="package://depthai_bridge/urdf/models/${camera_model}.stl" />
+              </geometry>
+              
+              <material name="mat">
+                  <color rgba="${r} ${g} ${b} ${a}"/>
+              </material>
+          </visual>
+          
+          <collision name="${camera_name}_collision">
+              <origin xyz="${delta_x_col} ${delta_y_col} ${delta_z_col}" rpy="0.0 0.0 ${pi/2}"/>
+              <geometry>
+                  <box size="${size_x} ${size_y} ${size_z}"/>
+              </geometry>
+          </collision>
+          
+          <inertial>
+            <mass value="${mass}"/>
+            <inertia
+              ixx="${mass*(size_y*size_y+size_z*size_z)/12}"
+              iyy="${mass*(size_x*size_x+size_z*size_z)/12}"
+              izz="${mass*(size_x*size_x+size_y*size_y)/12}"
+              ixy="0"
+              ixz="0"
+              iyz="0"/>
+          </inertial>
+      </link>
 
-    <!-- Gazebo camera setup -->
-    <gazebo reference="${base_frame}">
-      <sensor type="depth" name="${camera_name}_sensor">
+      <joint name="${prefix}${camera_name}_center_joint" type="fixed">
+          <parent link="${parent}"/>
+          <child link="${prefix}${base_frame}"/>
+          <origin xyz="${x} ${y} ${z}" rpy="${R} ${P} ${Y}" />
+      </joint>
+      
+
+      <!-- RGB Camera optical frame  -->
+      <link name="${prefix}${camera_name}_rgb_camera_optical_frame"/>
+      
+      <joint name="${prefix}${camera_name}_rgb_camera_optical_joint" type="fixed">
+          <origin xyz="0 0 0" rpy="-${pi/2} 0 -${pi/2}"/>
+          <parent link="${prefix}${base_frame}"/>
+          <child link="${prefix}${camera_name}_rgb_camera_optical_frame"/>
+      </joint>
+
+      <!-- Gazebo camera setup -->
+    <gazebo reference="${prefix}${base_frame}">
+      <sensor type="depth" name="${prefix}${camera_name}_sensor">
         <update_rate>18.0</update_rate>
     
-        <camera name="${camera_name}">
+        <camera name="${prefix}${camera_name}_camera">
           <horizontal_fov>1.20427718388</horizontal_fov>
           <image>
             <width>640</width>
@@ -75,31 +103,27 @@
           </clip>
           <noise>
             <type>gaussian</type>
-             <!--
-             Noise is sampled independently per pixel on each frame.
-             That pixel's noise value is added to each of its color
-              channels, which at that point lie in the range [0,1].
-              -->
+            <!-- Noise is sampled independently per pixel on each frame.
+                 That pixel's noise value is added to each of its color
+                 channels, which at that point lie in the range [0,1]. -->
             <mean>0.0</mean>
             <stddev>0.007</stddev>
           </noise>
         </camera>
         
         <plugin name="depth_camera_plugin_${camera_name}" filename="libgazebo_ros_openni_kinect.so">  
-           <!--
-           Oak D LITE camera data: https://docs.luxonis.com/projects/hardware/en/latest/pages/DM9095.html 
-           plugin config data: https://classic.gazebosim.org/tutorials?tut=ros_depth_camera&cat=connect_ros
-           --> 
+          <!-- Oak D LITE camera data: https://docs.luxonis.com/projects/hardware/en/latest/pages/DM9095.html -->
+          <!-- plugin config data: https://classic.gazebosim.org/tutorials?tut=ros_depth_camera&cat=connect_ros -->
           <baseline>0.075</baseline>
           <alwaysOn>true</alwaysOn>
           <updateRate>0.0</updateRate>
-          <cameraName>depthai_camera_ir</cameraName>
-          <imageTopicName>/depthai_camera/color/image_raw</imageTopicName>
-          <cameraInfoTopicName>/depthai_camera/color/camera_info</cameraInfoTopicName>
-          <depthImageTopicName>/depthai_camera/depth/image_raw</depthImageTopicName>
-          <depthImageCameraInfoTopicName>/depthai_camera/depth/camera_info</depthImageCameraInfoTopicName>
-          <pointCloudTopicName>/depthai_camera/depth/points</pointCloudTopicName>
-          <frameName>${camera_name}_rgb_camera_optical_frame"</frameName>
+          <cameraName>camera_ir</cameraName>
+          <imageTopicName>/camera/color/image_raw</imageTopicName>
+          <cameraInfoTopicName>/camera/color/camera_info</cameraInfoTopicName>
+          <depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
+          <depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName>
+          <pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
+          <frameName>${prefix}${camera_name}_rgb_camera_optical_frame</frameName>
           <distortion_k1>0.0</distortion_k1>
           <distortion_k2>0.0</distortion_k2>
           <distortion_k3>0.0</distortion_k3>
@@ -110,8 +134,7 @@
         </plugin>
       </sensor>
     </gazebo>
-    
-</xacro:macro>
- 
+
+  </xacro:macro>
 </robot>
 
