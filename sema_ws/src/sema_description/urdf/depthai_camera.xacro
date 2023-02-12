@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://wiki.ros.org/xacro" name="oak_d">
   
   <xacro:arg name="camera_name"   default="oak_d_lite"  />
-  <xacro:arg name="camera_model"  default="OAK-D-PRO"  />
+  <xacro:arg name="camera_model"  default="OAK-D-LITE"  />
   <xacro:arg name="base_frame"    default="oak-d_frame" />
   <xacro:arg name="parent_frame"  default="base_link"   />
   <xacro:arg name="prefix"        default=""            />
