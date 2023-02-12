@@ -82,6 +82,7 @@
           </collision>
           
           <inertial>
+            <origin xyz="${cam_x_col} ${cam_y_col} ${cam_z_col}" rpy="0.0 0.0 ${pi/2}"/>
             <mass value="${cam_mass}"/>
             <inertia
               ixx="${cam_mass*(cam_size_y*cam_size_y+cam_size_z*cam_size_z)/12}"

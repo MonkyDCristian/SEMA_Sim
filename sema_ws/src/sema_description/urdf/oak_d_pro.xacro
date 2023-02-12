@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="oak_d">
+
+    <xacro:macro name="oak_d_pro" params="camera_name parent prefix
+                                        base_frame:=oak-d_frame camera_model:=OAK-D-PRO
+                                        x:=0 y:=0 z:=0 R:=0 P:=0 Y:=0
+                                        r:=0.8 g:=0.8 b:=0.8 a:=0.8"> <!-- color params -->
+      
+        <!-- OAK-D-PRO camera info: https://docs.luxonis.com/projects/hardware/en/latest/pages/DM9098pro.html -->
+        <!-- physical parameters -->
+        <xacro:property name="cam_mass"        value="0.091"  />
+        <xacro:property name="cam_size_x"      value="0.097"  /> 
+        <xacro:property name="cam_size_y"      value="0.0235" />
+        <xacro:property name="cam_size_z"      value="0.0295" />
+        <xacro:property name="cam_x_col"       value="-0.01"  />
+        <xacro:property name="cam_y_col"       value="0.0"    />
+        <xacro:property name="cam_z_col"       value="-0.005" />
+
+        <!-- base_link of the sensor -->
+        <link name="${prefix}${base_frame}">
+        <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="${pi/2} 0.0  ${pi/2}"/>
+                <geometry>
+                    <mesh filename="package://depthai_bridge/urdf/models/${camera_model}.stl" />
+                </geometry>
+                
+                <material name="mat">
+                    <color rgba="${r} ${g} ${b} ${a}"/>
+                </material>
+            </visual>
+            
+            <collision name="${camera_name}_collision">
+                <origin xyz="${cam_x_col} ${cam_y_col} ${cam_z_col}" rpy="0.0 0.0 ${pi/2}"/>
+                <geometry>
+                    <box size="${cam_size_x} ${cam_size_y} ${cam_size_z}"/>
+                </geometry>
+            </collision>
+            
+            <inertial>
+                <origin xyz="${cam_x_col} ${cam_y_col} ${cam_z_col}" rpy="0.0 0.0 ${pi/2}"/>
+                <mass value="${cam_mass}"/>
+                <inertia
+                    ixx="${cam_mass*(cam_size_y*cam_size_y+cam_size_z*cam_size_z)/12}"
+                    iyy="${cam_mass*(cam_size_x*cam_size_x+cam_size_z*cam_size_z)/12}"
+                    izz="${cam_mass*(cam_size_x*cam_size_x+cam_size_y*cam_size_y)/12}"
+                    ixy="0"
+                    ixz="0"
+                    iyz="0"/>
+            </inertial>
+        </link>
+
+        <joint name="${prefix}${camera_name}_center_joint" type="fixed">
+            <parent link="${parent}"/>
+            <child link="${prefix}${base_frame}"/>
+            <origin xyz="${x} ${y} ${z}" rpy="${R} ${P} ${Y}" />
+        </joint>
+
+        <!-- RGB Camera optical frame  -->
+        <link name="${prefix}${camera_name}_rgb_camera_optical_frame"/>
+
+        <joint name="${prefix}${camera_name}_rgb_camera_optical_joint" type="fixed">
+            <origin xyz="0 0 0" rpy="-${pi/2} 0 -${pi/2}"/>
+            <parent link="${prefix}${base_frame}"/>
+            <child link="${prefix}${camera_name}_rgb_camera_optical_frame"/>
+        </joint>
+        
+        <!-- vision parameters -->
+        <xacro:property name="base_line"       value="0.075"/> <!-- m -->
+        <xacro:property name="h_fov"           value="1.25664"/> <!-- 72 deg -->
+        <xacro:property name="width"           value="1280"/> <!-- pix -->
+        <xacro:property name="height"          value="800"/> <!-- pix -->
+        <xacro:property name="min_depth_range" value="0.7"/> <!-- m -->
+        <xacro:property name="max_depth_range" value="15"/>  <!-- m -->
+
+        <!-- Gazebo camera setup -->
+        <gazebo reference="${prefix}${base_frame}">
+            <sensor type="depth" name="${prefix}${camera_name}_sensor">
+                <update_rate>18.0</update_rate>
+            
+                <camera name="${prefix}${camera_name}_camera">
+                    <horizontal_fov>${h_fov}</horizontal_fov>
+                    <image>
+                        <width>${5*width/8}</width>
+                        <height>${5*height/8}</height>
+                        <format>R8G8B8</format>
+                    </image>
+                    
+                    <clip>
+                        <near>0.065</near>
+                        <far>10.0</far>
+                    </clip>
+                    
+                    <noise>
+                        <type>gaussian</type>
+                        <!-- Noise is sampled independently per pixel on each frame.
+                            That pixel's noise value is added to each of its color
+                            channels, which at that point lie in the range [0,1]. -->
+                        <mean>0.0</mean>
+                        <stddev>0.007</stddev>
+                    </noise>
+                </camera>
+                
+                <plugin name="depth_camera_plugin_${camera_name}" filename="libgazebo_ros_openni_kinect.so">  
+                    <!-- plugin config data: https://classic.gazebosim.org/tutorials?tut=ros_depth_camera&cat=connect_ros -->
+                    <baseline>${base_line}</baseline>
+                    <pointCloudCutoff>${min_depth_range}</pointCloudCutoff>
+                    <pointCloudCutoffMax>${max_depth_range}</pointCloudCutoffMax>
+                    <alwaysOn>true</alwaysOn>
+                    <updateRate>0.0</updateRate>
+                    <cameraName>camera_ir</cameraName>
+                    <imageTopicName>/camera/color/image_raw</imageTopicName>
+                    <cameraInfoTopicName>/camera/color/camera_info</cameraInfoTopicName>
+                    <depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
+                    <depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName>
+                    <pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
+                    <frameName>${prefix}${camera_name}_rgb_camera_optical_frame</frameName>
+                    <distortionK1>0.00000001</distortionK1>
+                    <distortionK2>0.00000001</distortionK2>
+                    <distortionK3>0.00000001</distortionK3>
+                    <distortionT1>0.00000001</distortionT1>
+                    <distortionT2>0.00000001</distortionT2>
+                </plugin>
+            </sensor>
+        </gazebo>
+
+    </xacro:macro>
+
+    <xacro:arg name="camera_name"   default="my_cam"  />
+    <xacro:arg name="parent_frame"  default="base_link"   />
+    <xacro:arg name="prefix"        default=""            />
+    
+    <link name="$(arg parent_frame)"/>
+    
+    <xacro:oak_d_pro camera_name="$(arg camera_name)" parent = "$(arg parent_frame)" prefix="$(arg prefix)"/>
+
+</robot>
