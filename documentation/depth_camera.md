@@ -9,11 +9,11 @@ In this tutorial we will learn how to use a [depth camera](https://thesweetcamer
 ## Why do we need a depth camera?
 First of all let's think about why we really need a depth camera, obviously it can be used to detect a dummy box and get its position through some kind of complicated algorithm, but actually we can access to each position and orientation object, in real time, by subscribing to the [Gazebo](http://wiki.ros.org/gazebo) topic ["gazebo/model_states"](http://docs.ros.org/en/api/gazebo_msgs/html/msg/ModelStates.html) or request a specific object information via the ["gazebo/get_model_state"](http://docs.ros.org/en/api/gazebo_msgs/html/srv/GetModelState.html) service.
 
-**Note:** The "gazebo/model_states" topic is used to display the box frames in RVIZ via [ROS Markers](http://wiki.ros.org/rviz/DisplayTypes/Marker).
-
 ![Alt text](/imgs/display_of_boxes.png)
 
 [~/SEMA_Sim/sema_ws/src/sema_gzsim/node/publish_markers.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/publish_markers.py)
+
+**Note:** The "gazebo/model_states" topic is used to display the box frames in RVIZ via [ROS Markers](http://wiki.ros.org/rviz/DisplayTypes/Marker).
 
 Knowing that simulating the camera requires more processing power, why would we insist on including it? Why not just use the Gazebo interface?
 Well, this is explained by the objective of the simulator, which is to serve as a complete development environment for a real palletizing system. We won't have the poses of the boxes given by gazebo in the field, so we won't be able to use them to develop the full palletizing flow.
