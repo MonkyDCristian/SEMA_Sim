@@ -86,7 +86,7 @@
       </joint>
 
       <!-- Gazebo camera setup -->
-    <gazebo reference="${prefix}${base_frame}">
+      <gazebo reference="${prefix}${base_frame}">
       <sensor type="depth" name="${prefix}${camera_name}_sensor">
         <update_rate>18.0</update_rate>
     
@@ -115,6 +115,8 @@
           <!-- Oak D LITE camera data: https://docs.luxonis.com/projects/hardware/en/latest/pages/DM9095.html -->
           <!-- plugin config data: https://classic.gazebosim.org/tutorials?tut=ros_depth_camera&cat=connect_ros -->
           <baseline>0.075</baseline>
+          <pointCloudCutoff>0.35</pointCloudCutoff>
+          <pointCloudCutoffMax>10.0</pointCloudCutoffMax>
           <alwaysOn>true</alwaysOn>
           <updateRate>0.0</updateRate>
           <cameraName>camera_ir</cameraName>
@@ -124,13 +126,16 @@
           <depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName>
           <pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
           <frameName>${prefix}${camera_name}_rgb_camera_optical_frame</frameName>
-          <distortion_k1>0.0</distortion_k1>
-          <distortion_k2>0.0</distortion_k2>
-          <distortion_k3>0.0</distortion_k3>
-          <distortion_t1>0.0</distortion_t1>
-          <distortion_t2>0.0</distortion_t2>
-          <pointCloudCutoff>0.35</pointCloudCutoff>
-          <pointCloudCutoffMax>10.0</pointCloudCutoffMax>
+          <distortionK1>0.00000001</distortionK1>
+	  <distortionK2>0.00000001</distortionK2>
+	  <distortionK3>0.00000001</distortionK3>
+	  <distortionT1>0.00000001</distortionT1>
+	  <distortionT2>0.00000001</distortionT2>
+	  <CxPrime>0</CxPrime>
+	  <Cx>0</Cx>
+	  <Cy>0</Cy>
+	  <focalLength>0</focalLength>
+	  <hackBaseline>0</hackBaseline>
         </plugin>
       </sensor>
     </gazebo>
