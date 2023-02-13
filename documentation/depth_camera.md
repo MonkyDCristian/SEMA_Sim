@@ -198,7 +198,7 @@ Finally, launch the model, go to RVIZ, add the depth camera display plugin and c
 ```
 roslaunch sema_description spawm_model.launch name:=oak_d_pro
 ```
-![Alt text](/imgs/urdf_cam_model.png)
+![Alt text](/imgs/gz_oak_d_pro.png)
 
 ## Cameras already available for SEMA sim
 
