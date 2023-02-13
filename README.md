@@ -92,10 +92,8 @@ rosrun rqt_joint_trajectory_controller rqt_joint_trajectory_controller
 
 ## Improves for future version:
 
-* Improves stability for box collision.
 * Add attached constraint.
-* Add a tutorial for camera setup.
-* Pass the simulation to Gazebo Ignition with ROS2 environmental.
+* Pass the simulation to Gazebo Garden with ROS2 environmental.
 
 ## Author 
 
