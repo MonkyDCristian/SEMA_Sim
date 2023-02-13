@@ -4,7 +4,7 @@ When you want to develop or test code for this simulator, whether it is for the 
 
 A very clear example of this is when you want to replicate the conditions of a real environment, like of the following image:
 
-![Alt text](/imgs/real_scene.png)
+![Alt text](/imgs/real_scene.jpeg)
 
 It's time to use the tools from previous tutorials to build our environment. For this you will need two files, a setup_sim.py and a setup_sim.launch. With setup_sim.py we'll use the classes we've learned to add an object to moveit and gzaebo. The setup_sim.launch will launch the simulator and call setup_sim.py
 
