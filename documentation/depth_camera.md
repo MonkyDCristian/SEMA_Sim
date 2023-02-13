@@ -202,7 +202,7 @@ roslaunch sema_description spawm_model.launch name:=oak_d_pro
 
 ## Cameras already available for SEMA sim
 
-SEMA sim has three models of oak-d cameras, the LITE, POE and PRO model. These models are written as a macro object model and you can call them from the depthai_camera_macro.xaro file in sema_descrition/urdf/macro.
+SEMA sim has three models of oak-d cameras, the LITE, POE and PRO. These models are written as a macro object model and you can call them from the depthai_camera_macro.xaro file in sema_descrition/urdf/macro.
 
 Lines 134 to 148 of the sema_description/urdf/sema.xacro file show you how to set up the camera on the UR arm.
 
@@ -223,7 +223,7 @@ Lines 134 to 148 of the sema_description/urdf/sema.xacro file show you how to se
   </xacro:if>
 ```
 
-**Note:** The OAK-D-LITE model is the lightest, smallest and has the shortest stereo depth distance. This makes it a very suitable camera to attach to the end effector robotic arm and for that reason we will use it for future tutorials. 
+**Note:** The OAK-D-LITE model is the lightest, smallest and has the shortest stereo depth distance. This makes it a very suitable camera to attach to the end effector robotic arm and use it to detect close objects, for that reason we will use it for future tutorials. 
 
 ## Next Tutorial 
 [Control the robot by Moveit! with Python3.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/moveit.md)
