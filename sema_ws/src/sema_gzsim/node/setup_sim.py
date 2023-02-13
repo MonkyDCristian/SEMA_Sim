@@ -1,15 +1,3 @@
-# Create a setup environmental file in python
-
-When you want to develop or test code for this simulator, whether it is for the area of ​​trajectories, packing or perception, it is always the best to have a predefined simulation environment for each case.
-
-A very clear example of this is when you want to replicate the conditions of a real environment, like of the following image:
-
-![Alt text](/imgs/real_scene.png)
-
-It's time to use the tools from previous tutorials to build our environment. For this you will need two files, a setup_sim.py and a setup_sim.launch. With setup_sim.py we'll use the classes we've learned to add an object to moveit and gzaebo. The setup_sim.launch will launch the simulator and call setup_sim.py
-
-## Example for setup_sim.py
-```
 #!/usr/bin/env python3
 
 import rospy
@@ -79,36 +67,3 @@ class SetupSim(object):
 
 if __name__ == "__main__":
 	sema_demo = SetupSim()
-```
-## Example for setup_sim.launch
-```
-<?xml version="1.0"?>
-<launch>
-  
-  <arg name="vgc10_enabled"         default="true" />
-  <arg name="conveyor_belt_enabled" default="true" />
-  <arg name="oak_d_enabled"         default="true" />
-  <arg name="gazebo_gui"            default="true" />
-
-  
-  <!-- SEMA sim Configuration --> 
-  <include file="$(find sema_gzsim)/launch/sema_gzsim_moveit.launch">
-	<arg name="vgc10_enabled"         value="$(arg vgc10_enabled)" />
-	<arg name="conveyor_belt_enabled" value="$(arg conveyor_belt_enabled)" />
-	<arg name="oak_d_enabled"         value="$(arg oak_d_enabled)" />  
-	<arg name="gazebo_gui"            value="$(arg gazebo_gui)" />
-  </include>
-  
-  <node name="setup_sim" pkg="sema_vision" type="setup_sim.py"/>
-  
-</launch>
-```
-
-## Test it
-**T1:**
-```
-roslaunch sema_gzsim setup_sim.launch
-```
-
-## Next Tutorial 
-[Fast palletizing by teleportation and static positioning of boxes.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/box_teleport.md)
