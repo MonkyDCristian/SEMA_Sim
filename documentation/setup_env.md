@@ -110,5 +110,7 @@ if __name__ == "__main__":
 roslaunch sema_gzsim setup_sim.launch
 ```
 
+![Alt text](/imgs/setup_sim.png)
+
 ## Next Tutorial 
 [Fast palletizing by teleportation and static positioning of boxes.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/box_teleport.md)
