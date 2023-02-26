@@ -55,4 +55,4 @@ rosrun sema_moveit obj2scene.py
 ```
 
 ## Next Tutorial 
-[Create a setup environmental file in python.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/setup_env.md)
+[Create a setup simulation file in python.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/setup_env.md)
