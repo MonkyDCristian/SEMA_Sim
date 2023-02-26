@@ -118,7 +118,7 @@ roslaunch sema_gzsim setup_sim.launch
 
 At this point you have everything you need to start building a complete palletizing flow. Naturally, there will be three main areas of development: Perception, Packing, and Trajectory Planning. Perception will allow you to know the position and type of box that enters the system, packing will determine the target position on the pallet of the box given its type and trajectory planning will create and execute a safe route to move the box from its initial position towards the target.
 
-A good practice that you are expected to apply when using this simulator is to develop these three areas separately. The next tutorials will give you very useful tools to quickly develop each of those areas.
+A good practice that you are expected to apply is to develop these three areas separately. The next tutorials will give you very useful tools to quickly develop each of those areas.
 
 ## Next Tutorial 
 [Fast palletizing by teleportation and static positioning of boxes.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/box_teleport.md)
