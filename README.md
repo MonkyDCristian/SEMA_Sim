@@ -79,7 +79,7 @@ rosrun rqt_joint_trajectory_controller rqt_joint_trajectory_controller
 
 * [Adding objects to Moveit! planning scene.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/obj2scene.md)
 
-* [Create a setup environmental file in python.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/setup_env.md)
+* [Create a setup simulation file in python.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/setup_env.md)
 
 * [Fast palletizing by teleportation and static positioning of boxes.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/box_teleport.md)
 
