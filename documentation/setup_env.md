@@ -8,7 +8,7 @@ A very clear example of this is when you want to replicate the conditions of a r
 
 In this space we have 4 objects, not considered in the Moveit! Scene, that we want to make sure that the robot doesn't crash: the floor, the pallet, the support of the base of the robot and of course the work area (the table on the left side with the computers and monitors)
 
-****Note:*** all the robot parts that are added in the xacro description have already been added to the Moveit! scene.
+***Note:*** all the robot parts that are added in the xacro description have already been added to the Moveit! scene.
 
 It's time to use the tools from previous tutorials to build our environment. To do this you will need two files, a setup_sim.py and a setup_sim.launch. With setup_sim.py we'll use the classes we've learned to add an object to Moveit! and Gazaebo. The setup_sim.launch will launch the simulator and call setup_sim.py.
 
