@@ -1,4 +1,4 @@
-# Create a setup environmental file in python
+# Create a setup simulation file in python
 
 When you want to develop or test code for this simulator, whether it is for the area of ​​trajectories, packing or perception, it is always the best to have a predefined simulation environment for each case.
 
