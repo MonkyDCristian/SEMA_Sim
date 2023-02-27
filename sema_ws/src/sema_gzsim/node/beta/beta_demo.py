@@ -25,7 +25,7 @@ class BetaDemo(object):
 		self.packing = PackingExample4()
 		self.packing.palet_prms = {"x":0.1, "y":0.75, "z":0.65, "yaw":0.0, "size":{"x":0.6, "y":0.9, "z":0.14}}
 		self.packing.target = {"model":"m", "id":0, "x":0.0, "y":0.0, "z":0.0, "yaw":np.pi, "static":True}
-		self.packing.box_prms = boxes_prms[self.packing.target["model"]]
+		self.packing.box_prms = boxes_prms[self.packing.target["model"]] # set  the size of the middle boxes
 		self.packing.offset = 0.004
 
 		self.mgpi = MoveGroupPythonInterface()
@@ -47,29 +47,36 @@ class BetaDemo(object):
 	def callback(self, msg):
 		self.pick_box()
 		self.move_box_to_target()
-		self.dict_box["id"] = False
+		
+		self.packing.target["id"]+= 1    # update the registered box in packing
+		self.planner.go_to_joint_pose("vision") # return to vision position
+		
+		self.dict_box["id"] = False # set false to attach the clouser box end effector
 		self.pub_active_vision.publish()
 
 
 	def pick_box(self):
+		# go to pick pose
 		self.planner.go_to_joint_pose("pick")
+		# attach the clouser box
 		self.complite_attacher.attach_box(self.dict_box)
+		 # return to vision position
 		self.planner.go_to_joint_pose("vision")
 
 
 	def move_box_to_target(self):
-		
+		# get the target of position for the box
 		if self.packing.target["id"] == 0:
 			self.packing.set_first_box_pose()
 		
 		else:
 			self.packing.get_next_pose()
-
+		
+		# go to the target of position for the box
 		self.planner.go_to_target(self.packing.target)
+		
+		# detach the box
 		self.complite_attacher.detach_box(self.dict_box)
-
-		self.packing.target["id"]+= 1
-		self.planner.go_to_joint_pose("vision")
 		
 
 if __name__ == "__main__":
