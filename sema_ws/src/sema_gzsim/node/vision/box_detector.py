@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+"""
+referent: https://docs.opencv.org/4.x/da/d0c/tutorial_bounding_rects_circles.html
+"""
+
 import rospy
 import cv2
 import numpy as np
@@ -9,7 +13,7 @@ from cv_bridge import CvBridge
 from sensor_msgs.msg import Image
 from std_msgs.msg import Empty
 
-from sema_vision.cfg import box_detectorConfig 
+from sema_gzsim.cfg import box_detectorConfig 
 from dynamic_reconfigure.server import Server as DRServer
 
 from sema_gzsim.conveyor_belt_vel_ctrl import ConveyorBeltVelocityCtrl
@@ -90,11 +94,10 @@ class BoxDetector(object):
             img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
 
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        img_gray = cv2.blur(img_gray, (self.blur_threshold ,self.blur_threshold))
- 
-        canny_output = cv2.Canny(img_gray, self.canny_threshold, self.canny_threshold*2)
+        img_blur = cv2.blur(img_gray, (self.blur_threshold ,self.blur_threshold))
+        img_canny = cv2.Canny(img_blur, self.canny_threshold, self.canny_threshold*2)
         
-        contours, _ = cv2.findContours(canny_output, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        contours, _ = cv2.findContours(img_canny, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
         return self.get_contuor_features(contours)
     
@@ -126,12 +129,6 @@ class BoxDetector(object):
     def filter_by_shape(self, list_data):
     
         return list(filter(lambda x: self.min_area < x["area"] < self.max_area, list_data))
-        """ x["boundRect"][0] > self.delta_w and
-            (self.w - x["boundRect"][0] - x["boundRect"][2]) > self.delta_w and 
-            self.min_w < x["boundRect"][2] # < x["boundRect"][3] and # min_w < w < h
-            # x["boundRect"][3]/x["boundRect"][2] > 1.2
-            , list_data)) # h/w > 1.2
-        """
     
 
     def draw_contours(self, list_contours, frame):

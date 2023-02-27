@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+"""
+This class allows you to get data from Moveit! Planner and configure it. 
+It is possible to load a dictionary of already registered poses for direct execution.
+It also has a simple parameter configuration syntax for planning and executing paths using dictionaries. 
+Reference: http://docs.ros.org/en/noetic/api/moveit_commander/html/classmoveit__commander_1_1move__group_1_1MoveGroupCommander.html
+"""
+
 import rospy, numpy as np
 
 from sema_moveit.move_group_python_interface import MoveGroupPythonInterface
@@ -13,14 +20,15 @@ class Planner(object):
 	
 	def __init__(self, mgpi=None):
 		self.mgpi = mgpi
-		self.gripper_offset = 0.205
-		self.joint_poses = {}
-	
+		self.gripper_offset = 0.115 # default gripper offset
+		self.extension_offset = {"l": 0.075,"ml": 0.075, "m":0.09,"bm":0.14,"b":0.215} # default extension offset by box model
+		self.joint_poses = {} # dictionary of registered joint poses
 
-	def setup(self, vel_factor=1.0, acc_factor=1.0, replanning=False):
-		self.mgpi.move_group.set_max_velocity_scaling_factor(vel_factor)
-		self.mgpi.move_group.set_max_acceleration_scaling_factor(acc_factor)
-		self.mgpi.move_group.allow_replanning(replanning)
+
+	def setup(self, vel_factor=1.0, acc_factor=1.0, replanning=False): 
+		self.mgpi.move_group.set_max_velocity_scaling_factor(vel_factor) # vel_factor between 0.0 and 1.0
+		self.mgpi.move_group.set_max_acceleration_scaling_factor(acc_factor) # acc_factor between 0.0 and 1.0
+		self.mgpi.move_group.allow_replanning(replanning) # keep replanning until a solution is found
 	
 
 	def get_planner_info(self):
@@ -43,6 +51,7 @@ class Planner(object):
 	def plan(self, dict_target):
 		pose = self.create_pose(dict_target)
 		success, trajectory, planning_time, error_code = self.mgpi.move_group.plan(pose)
+		
 		print(f"success: {success}, planning_time: {planning_time}, error_code: {error_code}")
 		
 		self.mgpi.display_trajectory(trajectory)
@@ -54,7 +63,8 @@ class Planner(object):
 	
 	def create_pose(self, dict_target):
 		quat = quaternion_from_euler(np.pi, 0, dict_target["yaw"])
-		return Pose(Point(dict_target["x"], dict_target["y"], dict_target["z"] + self.gripper_offset), Quaternion(*quat))
+		height = dict_target["z"] + self.gripper_offset  + self.extension_offset[dict_target["model"]]
+		return Pose(Point(dict_target["x"], dict_target["y"], height), Quaternion(*quat))
 	
 
 if __name__ == "__main__":
@@ -74,7 +84,7 @@ if __name__ == "__main__":
 	planner.joint_poses = pick_box_poses
 	planner.go_to_joint_pose("pick_pose")
 
-	dict_target = {"x":-0.5, "y":0.2, "z":1.0, "yaw":0.0} # position of the end effector
+	dict_target = {"model":"m", "x":-0.5, "y":0.2, "z":1.0, "yaw":0.0} # position of the end effector
 
 	planner.plan(dict_target) # plan and wait for enter signal to go to the target
 	#planner.go_to_target(dict_target) # plan and go to the target

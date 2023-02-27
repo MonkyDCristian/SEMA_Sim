@@ -4,7 +4,9 @@ To move a box within the simulation using the UR10 we need to follow three steps
 
 Sounds simple, right? We could use MoveGroupPythonInterface functions for this task, but we risk complicating our code. Better divide and conquer, which is why the (CompliteAttacher)[https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/sema_ws/src/sema_moveit/src/sema_moveit/complite_attacher.py] and (Planner)[https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/sema_ws/src/sema_moveit/src/sema_moveit/planner.py] classes were created.
 
-Complite_attachque takes care of attaching and detaching a box, including it inside moveit! scene. Planner facilitates the parameterization of the planning and execution of trajectories.
+Complite_attachque takes care of attaching and detaching a box, including it inside moveit! scene. Planner facilitates the parameterization of the planning and execution of trajectories. 
+
+***Note:*** check CompliteAttacher and Planner code for more information about how their work.
 
 ## Use example
 ```

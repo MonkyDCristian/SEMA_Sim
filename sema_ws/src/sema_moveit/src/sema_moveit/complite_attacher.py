@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+"""
+This class allows you to create an attachment between the end effector and the box. 
+The attached file is generated in Moveit! and Gazebo.
+When the box is releasing, the final position of the box can be set statically.
+"""
+
 import rospy
 
 from sema_gzsim.box_attacher import BoxAttacher
@@ -12,28 +18,29 @@ from sema_moveit.obj2scene import Obj2Scene
 from tf.transformations import euler_from_quaternion
 from gazebo_msgs.msg import ModelStates
 
-
 class CompliteAttacher(object):
 	
 	def __init__(self, mgpi=None):
 		self.box_attacher = BoxAttacher()
+		self.box_attacher.attach_params["ideal_attach"] =  True
+
 		self.box_teleport = BoxTeleport()
 		self.obj2scene = Obj2Scene(mgpi)
 
-		self.box_attacher.attach_params["ideal_attach"] =  True
+		self.update_time = 0.25
 
 
 	def attach_box(self, dict_box):
 		# create simulation attach
 		self.box_attacher.run(dict_box["model"], dict_box["id"])
 		
-		if not dict_box["id"]:
+		if not dict_box["id"]: # get the id of the box if the attachment is not ideal
 			dict_box["id"] = int(self.box_attacher.attach_params["obj_link"][-1])
 		
-		rospy.sleep(0.5)
+		rospy.sleep(self.update_time) # wait for the simulation to update
 		
-		self.get_current_pose(dict_box)
-
+		self.get_current_pose(dict_box) # update de dict_box position
+		
 		# create moveit! attach
 		self.obj2scene.add_box(dict_box)
 		self.obj2scene.attach_box(dict_box)
@@ -43,9 +50,9 @@ class CompliteAttacher(object):
 		# detach in simulation 
 		self.box_attacher.stop()
 		
-		rospy.sleep(0.5)
+		rospy.sleep(self.update_time) # wait for the simulation to update
 		
-		self.get_current_pose(dict_box)
+		self.get_current_pose(dict_box) # update de dict_box position
 
 		# keep box position
 		if "static" in dict_box:
