@@ -26,6 +26,7 @@ cd
 echo "source {PATH_TO}/SEMA_Sim/sema_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
+
 ### Install ROS packages dependencies with rosdep
 install, init and update rosdep in case you haven't already
 ```
@@ -37,7 +38,7 @@ install dependencies in SEMA workspace
 ```
 cd ~/SEMA_Sim/sema_ws
 rosdep install --from-paths src --ignore-src -r -y
-```
+
 
 ## Demo 
 Start de simulation
@@ -60,6 +61,7 @@ rosrun rqt_joint_trajectory_controller rqt_joint_trajectory_controller
 ## Tutorials
 ### Lear how  to
 #### Basic
+
 * [Change simulator settings.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/change_sim_cfg.md)
 
 * [Control the conveyor belt.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/conveyor_belt%20_control.md)
