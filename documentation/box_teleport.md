@@ -70,4 +70,4 @@ rosrun sema_gzsim packing_demo.py
 ```
 
 ## Next Tutorial 
-[Develop and test a trajectory algorithm.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/moveit_attacher.md)
+[Develop and test a trajectory algorithm.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/trajectory_develop.md)
