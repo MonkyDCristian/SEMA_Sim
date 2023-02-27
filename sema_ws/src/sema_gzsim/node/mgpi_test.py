@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
 import rospy
-from sensor_msgs.msg import JointState
 
 # https://roboticsbackend.com/ros-import-python-module-from-another-package/
 from sema_moveit.move_group_python_interface import MoveGroupPythonInterface
+
 from sema_gzsim.ur_pose_register import tf2joint_state_msg
-from pose_compilation.pick_box_poses import pick_box_poses
+from sema_gzsim.pose_compilation.pick_box_poses import pick_box_poses
 
 
 def sim_main():

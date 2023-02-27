@@ -16,14 +16,13 @@ class SetupSim(object):
 		rospy.init_node("setup_sim")
 		self.variables_init()
 		self.connections_init()
-		self.run()
+		self.setup()
 		
 
 	def variables_init(self):
-		# conveyor belt velocity
-		self.cb_vel = 0.1
-		self.box_spawn_prms = {"sequence":"m,m,m,m,m,m,m,m,m", "hz":0.15, "x":-2.8, "y":2.2, "z":0.8, "yaw":1.57}
-		self.palet_spawn_prms = {"name":"palet1", "x":0.1, "y":0.75, "z":0.65, "yaw":0.0, "size":{"x":0.6, "y":0.9, "z":0.14}}
+		self.cb_vel = 0.0
+		self.pallet_spawn_prms = {"name":"pallet1","x":0.1, "y":0.75, "z":0.65, "yaw":0.0, "size":{"x":0.6, "y":0.9, "z":0.14}}
+		self.box_spawn_prms = {"sequence":"m,m,m,m,m,m,m,m,m", "hz":5.0, "x":-2.8, "y":-2.2, "z":0.8, "yaw":1.57}
 		
 		# object in the scene
 		self.plane_prms = {"name":"floor", "z":0.0}
@@ -35,18 +34,17 @@ class SetupSim(object):
 
 	def connections_init(self): 
 		self.pallet_spawner = PalletSpawner()
-		self.box_spawner_clt = BoxSpawnerActClt()
+		self.box_spawner = BoxSpawnerActClt()
 		self.cb_vel_ctrl = ConveyorBeltVelocityCtrl()
-		
-		self.mgpi = MoveGroupPythonInterface()
-		self.mgpi.show_variable()
 
-		self.obj2scene = Obj2Scene(self.mgpi)
-	
+		self.obj2scene = Obj2Scene()
+		self.obj2scene.mgpi = MoveGroupPythonInterface()
+		self.obj2scene.mgpi.show_variable()
 
-	def run(self):
+
+	def setup(self):
 		# add colision objects to Moveit! PlanningScene
-		self.obj2scene.add_cube(self.palet_spawn_prms)
+		self.obj2scene.add_cube(self.pallet_spawn_prms)
 		self.obj2scene.add_plane(self.plane_prms)
 		self.obj2scene.add_cylinder(self.robot_support_prms)
 		self.obj2scene.add_cube(self.robot_box_prms)
@@ -57,13 +55,17 @@ class SetupSim(object):
 		self.cb_vel_ctrl.run(self.cb_vel)
 
 		# add palet to gazebo
-		self.pallet_spawner.set_params(self.palet_spawn_prms)
+		self.pallet_spawner.set_params(self.pallet_spawn_prms)
 		self.pallet_spawner.run()
 
 		# add boxes to gazebo
-		self.box_spawner_clt.set_params(self.box_spawn_prms)
-		self.box_spawner_clt.run()
+		for n, box_type in enumerate(self.box_spawn_prms["sequence"].split(",")):
+			prms = self.box_spawn_prms.copy()
+			prms["sequence"] = box_type 
+			prms["y"] += n/2
+			self.box_spawner.set_params(prms)
+			self.box_spawner.run()
 
 
 if __name__ == "__main__":
-	sema_demo = SetupSim()
+	setup_sim = SetupSim()

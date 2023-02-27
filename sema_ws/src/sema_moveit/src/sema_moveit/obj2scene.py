@@ -18,21 +18,21 @@ class Obj2Scene(object):
 		self.frame_id = "world"
 
 
-	def add_palet(self, dict_palet):
-		palet_obj = {}
+	def add_cube(self, dict_cube):
+		cube_obj = {}
 
-		palet_obj["name"] = dict_palet["name"]
+		cube_obj["name"] = dict_cube["name"]
 
-		palet_obj["pose"] = PoseStamped()
-		palet_obj["pose"].header.frame_id = self.frame_id
+		cube_obj["pose"] = PoseStamped()
+		cube_obj["pose"].header.frame_id = self.frame_id
 		
-		quat = quaternion_from_euler(0,0,dict_palet["yaw"])
-		palet_obj["pose"].pose = Pose(Point(dict_palet["x"], dict_palet["y"], dict_palet["z"]), Quaternion(*quat))
+		quat = quaternion_from_euler(0,0,dict_cube["yaw"])
+		cube_obj["pose"].pose = Pose(Point(dict_cube["x"], dict_cube["y"], dict_cube["z"]), Quaternion(*quat))
 		
-		size = dict_palet["size"]
-		palet_obj["size"] = (size["x"], size["y"], size["z"])
+		size = dict_cube["size"]
+		cube_obj["size"] = (size["x"], size["y"], size["z"])
 
-		self.mgpi.add_object_to_scene(palet_obj, obj_type="box")
+		self.mgpi.add_object_to_scene(cube_obj, obj_type="box")
 	
 	def add_cylinder(self, dict_cylinder):
 		cylinder_obj = {}
@@ -99,7 +99,7 @@ if __name__ == "__main__":
 	dict_box = {"model":"m", "id":0, "x":0.0, "y":-0.3, "z":0.8, "yaw":0.0}
 	dict_palet = {"name":"palet1" ,"x":0.1, "y":0.6, "z":0.5, "yaw":0.0, "size":{"x":0.6, "y":0.9, "z":0.14}}
 	
-	obj2scene.add_palet(dict_palet)
+	obj2scene.add_cube(dict_palet)
 	rospy.sleep(4)
 	
 	obj2scene.add_box(dict_box)

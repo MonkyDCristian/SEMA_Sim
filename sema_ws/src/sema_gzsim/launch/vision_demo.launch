@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <node name="box_detector" pkg="sema_gzsim" type="box_detector.py"/>
+  <node name="vision_demo"  pkg="sema_gzsim" type="vision_demo.py"/>
+  
+</launch>

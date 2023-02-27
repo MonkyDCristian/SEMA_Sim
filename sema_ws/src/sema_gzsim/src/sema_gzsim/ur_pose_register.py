@@ -28,7 +28,7 @@ class URJointsRegiter():
 
 	def variables_init(self):
 		self.rospack = RosPack()
-		self.path = self.rospack.get_path('sema_gzsim')+"/node/pose_compilation/"
+		self.path = self.rospack.get_path('sema_gzsim')+"/scr/sema_gzsim/pose_compilation/"
 		self.file_name = ""
 
 		self.in_simulation = True

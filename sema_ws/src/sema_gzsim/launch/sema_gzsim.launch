@@ -20,7 +20,7 @@
   <arg name="vgc10_enabled"         default="true" />
   <arg name="conveyor_belt_enabled" default="true" />
   <arg name="oak_d_enabled"         default="true" />
-  
+
   <arg name="gazebo_gui"            default="true" />
   
  <!--
@@ -38,13 +38,13 @@
   
 
   <!-- World Configuration --> 
-  <include file="$(find sema_gzsim)/launch/set_word.launch">
+  <include file="$(find sema_gzsim)/launch/cfg/set_word.launch">
   	<arg name="gazebo_world" value="$(find sema_gzsim)/world/sema_empty.world"/>
   	<arg name="gui"   value="$(arg gazebo_gui)" />
   </include>
   
   <!-- Spawm Robot --> 
-  <include file="$(find sema_gzsim)/launch/set_robot.launch"> 
+  <include file="$(find sema_gzsim)/launch/cfg/set_robot.launch"> 
   	<arg name="xacro_robot_model" value="$(find sema_description)/urdf/sema.xacro"/>
     <arg name="vgc10_enabled"         value="$(arg vgc10_enabled)" />
     <arg name="conveyor_belt_enabled" value="$(arg conveyor_belt_enabled)" />
@@ -52,13 +52,13 @@
   </include> 
 
   <!-- Controller Configuration -->  
-  <include file="$(find sema_gzsim)/launch/set_ctrl.launch">
+  <include file="$(find sema_gzsim)/launch/cfg/set_ctrl.launch">
 	 <arg name="controller_cfg_file" value="$(find sema_control)/config/sema_controllers.yaml"/>
 	 <arg name="controllers"         value="$(arg robot_ctrl)"/>
 	 <arg name="stopped_controllers" value="joint_group_pos_controller"/>
   </include>
   
-  <include file="$(find sema_gzsim)/launch/set_rviz.launch" if="$(arg rviz)"/> 
+  <include file="$(find sema_gzsim)/launch/cfg/set_rviz.launch" if="$(arg rviz)"/> 
   
   <!-- launch box poses -->
   <node name="box_pose_pub" pkg="sema_gzsim" type="box_pose_publisher.py"/>

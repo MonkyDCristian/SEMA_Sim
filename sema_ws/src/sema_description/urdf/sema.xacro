@@ -137,7 +137,7 @@
     <xacro:arg name="camera_name"   default="oak" />
     <xacro:arg name="camera_model"  default="OAK-D-LITE" />
     <xacro:arg name="parent_frame"  default="$(arg prefix)wrist_3_link" />
-    <xacro:arg name="cam_pos_x"     default="0.08" />
+    <xacro:arg name="cam_pos_x"     default="0.1" />
     <xacro:arg name="cam_roll"      default="-${pi}" />
     <xacro:arg name="cam_pitch"     default="-${pi/2}" />
   
