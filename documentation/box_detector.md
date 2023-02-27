@@ -12,7 +12,7 @@ So, what we need is a ROS node that processes the image given by the RGB-D camer
 
 Detection can be achieved by applying a simple contour object detection algorithm with OpenCV. To do this, the codes present in this [tutorial](https://docs.opencv.org/4.x/da/d0c/tutorial_bounding_rects_circles.html) were adapted to the box_detector node.
 
-[~/SEMA_Sim/sema_ws/src/sema_gzsim/node/vision/box_detector.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/sema_ws/src/shttps://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/sema_ws/src/sema_gzsim/node/vision/box_detector.pyema_gzsim/node/vision/box_detector.py)
+[~/SEMA_Sim/sema_ws/src/sema_gzsim/node/vision/box_detector.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/shttps://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/vision/box_detector.pyema_gzsim/node/vision/box_detector.py)
 
 ## Test it
 **T1:** launch the setup simulation for vision testing.
@@ -33,4 +33,4 @@ rostopic pub /box_detector/active std_msgs/Empty "{}"
 ![Alt text](/imgs/box_detector.png)
 
 ## Next Tutorial 
-[Develop a full palletizing system (with a demo).](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/palletizing_develop.md)
+[Develop a full palletizing system (with a demo).](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/palletizing_develop.md)

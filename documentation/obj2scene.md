@@ -1,6 +1,6 @@
 # Adding objects to Moveit! planning scene.
 
-In the previous tutorial, you learned how to plan and execute movement paths through the [MoveGroupPythonInterface](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/sema_ws/src/sema_moveit/src/sema_moveit) class.
+In the previous tutorial, you learned how to plan and execute movement paths through the [MoveGroupPythonInterface](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_moveit/src/sema_moveit) class.
 
 Now, suppose you want to run a palletizing mission. Consider that you have two boxes, one red and one blue, the mission will be to move the red box to the right side of the blue box, as shown in the image:
 
@@ -55,4 +55,4 @@ rosrun sema_moveit obj2scene.py
 ```
 
 ## Next Tutorial 
-[Create a setup simulation file in python.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/setup_env.md)
+[Create a setup simulation file in python.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/setup_env.md)

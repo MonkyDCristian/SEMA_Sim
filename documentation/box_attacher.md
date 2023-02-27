@@ -5,7 +5,7 @@ There are two types of attach you can use, an **ideal attach** and a **relative 
 
 The BoxSpawner class is the combination of two classes, VGSimExtensionCtrl and ObjAttacherActClt. The VGSimExtensionCtrl control the position of a little box relative to the eef_link, this box doesn't have collisions and it is the point where the box is teleport when we create an ideal attach. the ObjAttacherActClt works to call ObjAttacherActSrv, that is a [ROS action server](http://wiki.ros.org/actionlib) that creates and maintains a connection between eef_link and a free box object model, its goal message is given by the name of the free model's parent link and a boolean value, this last one indicate whether the connection is ideal or not.
 
-[~/SEMA_Sim/sema_ws/src/sema_gzsim/src/sema_gzsim/box_attacher.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/sema_ws/src/sema_gzsim/src/sema_gzsim/box_attacher.py)
+[~/SEMA_Sim/sema_ws/src/sema_gzsim/src/sema_gzsim/box_attacher.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/src/sema_gzsim/box_attacher.py)
 
 **Note:** part of the algorithm was inspired by this [blog](https://erdalpekel.de/?p=178).
 
@@ -72,4 +72,4 @@ To test a realtive attach, simply switch box_attacher.attach_params["ideal_attac
 
 ## Next Tutorial
 
-[Save reference points and robot joint states for a motion sequence project.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/save_robot_pose.md)
+[Save reference points and robot joint states for a motion sequence project.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/save_robot_pose.md)

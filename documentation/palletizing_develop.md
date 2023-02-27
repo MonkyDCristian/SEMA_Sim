@@ -115,7 +115,7 @@ roslaunch sema_gzsim setup_sim_beta.launch
 rosrun sema_gzsim beta_demo.py
 ```
 
-**Note:** the [beta_demo.py]() is the algorithm you are developing, try not to check it unless you really need it.
+**Note:** the [beta_demo.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/beta/beta_demo.py) is the algorithm you are developing, try not to check it unless you really need it.
 
 
 

@@ -226,4 +226,4 @@ Lines 134 to 148 of the sema_description/urdf/sema.xacro file show you how to se
 **Note:** The OAK-D-LITE model is the lightest, smallest and has the shortest stereo depth distance. This makes it a very suitable camera to attach to the end effector robotic arm and use it to detect close objects, for that reason we will use it for future tutorials. 
 
 ## Next Tutorial 
-[Control the robot by Moveit! with Python3.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/moveit.md)
+[Control the robot by Moveit! with Python3.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/moveit.md)
