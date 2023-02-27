@@ -2,7 +2,7 @@
 
 To move a box within the simulation using the UR10 we need to follow three steps. First, we need to link the box to the end effector, the link needs to be reflected in Moviet! scene. Second, we must plan and execute a trajectory to the destination position. Third, we must take off the box in Gazebo and Moveit!.
 
-Sounds simple, right? We could use MoveGroupPythonInterface functions for this task, but we risk complicating our code. Better divide and conquer, which is why the (CompliteAttacher)[https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/sema_ws/src/sema_moveit/src/sema_moveit/complite_attacher.py] and (Planner)[https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/sema_ws/src/sema_moveit/src/sema_moveit/planner.py] classes were created.
+Sounds simple, right? We could use MoveGroupPythonInterface functions for this task, but we risk complicating our code. Better divide and conquer, which is why the [CompliteAttacher](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/sema_ws/src/sema_moveit/src/sema_moveit/complite_attacher.py) and [Planner](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/sema_ws/src/sema_moveit/src/sema_moveit/planner.py) classes were created.
 
 Complite_attachque takes care of attaching and detaching a box, including it inside moveit! scene. Planner facilitates the parameterization of the planning and execution of trajectories. 
 

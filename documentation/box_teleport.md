@@ -30,7 +30,7 @@ rosrun sema_gzsim box_teleport.py
 ```
 ## Testing a packing algorithm
 
-There are already (4 different packing algorithms)[https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/sema_ws/src/sema_gzsim/src/sema_gzsim/packing_examples.py] for palletizing 9 medium model boxes. Below is an example of how to test a sample packing algorithm using the BoxTeleport class.
+There are already [4 different packing example algorithms](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/sema_ws/src/sema_gzsim/src/sema_gzsim/packing_examples.py) for palletizing 9 middle model boxes. Below is an example of how to test a sample packing algorithm using the BoxTeleport class.
 
 ```
 #!/usr/bin/env python3
@@ -51,6 +51,7 @@ packing.box_prms = boxes_prms[packing.target["model"]]
 packing.offset = 0.001
 
 packing.set_first_box_pose()
+
 box_teleport = BoxTeleport()
 
 for count in range(9):
@@ -70,4 +71,4 @@ rosrun sema_gzsim packing_demo.py
 ```
 
 ## Next Tutorial 
-[Develop and test a trajectory algorithm.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/moveit_attacher.md)
+[Develop and test a trajectory algorithm.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/trajectory_develop.md)
