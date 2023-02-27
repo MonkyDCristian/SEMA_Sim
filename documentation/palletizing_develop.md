@@ -48,20 +48,20 @@ class BetaDemo(object):
 
 	def connections_init(self):
 		# complete code here
-        pass
+       		pass
 
 	def callback(self, msg):
 		# complete code here
-        pass
+        	pass
 
 	def pick_box(self):
 		# complete code here
-        pass
+        	pass
 
 
 	def move_box_to_target(self):
 		# complete code here
-        pass
+        	pass
 		
 
 if __name__ == "__main__":
@@ -69,10 +69,10 @@ if __name__ == "__main__":
 	beta_demo = BetaDemo()
 	beta_demo.dict_box = {"model":"m", "id": False, "x":0.0, "y":0.0, "z":0.0, "yaw":0.0, "static":True}
     
-    # go to vision position
+    	# go to vision position
 	beta_demo.planner.go_to_joint_pose("vision")
 	
-    rospy.spin()
+    	rospy.spin()
 ```
 
 Tips:
