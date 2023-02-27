@@ -121,4 +121,4 @@ At this point you have everything you need to start building a complete palletiz
 A good practice that you are expected to apply is to develop these three areas separately. The next tutorials will give you very useful tools to quickly develop each of those areas.
 
 ## Next Tutorial 
-[Fast palletizing by teleportation and static positioning of boxes.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/box_teleport.md)
+[Fast palletizing by box teleportation and static positioning.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/box_teleport.md)

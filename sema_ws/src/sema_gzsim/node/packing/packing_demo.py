@@ -4,7 +4,7 @@ import rospy
 
 from sema_gzsim.box_spawner import boxes_prms
 from sema_gzsim.box_teleport import BoxTeleport
-from sema_gzsim.packing_examples import PackingExample1, PackingExample2, PackingExample3, PackingExample4
+from sema_gzsim.packing_examples import PackingExample1 # PackingExample2, PackingExample3, PackingExample4
 
 rospy.init_node("packing_demo")
 

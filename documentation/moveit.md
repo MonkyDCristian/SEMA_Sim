@@ -25,7 +25,7 @@ import rospy
 from sensor_msgs.msg import JointState
 
 from sema_moveit.move_group_python_interface import MoveGroupPythonInterface
-from pose_compilation.pick_box_poses import pick_box_poses
+from sema_gzsim.pose_compilation.pick_box_poses import pick_box_poses
 
 
 def tf2joint_state_msg(lib_poses, pose_name):
