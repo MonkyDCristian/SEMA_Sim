@@ -26,9 +26,19 @@ cd
 echo "source {PATH_TO}/SEMA_Sim/sema_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
-### ROS packages Dependencies
+
+### Install ROS packages dependencies with rosdep
+install, init and update rosdep in case you haven't already
 ```
-sudo apt install ros-noetic-ros-control sudo apt install ros-noetic-joint-trajectory-controller ros-noetic-rqt-joint-trajectory-controller ros-noetic-depthai-ros 
+sudo apt-get install python3-rosdep
+sudo rosdep init
+rosdep update
+```
+install dependencies in SEMA workspace
+```
+cd ~/SEMA_Sim/sema_ws
+rosdep install --from-paths src --ignore-src -r -y
+
 ```
 
 ## Demo 
@@ -52,40 +62,41 @@ rosrun rqt_joint_trajectory_controller rqt_joint_trajectory_controller
 ## Tutorials
 ### Lear how  to
 #### Basic
-* [Change simulator settings.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/change_sim_cfg.md)
 
-* [Control the conveyor belt.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/conveyor_belt%20_control.md)
+* [Change simulator settings.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/change_sim_cfg.md)
 
-* [Spawn a pallet platform in gazebo.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/pallet_spawner.md)
+* [Control the conveyor belt.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/conveyor_belt%20_control.md)
 
-* [Spawn a box, or a sequence of boxes, in the simulation.]( https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_spawner.md)
+* [Spawn a pallet platform in gazebo.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/pallet_spawner.md)
 
-* [Create an ideal or a relative attach between the vacuum gripper and a box.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_attacher.md)
+* [Spawn a box, or a sequence of boxes, in the simulation.]( https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/box_spawner.md)
 
-* [Save reference points and robot joint states for a motion sequence project.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/save_robot_pose.md)
+* [Create an ideal or a relative attach between the vacuum gripper and a box.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/box_attacher.md)
 
-* [Setup and use a simulated depth camera.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/depth_camera.md)
+* [Save reference points and robot joint states for a motion sequence project.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/save_robot_pose.md)
+
+* [Setup and use a simulated depth camera.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/depth_camera.md)
 
 #### Intermediate
-* [Control the robot by Moveit! with Python3.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/moveit.md)
+* [Control the robot by Moveit! with Python3.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/moveit.md)
 
-* [Adding objects to Moveit! planning scene.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/obj2scene.md)
+* [Adding objects to Moveit! planning scene.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/obj2scene.md)
 
-* [Create a setup environmental file in python.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/setup_env.md)
+* [Create a setup simulation file in python.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/setup_env.md)
 
-* [Fast palletizing by teleportation and static positioning of boxes.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_teleport.md)
+* [Fast palletizing by teleportation and static positioning of boxes.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/box_teleport.md)
 
-* [Create an attached box inside Moveit! scene.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/moveit_attacher.md)
+* [Develop and test a trajectory algorithm.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/trajectory_develop.md)
 
-* [Use a very simple image processing algorithm to detect box with the camera.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/box_detector.md)
+* [Use a very simple image processing algorithm to detect box with the camera.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/box_detector.md)
 
 #### Advance
-* [Develop a full palletizing system (with a demo).](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/palletiziting_develop.md)
+* [Develop a full palletizing system (with a demo).](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/palletizing_develop.md)
 
 ## Improves for future version:
 
 * Add attached constraint.
-* Pass the simulation to Gazebo Ignition with ROS2 environmental.
+* Pass the simulation to Gazebo Garden with ROS2 environmental.
 
 ## Author 
 

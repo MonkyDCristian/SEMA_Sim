@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
 import rospy
-from sensor_msgs.msg import JointState
 
 # https://roboticsbackend.com/ros-import-python-module-from-another-package/
 from sema_moveit.move_group_python_interface import MoveGroupPythonInterface
+
 from sema_gzsim.ur_pose_register import tf2joint_state_msg
-from pose_compilation.pick_box_poses import pick_box_poses
+from sema_gzsim.pose_compilation.pick_box_poses import pick_box_poses
 
 
 def sim_main():
@@ -41,8 +41,8 @@ def main():
 	mgpi = MoveGroupPythonInterface()
 	mgpi.show_variable()
 	
-	goal_joints_0 = tf2joint_state_msg(pick_box_poses, "real_pick_pose")
-	goal_joints_1 = tf2joint_state_msg(pick_box_poses, "real_final_pose")
+	goal_joints_0 = tf2joint_state_msg(pick_box_poses, "pick_pose")
+	goal_joints_1 = tf2joint_state_msg(pick_box_poses, "final_pose")
 	
 	enter_msg = input("READY TO PLANNING: Press enter to planning a trayectory")
 	 

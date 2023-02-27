@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="oak_d">
+  
+  <xacro:arg name="camera_name"   default="oak_d_lite"  />
+  <xacro:arg name="camera_model"  default="OAK-D-LITE"  />
+  <xacro:arg name="base_frame"    default="oak-d_frame" />
+  <xacro:arg name="parent_frame"  default="base_link"   />
+  <xacro:arg name="prefix"        default=""            />
+
+  <xacro:arg name="x"     default="0.0" /> <!-- X pos -->
+  <xacro:arg name="y"     default="0.0" /> <!-- Y pos -->
+  <xacro:arg name="z"     default="0.0" /> <!-- Z pos -->
+  <xacro:arg name="R"     default="0.0" /> <!-- roll  -->
+  <xacro:arg name="P"     default="0.0" /> <!-- pitch -->
+  <xacro:arg name="Y"     default="0.0" /> <!-- yaw   -->
+    
+  
+  <xacro:include filename="$(find sema_description)/urdf/macro/depthai_camera_macro.xacro"/>
+  <link name="$(arg parent_frame)"/>
+  <xacro:depthai_camera camera_name="$(arg camera_name)" camera_model="$(arg camera_model)" base_frame="$(arg base_frame)" 
+                        parent = "$(arg parent_frame)" prefix="$(arg prefix)" 
+                        x="$(arg x)" y="$(arg y)" z="$(arg z)" R="$(arg R)" P="$(arg P)" Y="$(arg Y)"/>
+
+</robot>

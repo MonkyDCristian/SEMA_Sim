@@ -22,15 +22,13 @@ def tf2joint_state_msg(lib_poses, pose_name):
 
 class URJointsRegiter():
 	def __init__(self):
-		rospy.init_node('ur_joint_register')
 		self.variables_init()
 		self.connections_init()
-		#rospy.spin()
 		
 
 	def variables_init(self):
 		self.rospack = RosPack()
-		self.path = self.rospack.get_path('sema_gzsim')+"/node/pose_compilation/"
+		self.path = self.rospack.get_path('sema_gzsim')+"/scr/sema_gzsim/pose_compilation/"
 		self.file_name = ""
 
 		self.in_simulation = True
@@ -41,7 +39,7 @@ class URJointsRegiter():
 		self.real_ur_joints_name = ["elbow_joint", "shoulder_lift_joint", "shoulder_pan_joint",
 		                            "wrist_1_joint", "wrist_2_joint", "wrist_3_joint"]
 		
-		self.ur_eef_name = "sema/wrist_3_link"
+		#self.ur_eef_name = "sema/wrist_3_link"
 		
 		self.ur_pose_data = {}
 
@@ -65,11 +63,9 @@ class URJointsRegiter():
 			self.file_name = file_name
 			self.ur_pose_data = {}
 			
-		ur_joints, real_ur_joints = self.get_ur_joints()
-		eef_pose = "" #self.get_eef_pose()
+		ur_joints = self.get_ur_joints()
 
-		self.ur_pose_data[pose_name] = {"ur_joints":ur_joints, "eef_pose":eef_pose}
-		self.ur_pose_data["real_" + pose_name] = {"ur_joints":real_ur_joints, "eef_pose":eef_pose} 
+		self.ur_pose_data[pose_name] = {"ur_joints":ur_joints} 
 		
 		self.save_ur_pose_data()
 
@@ -84,20 +80,14 @@ class URJointsRegiter():
 			ur_joints_name = self.real_ur_joints_name
 		
 		ur_joints = {}
-		real_ur_joints = {}
+	
 		for n, joint_name in enumerate(joint_state_msg.name):
 			if joint_name in ur_joints_name:
-				if self.in_simulation:
-					ur_joints[joint_name] = joint_state_msg.position[n]
-					real_ur_joints[joint_name.replace("sema/","")] = joint_state_msg.position[n]
-				
-				else:
-					real_ur_joints[joint_name] = joint_state_msg.position[n]
-					ur_joints["sema/" + joint_name] = joint_state_msg.position[n]
+				ur_joints[joint_name] = joint_state_msg.position[n]
 		
-		return ur_joints, real_ur_joints
+		return ur_joints
 
-	
+	"""
 	def get_eef_pose(self):
 		link_state_msg = self.get_link_state_srv(GetLinkStateRequest(self.ur_eef_name, "world"))
 		pose_msg = link_state_msg.link_state.pose
@@ -107,7 +97,7 @@ class URJointsRegiter():
 					                "z":pose_msg.orientation.z,"w":pose_msg.orientation.w}}
 
 		return eef_pose
-	
+	"""
 
 	def save_ur_pose_data(self):
 		with open(self.path + self.file_name, 'w') as f:

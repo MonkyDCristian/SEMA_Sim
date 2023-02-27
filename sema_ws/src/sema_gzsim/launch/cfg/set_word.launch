@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Gazebo parameters -->
+  <arg name="gazebo_world" default="$(find sema_gzsim)/world/sema_empty.world" doc="The '.world' file to load in Gazebo." />
+  <arg name="gui"          default="true" doc="If true, Gazebo UI is started. If false, only start Gazebo server." />
+  <arg name="paused"       default="false" doc="If true, start Gazebo in paused mode. If false, start simulation as soon as Gazebo has loaded." />
+  <arg name="physics"      default="ode"/>
+
+  <!-- Start Gazebo and load the empty world if requested to do so -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg gazebo_world)"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="physics" value="$(arg physics)"/>
+  </include>
+
+</launch>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <arg name="vgc10_enabled"         default="false" />
+  <arg name="conveyor_belt_enabled" default="true" />
+  <arg name="oak_d_enabled"         default="false" />
+  <arg name="gazebo_gui"            default="true" />
+
+  
+  <!-- SEMA sim Configuration --> 
+  <include file="$(find sema_gzsim)/launch/sema_gzsim_moveit.launch">
+	<arg name="vgc10_enabled"         value="$(arg vgc10_enabled)" />
+	<arg name="conveyor_belt_enabled" value="$(arg conveyor_belt_enabled)" />
+	<arg name="oak_d_enabled"         value="$(arg oak_d_enabled)" />  
+	<arg name="gazebo_gui"            value="$(arg gazebo_gui)" />
+  </include>
+  
+  <node name="setup_sim" pkg="sema_gzsim" type="setup_sim_packing.py"/>
+  
+</launch>

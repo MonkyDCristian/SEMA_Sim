@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import rospy
-
 from gazebo_msgs.msg import ModelStates
 
 

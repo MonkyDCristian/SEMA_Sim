@@ -1,10 +1,9 @@
 # Control the robot by Moveit! with Python3
-Note: Congratulations! You have arrived to the last tutorial of this first SEMA simulator version, put this [theme](https://www.youtube.com/watch?v=DsemU6yb7hA).
 
 The time has come to develop code that actually allows us to automate the palletizing process.
 As a development project,we are using Python3 as our prototyping language. C++ is the original Moveit! develop language but, conveniently, there's a [Move Group Python Interface](https://ros-planning.github.io/moveit_tutorials/doc/move_group_python_interface/move_group_python_interface_tutorial.html) that allows us to use Moveit! in the same way that we could with C++. Click on the link above and follow the tutorial to get a basic understanding of what you can do with this amazing interface.
 
-To easily use this interface, the [MoveGroupPythonInterface](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_moveit/src/sema_moveit/move_group_python_interface.py) class was created, it is a shortened version of [MoveGroupPythonInterfaceTutorial](https://github.com/ros-planning/moveit_tutorials/blob/master/doc/move_group_python_interface/scripts/move_group_python_interface_tutorial.py) for directly applying  and saving a lot of redundancy code. It has the same function as the tutorial version and can be called from the sema_moveit pkg.
+To easily use this interface, the [MoveGroupPythonInterface](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/sema_ws/src/sema_moveit/src/sema_moveit/move_group_python_interface.py) class was created, it is a shortened version of [MoveGroupPythonInterfaceTutorial](https://github.com/ros-planning/moveit_tutorials/blob/master/doc/move_group_python_interface/scripts/move_group_python_interface_tutorial.py) for directly applying  and saving a lot of redundancy code. It has the same function as the tutorial version and can be called from the sema_moveit pkg.
 
 ## Use example
 ```
@@ -26,7 +25,7 @@ import rospy
 from sensor_msgs.msg import JointState
 
 from sema_moveit.move_group_python_interface import MoveGroupPythonInterface
-from pose_compilation.pick_box_poses import pick_box_poses
+from sema_gzsim.pose_compilation.pick_box_poses import pick_box_poses
 
 
 def tf2joint_state_msg(lib_poses, pose_name):
@@ -60,6 +59,7 @@ roslaunch sema_gzsim sema_gzsim_moveit.launch oak_d_enabled:=false
 rosrun sema_gzsim mgpi_test.py
 ```
 
-
+## Next Tutorial 
+[Adding objects to Moveit! planning scene.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/obj2scene.md)
 
 

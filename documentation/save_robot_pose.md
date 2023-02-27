@@ -15,14 +15,7 @@ For all these reason, the URPoseRegister class was created, this program allow y
                            'sema/shoulder_pan_joint': shoulder_pan_ang, 
                            'sema/wrist_1_joint': wrist_1_ang, 
                            'sema/wrist_2_joint': wrist_2_ang, 
-                           'sema/wrist_3_joint': wrist_3_ang}, 
-             'eef_pose': {'position': {'x': eef_x_position, 
-                                       'y': eef_y_position, 
-                                       'z': eef_z_position}, 
-                          'orientation': {'x': eef_x_orientation, 
-                                          'y': eef_y_orientation, 
-                                          'z': eef_z_orientation, 
-                                          'w': eef_w_orientation}}}, 
+                           'sema/wrist_3_joint': wrist_3_ang}},
   'pose1':...
   ...
   }}}}
@@ -30,7 +23,7 @@ For all these reason, the URPoseRegister class was created, this program allow y
 
 This program run along with the simulation, and you can operate by using the rqt_reconfing GUI tool.
 
-[~/SEMA_Sim/sema_ws/src/sema_gzsim/node/ur_pose_register.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/sema_ws/src/sema_gzsim/node/ur_pose_register.py)
+[~/SEMA_Sim/sema_ws/src/sema_gzsim/node/ur_pose_register.py](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/sema_ws/src/sema_gzsim/node/ur_pose_register.py)
 
 ## Test it
 T1:
@@ -43,10 +36,9 @@ rosrun rqt_reconfigure rqt_reconfigure
 ```
 Now go to "ur_pose_register" inside the rqt_reconfigure gui and write the name of the python file where you want to save the poses, by default is **example.py**. Then write the name of the pose, by default is **pose0**, when you are ready click on the enable box and the poses will be registered in the next path of your sema_gzsim pkg:
 
-[~/SEMA_Sim/sema_ws/src/sema_gzsim/node/pose_compilation](https://github.com/MonkyDCristian/SEMA_Sim/tree/main/sema_ws/src/sema_gzsim/node/pose_compilation)
+[~/SEMA_Sim/sema_ws/src/sema_gzsim/node/pose_compilation](https://github.com/MonkyDCristian/SEMA_Sim/tree/ROS-focus-develop/sema_ws/src/sema_gzsim/node/pose_compilation)
 
 Any time you change the pose name and press enter, a new pose will be registered. Be careful not to overwrite a pose by pressing enter. You can also change the name of the file and create another pose collection. 
 
 ## Next Tutorial
-
-[Control the robot by Moveit! with Python3.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/moveit.md)
+[Setup and use a simulated depth camera.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/depth_camera.md)

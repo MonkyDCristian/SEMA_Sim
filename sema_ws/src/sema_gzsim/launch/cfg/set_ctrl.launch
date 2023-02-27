@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<launch>
+  <!--
+    This file 'pretends' to load a driver for a UR robot, by accepting similar
+    arguments and playing a similar role (ie: starting the driver node (in this
+    case Gazebo) and loading the ros_control controllers).
+
+    Some of the arguments to this .launch file will be familiar to those using
+    the ur_robot_driver with their robot.
+
+    Other parameters are specific to Gazebo.
+
+    Note: we spawn and start the ros_control controllers here, as they are,
+    together with gazebo_ros_control, essentially the replacement for the
+    driver which would be used with a real robot.
+  -->
+  
+   <!-- Controller configuration --> 
+  <arg name="controller_cfg_file" default="$(find sema_control)/config/ur10_vgc10_controllers.yaml"/>
+  <arg name="controllers" default="joint_state_controller pos_joint_traj_controller vgc_joint_traj_controller"/>
+  <arg name="stopped_controllers" default="joint_group_pos_controller"/>
+
+
+  <!-- Load controller settings -->
+  <rosparam file="$(arg controller_cfg_file)" command="load"/>
+
+  <!-- Load and start the controllers listed in the 'controllers' arg. -->
+  <node name="ur_control_controller_spawner" pkg="controller_manager" type="spawner" args="$(arg controllers)" output="screen" respawn="false" />
+
+  <!-- Load other controllers, but do not start them -->
+  <node name="ur_control_stopped_spawner" pkg="controller_manager" type="spawner" args="--stopped $(arg stopped_controllers)" output="screen" respawn="false"/>
+
+</launch>

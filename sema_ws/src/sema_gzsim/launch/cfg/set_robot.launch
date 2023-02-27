@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Xacro model to Spawm-->
+  <arg name="xacro_robot_model" default="$(find sema_description)/urdf/ur10_vgc10.xacro"/>
+  
+  
+  <!-- Start in a default namespace -->
+  <arg name="gazebo_model_name" default="robot" doc="The name to give to the model in Gazebo (after spawning it)." />
+ 
+  
+  <!-- Initial UR10 location and attitude-->
+  <arg name="x" default="0" />
+  <arg name="y" default="0" />
+  <arg name="z" default="0" />
+  <arg name="P" default="0" />
+  <arg name="R" default="0" />
+  <arg name="Y" default="0" />
+  
+  
+  <!-- devices enabled -->
+  <arg name="vgc10_enabled"         default="false" />
+  <arg name="conveyor_belt_enabled" default="false" />
+  <arg name="oak_d_enabled"         default="false" />
+  
+  
+  <!--Robot description and related parameter files -->
+  <arg name="joint_limit_params" default="$(find sema_description)/config/ur10/joint_limits.yaml"/>
+  <arg name="kinematics_params" default="$(find sema_description)/config/ur10/default_kinematics.yaml"/>
+  <arg name="physical_params" default="$(find sema_description)/config/ur10/physical_parameters.yaml"/>
+  <arg name="visual_params" default="$(find sema_description)/config/ur10/visual_parameters.yaml"/>
+
+  
+  <!--Common parameters  -->
+  <arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface"/>
+  <arg name="safety_limits" default="false" doc="If True, enable the safety limits controller"/>
+  <arg name="safety_pos_margin" default="0.15" doc="The lower/upper limits in the safety controller" />
+  <arg name="safety_k_position" default="20" doc="Used to set k position in the safety controller" />
+
+
+  <!-- robot_description --> 
+  <param name="robot_description" command="$(find xacro)/xacro '$(arg xacro_robot_model)'
+    vgc10_enabled:=$(arg vgc10_enabled)
+    conveyor_belt_enabled:=$(arg conveyor_belt_enabled)
+    oak_d_enabled:=$(arg oak_d_enabled)        
+    joint_limit_params:=$(arg joint_limit_params)
+    kinematics_params:=$(arg kinematics_params)
+    physical_params:=$(arg physical_params)
+    visual_params:=$(arg visual_params)
+    transmission_hw_interface:=$(arg transmission_hw_interface)
+    safety_limits:=$(arg safety_limits)
+    safety_pos_margin:=$(arg safety_pos_margin)
+    safety_k_position:=$(arg safety_k_position)"/>
+  
+  
+  <!-- Spawn model in Gazebo --> 
+  <node name="ur_spawn_model" pkg="gazebo_ros" type="spawn_model"
+        args="-x $(arg x) -y $(arg y) -z $(arg z)
+              -R $(arg R) -P $(arg P) -Y $(arg Y)
+              -urdf -param robot_description -model $(arg gazebo_model_name)"
+        output="screen" respawn="false"/>
+
+</launch>
