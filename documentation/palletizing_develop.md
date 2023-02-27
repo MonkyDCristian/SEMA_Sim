@@ -1,4 +1,4 @@
-#  Use a very simple image processing algorithm to detect box with the camera.
+#  Develop a full palletizing system.
 
 Congratulations, you have reached the final tutorial, but I have to tell you something, I lied to you, this is not a tutorial, it is a training area. In other words, the one who is going to develop the complete palletizing cycle is going to be you, using all the classes presented in the last tutorials.
 
