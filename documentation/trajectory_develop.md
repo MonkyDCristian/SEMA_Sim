@@ -6,7 +6,7 @@ Sounds simple, right? We could use MoveGroupPythonInterface functions for this t
 
 Complite_attachque takes care of attaching and detaching a box, including it inside moveit! scene. Planner facilitates the parameterization of the planning and execution of trajectories. 
 
-***Note:*** check CompliteAttacher and Planner code for more information about how their work.
+**Note:** check CompliteAttacher and Planner code for more information about how their work.
 
 ## Use example
 ```
