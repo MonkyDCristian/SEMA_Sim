@@ -83,7 +83,7 @@ rosrun rqt_joint_trajectory_controller rqt_joint_trajectory_controller
 
 * [Fast palletizing by teleportation and static positioning of boxes.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/box_teleport.md)
 
-* [Develop and test a trajectory algorithm.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/moveit_attacher.md)
+* [Develop and test a trajectory algorithm.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/trajectory_develop.md)
 
 * [Use a very simple image processing algorithm to detect box with the camera.](https://github.com/MonkyDCristian/SEMA_Sim/blob/ROS-focus-develop/documentation/box_detector.md)
 
