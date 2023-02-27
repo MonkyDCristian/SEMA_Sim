@@ -75,35 +75,35 @@ if __name__ == "__main__":
     rospy.spin()
 ```
 
-Tips:
+## Tips:
 1.- You can use the setup_sim_vison.py as a palletizing environment.
 
 2.- The file [sema_beta_poses.py]() has 2 registered poses: vision and pick. The "vision" pose is to position the camera to see the incoming boxes and the "pick" pose is to grab the boxes that are in the pick up zone.
 
 3.- Just to help a bit, you could create an algorithm using the following steps.
 
-1. Put the robot in "vision" position.
+	1. Put the robot in "vision" position.
 
-2. Wait for the box_in_position signal to arrive from the box_detector node.
+	2. Wait for the box_in_position signal to arrive from the box_detector node.
 
-3. Move the robot to the "pick up" position
+	3. Move the robot to the "pick up" position
 
-4. Attach the box
+	4. Attach the box
 
-5. Return to viewing position
+	5. Return to viewing position
 
-6. Get the destination position of the box with a packing algorithm.
+	6. Get the destination position of the box with a packing algorithm.
 
-7. Generate and execute a trajectory to the target position.
+	7. Generate and execute a trajectory to the target position.
 
-8. Separate the box.
+	8. Separate the box.
 
-9. active the box_detector node by a topic msg.
+	9. active the box_detector node by a topic msg.
 
-10. Go back to step 1.
+	10. Go back to step 1.
 
 
-If you feel lost or just want to get a visual idea of ​​how the algorithm should work.
+If you feel lost or just want to get a visual idea of how the algorithm should work.
 you could run the following two commands
 
 **T1:**
