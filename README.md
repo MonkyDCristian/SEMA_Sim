@@ -97,7 +97,7 @@ rosrun rqt_joint_trajectory_controller rqt_joint_trajectory_controller
 ## Improves for future version:
 
 * Add attached constraint.
-* Pass the simulation to Gazebo Garden with ROS2 environmental.
+* Pass the simulation to Gazebo Garden with ROS 2 environmental.
 
 ## Author 
 
