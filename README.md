@@ -4,15 +4,17 @@ Simulator of the Automated Mobile Packaging System developed at the "Universidad
 ![Alt text](/imgs/gzsim_rviz_view.png)
 
 ## Introduction
-This simulator replicates a physical environment of autonomous palletizing. It counts with a recursive conveyor belt, a UR10 cobot arm, a VGC10 (Vacuum Gipper), a Kinect camera, different box models and a pallet.
+This simulator replicates a physical environment of autonomous palletizing. It counts with a recursive conveyor belt, a UR10 cobot arm, a VGC10 (Vacuum Gripper), a Kinect camera, different box models and a pallet.
 
-The objective of this simulator is to serve as a safe and malleable space where vision, trajectory and paking algorithms can be integrated and tested before being taken to the field-testing phase. In addition, it is expected to be used to test simulated hardware parts, such as grippers, cameras, even other robot arm models, in order to evaluate their value for the project.
+The objective of this simulator is to serve as a safe and malleable space where vision, trajectory and packing algorithms can be integrated and tested before being taken to the field-testing phase. In addition, it is expected to be used to test other parts, such as grippers, cameras, even other robot arm models.
 
 ## Dependencies
+
 ### Software 
 * Operating system: [Ubuntu 20.04](https://releases.ubuntu.com/focal/)
 * Communication Software: [ROS Noetic (full-desktop)](http://wiki.ros.org/noetic/Installation/Ubuntu)
 * Robot arm control software: [Moveit!](https://ros-planning.github.io/moveit_tutorials/doc/getting_started/getting_started.html)
+
 ### Hardware
 * Modern multi-core CPU
 * At lest 8 Gb of RAM
