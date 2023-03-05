@@ -1,5 +1,5 @@
 # Conveyor Belt Control
-For this project it was necessary to develop a recursive conveyor belt model, the most efficient way to do it was to create a cylindrical platform that moved the objects on it, in this case boxes, making it rotate with respect to its axis.
+For this project it was necessary to develop a recursive conveyor belt model, the most efficient way to do it was to create a cylindrical platform that moved objects, in this case boxes, on it, to making them rotate with respect to its axis.
 
 In the simulation, it is possible to control the movement of the conveyor belt by setting the angular speed in rad/sec.
 
