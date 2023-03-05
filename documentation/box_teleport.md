@@ -1,6 +1,6 @@
 # Fast palletizing by box teleportation and static positioning.
 
-In this tutorial you will learn to use the BoxTeleport class, with this class you will be able to move any type of box, given its model and id, to a certain position and rotation. In addition, you will be able to establish the final position of the box as static.
+In this tutorial you will learn to use the BoxTeleport class. With this class you will be able to move any type of box, given its model and id, to a certain position and rotation. In addition, you will be able to establish the final position of the box as static.
 
 This class is intended to facilitate testing of a packing algorithm.
 
