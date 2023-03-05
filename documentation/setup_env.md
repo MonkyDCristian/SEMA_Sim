@@ -6,9 +6,9 @@ A very clear example of this is when you want to replicate the conditions of a r
 
 ![Alt text](/imgs/real_scene.jpeg)
 
-In this space we have 4 objects, not considered in the Moveit! Scene, that we want to make sure that the robot doesn't crash: the floor, the pallet, the support of the base of the robot and of course the work area (the table on the left side with the computers and monitors)
+In this space we have 4 objects, not considered in the Moveit! Scene, that we want to make sure that the robot doesn't crash with theme: floor, pallet, the robot support base and the work area (the table on the left side with the computers and monitors).
 
-***Note:*** all the robot parts that are added in the xacro description have already been added to the Moveit! scene.
+***Note:*** all the robot parts that are added to the xacro description have already been added to the Moveit! scene.
 
 It's time to use the tools from previous tutorials to build our environment. To do this you will need two files, a setup_sim.py and a setup_sim.launch. With setup_sim.py we'll use the classes we've learned to add an object to Moveit! and Gazaebo. The setup_sim.launch will launch the simulator and call setup_sim.py.
 
@@ -116,7 +116,7 @@ roslaunch sema_gzsim setup_sim.launch
 
 ![Alt text](/imgs/setup_sim.png)
 
-At this point you have everything you need to start building a complete palletizing flow. Naturally, there will be three main areas of development: Perception, Packing, and Trajectory Planning. Perception will allow you to know the position and type of box that enters the system, packing will determine the target position on the pallet of the box given its type and trajectory planning will create and execute a safe route to move the box from its initial position towards the target.
+At this point, you have everything you need to start building a complete palletizing flow. Naturally, there will be three main areas of development: Perception, Packing, and Trajectory Planning. Perception will allow you to know the position and type of box that enters the system, Packing will determine the target position of the box on the pallet given its type, and Trajectory Planning will create and execute a safe route to move the box from its initial position towards the target.
 
 A good practice that you are expected to apply is to develop these three areas separately. The next tutorials will give you very useful tools to quickly develop each of those areas.
 
