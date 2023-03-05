@@ -1,8 +1,8 @@
-#  Use a very simple image processing algorithm to detect box with the camera.
+#  Use a very simple image processing algorithm to detect boxes with the camera.
 
-We have a powerful RGB-D camera that we could use to detect the position of the box on the conveyor, but creating that kind of algorithm is very time consuming. Let's start with something easy that allows us to develop a palletizing workflow in no time.
+We have a powerful RGB-D camera that we could use to detect the position of the box on the conveyor, but creating that kind of algorithm is very time-consuming. Let's start with something easy that allows us to develop a palletizing workflow in no time.
 
-Let's say we put the robot in a certain pose on the conveyor belt, in that pose the camera is able to see the boxes that are passing, which have a 90° angle just as they pass through the center of the camera's field of view.
+Let's say we put the robot in a certain pose on the conveyor belt. In that pose the camera is able to see the boxes that are passing, which have a 90° angle just as they pass through the center of the camera's field of view.
 
 If we can stop the conveyor belt just at the moment the box reaches the center of the image, then the box will be in an ideal position to be picked up.
 
