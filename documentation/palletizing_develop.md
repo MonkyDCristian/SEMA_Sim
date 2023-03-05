@@ -1,6 +1,6 @@
-#  Use a very simple image processing algorithm to detect box with the camera.
+#  Develop a full palletizing system.
 
-Congratulations, you have reached the final tutorial, but I have to tell you something, I lied to you, this is not a tutorial, it is a training area. In other words, the one who is going to develop the complete palletizing cycle is going to be you, using all the classes presented in the last tutorials.
+Congratulations, you have reached the final tutorial, but I have to tell you something, I lied to you, this is not a tutorial, it is a training area! The one who is going to develop the complete palletizing cycle is going to be you, using all the classes presented in the last tutorials.
 
 Now create your palletiziting_demo.py file in the sema_gzsim/node/beta directory, copy-paste the following code and complete:
 
@@ -86,7 +86,7 @@ if __name__ == "__main__":
 
 	2. Wait for the box_in_position signal to arrive from the box_detector node.
 
-	3. Move the robot to the "pick up" position
+	3. Move the robot to the "pick up" position.
 
 	4. Attach the box
 
