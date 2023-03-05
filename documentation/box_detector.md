@@ -33,4 +33,4 @@ rostopic pub /box_detector/active std_msgs/Empty "{}"
 ![Alt text](/imgs/box_detector.png)
 
 ## Next Tutorial 
-[Develop a full palletizing system (with a demo).](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/palletizing_develop.md)
+[Develop a full palletizing system.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/palletizing_develop.md)
