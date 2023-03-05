@@ -2,12 +2,12 @@
 
 ![Alt text](/imgs/depth_perception.png)
 
-Congratulations, you've reached the last of the basic level tutorials. Recalling what you have learned so far, we can say that you already know how to move the robot using a GUI, how to include boxes and pallets in the simulation environment, how to grab boxes, and how to record the robot's poses by measuring value of the joints.
+Congratulations, you've reached the end of the basic level tutorials. Recalling what you have learned so far, we can say that you already know how to move the robot using a GUI, how to include boxes and pallets in the simulation environment, how to grab boxes, and how to record the robot's poses by measuring the joint values.
 
 In this tutorial we will learn how to use a [depth camera](https://thesweetcamera.com/what-is-depth-camera/) through a [Gazebo plugin](https://classic.gazebosim.org/tutorials?tut=ros_gzplugins), the missing piece in the system that will allow us to detect incoming boxes and perform a palletizing mission using manual (non-autonomous) human control.
 
 ## Why do we need a depth camera?
-First of all let's think about why we really need a depth camera, obviously it can be used to detect a dummy box and get its position through some kind of complicated algorithm, but actually we can access to each position and orientation object, in real time, by subscribing to the [Gazebo](http://wiki.ros.org/gazebo) topic ["gazebo/model_states"](http://docs.ros.org/en/api/gazebo_msgs/html/msg/ModelStates.html) or request a specific object information via the ["gazebo/get_model_state"](http://docs.ros.org/en/api/gazebo_msgs/html/srv/GetModelState.html) service.
+First of all, let's think about why we really need a depth camera. Obviously, it can be used to detect a dummy box and get its position through some kind of algorithm, but in fact we can access to each object position and orientation, in real time, by subscribing to the [Gazebo](http://wiki.ros.org/gazebo) topic ["gazebo/model_states"](http://docs.ros.org/en/api/gazebo_msgs/html/msg/ModelStates.html) or request a specific object information via the ["gazebo/get_model_state"](http://docs.ros.org/en/api/gazebo_msgs/html/srv/GetModelState.html) service.
 
 ![Alt text](/imgs/display_of_boxes.png)
 
@@ -18,18 +18,18 @@ First of all let's think about why we really need a depth camera, obviously it c
 Knowing that simulating the camera requires more processing power, why would we insist on including it? Why not just use the Gazebo interface?
 Well, this is explained by the objective of the simulator, which is to serve as a complete development environment for a real palletizing system. We won't have the poses of the boxes given by gazebo in the field, so we won't be able to use them to develop the full palletizing flow.
 
-**Note:** It is good for you to know that there are simple and low consumption ways to obtain the poses of the boxes. Think of the case where you are only interested in developing algorithms to transport boxes from one place to another, for this you don't have to spend computing power detecting the box by vision, you could access it through the "gazebo/get_model_state" service.
+**Note:** It is good for you to know that there are simple and low consumption ways to obtain the poses of the boxes. Think of the case where you are only interested in developing algorithms to transport boxes from one place to another. For this you don't have to spend computing power detecting the box by vision, you can access through the "gazebo/get_model_state" service.
 
 ## Introduction
-Let's start with this tutorial. The first thing is to consider what type of camera we are going to simulate, as mentioned before, the idea is that the system corresponds to reality. So if we are going to simulate a camera, it is most appropriate for us to have the same properties as the camera we plan to use in the field. [Luxonis](https://shop.luxonis.com/) brand have the OpenCV AI kits depth (OAK-D), models of cameras that support ROS and have a very good framework for developing computers vision algorithms, this is perfect for this project. Of these types of camera we will simulate the most recent model, the [OAK-D-PRO](https://shop.luxonis.com/collections/usb/products/oak-d-pro), we will integrate it and evaluate it in our virtual gazebo environment to know if it is suitable or not for this palletizing system. You will see that it is possible to set up a complete virtual simulation of the camera by following two simple steps
+Let's start with this tutorial. The first thing is to consider what type of camera we are going to simulate. As mentioned before, the idea is that the system corresponds to reality. So if we are going to simulate a camera, it is most appropriate for us to have the same properties as the camera we plan to use in the field. [Luxonis](https://shop.luxonis.com/) brand has the OpenCV AI kits depth (OAK-D), camera models that support ROS and have a very good framework for developing computer vision algorithms, that are perfect for this project. Of these types of camera we will simulate the most recent model, the [OAK-D-PRO](https://shop.luxonis.com/collections/usb/products/oak-d-pro). We will integrate and evaluate it in our virtual gazebo environment to know if it is suitable or not for this palletizing system. You will see that it is possible to set up a complete virtual simulation of the camera by following two simple steps.
 
 ## Step 1: Configure the camera's Unified Robot Description Format (URDF) model.
 
-To add a model to gazebo, we must have a [URDF](http://classic.gazebosim.org/tutorials?tut=ros_urdf&cat=connect_ros) file that describes its physical properties: appearance, collision space, and inertia.
-The visualization of the camera can be obtained through a 3D model file, such as .dae or .stl. In this case we will obtain the models from the depthai_bridge ROS package, the collision space of this can be obtained from the [OAK-D-PRO documentation](https://docs.luxonis.com/projects/hardware/en/latest/pages/DM9098pro.html) while we can approximate its inertia using the [inertia equation](https://en.wikipedia.org/wiki/List_of_moments_of_inertia) corresponding to a cuboid.
+To add a model to gazebo, we must have an [URDF](http://classic.gazebosim.org/tutorials?tut=ros_urdf&cat=connect_ros) file that describes its physical properties: appearance, collision space, and inertia.
+The visualization of the camera can be obtained through a 3D model file, such as .dae or .stl. In this case, we will obtain the models from the depthai_bridge ROS package. The collision space of this can be obtained from the [OAK-D-PRO documentation](https://docs.luxonis.com/projects/hardware/en/latest/pages/DM9098pro.html) while we can approximate its inertia using the [inertia equation](https://en.wikipedia.org/wiki/List_of_moments_of_inertia) corresponding to a cuboid.
 To simplify this process we will describe the camera with [xacro](http://wiki.ros.org/xacro), a sintered file format to write URDF models.
 
-Let create the file, we go to the urdf dictionary of the sema_description package, and create a file called oak_d_pro.xacro.
+Let's create the file, we go to the urdf dictionary of the sema_description package, and create a file called oak_d_pro.xacro.
 
 ```
 roscd sema_description/urdf & touch oak_d_pro.xacro
@@ -121,7 +121,7 @@ Now you can check the model in Gazebo and RVIZ  running the next command on the 
 ```
 roslaunch sema_description spawm_model.launch name:=oak_d_pro
 ```
-You can also check the collision space and the inertial by the view Gazebo setting: 
+You can also check the collision space and the inertial by the view of Gazebo setting: 
 
 ![Alt text](/imgs/urdf_cam_model.png)
 
@@ -192,7 +192,7 @@ Open the file oak_d_pro.xacro and add the following code after the RGB camera op
     </sensor>
 </gazebo>
 ```
-**Note:** Here we have again use the same parameters of the oficial OAK-D-PRO documentation. Image size has been scaled to 5/8 to reduce processing weight. Some [distortion](https://classic.gazebosim.org/tutorials?tut=camera_distortion) and Gaussian noise have also been added to it, just to make it more realistic.
+**Note:** Here we have again used the same parameters of the official OAK-D-PRO documentation. Image size has been scaled to 5/8 to reduce processing weight. Some [distortion](https://classic.gazebosim.org/tutorials?tut=camera_distortion) and Gaussian noise have also been added to it, just to make it more realistic.
 
 Finally, launch the model, go to RVIZ, add the depth camera display plugin and check how it works:
 ```
@@ -223,7 +223,7 @@ Lines 134 to 148 of the sema_description/urdf/sema.xacro file show you how to se
   </xacro:if>
 ```
 
-**Note:** The OAK-D-LITE model is the lightest, smallest and has the shortest stereo depth distance. This makes it a very suitable camera to attach to the end effector robotic arm and use it to detect close objects, for that reason we will use it for future tutorials. 
+**Note:** The OAK-D-LITE model is the lightest, smallest and has the shortest stereo depth distance. This makes it a very suitable camera to attach to the end effector robotic arm and use it to detect nearby objects. For this reason we will use it for future tutorials. 
 
 ## Next Tutorial 
 [Control the robot by Moveit! with Python3.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/moveit.md)
