@@ -61,7 +61,7 @@ for count in range(9):
 ```
 
 ## Test it
-**T1:** setup sumulation for packing
+**T1:** setup simulation for packing
 ```
 roslaunch sema_gzsim setup_sim_packing.launch
 ```
