@@ -1,6 +1,6 @@
 # Change simulator setting
 
-Whenever you want to start a simulation, you can customize the widgets that are available to optimize the simulation environment, for example, if you want to develop trajectory algorithms, you don't need to waste computing power simulating the depth perception view of the camera. In the same way, if you only want to test the vision system, you may not need use the vacuum gripper.
+Whenever you want to start a simulation, you can customize the widgets that are available to optimize the simulation environment. For example, if you want to develop trajectory algorithms, you don't need to waste computing power simulating the depth perception view of the camera. In the same way, if you only want to test the vision system, you may not need to simulate the vacuum gripper.
 
 **Note:** This simulator, as a university project, was developed with the aim of being multipurpose, so it can be reconfigured to be applied in other automation or research projects.
 
@@ -14,7 +14,7 @@ roslaunch sema_gzsim sema_gzsim_moveit.launch
 ```
 to start it using Moveit! motion planner.
 
-In any of this two launch you can add the parameters:
+In any of this two launch command you can add the follwing parameters:
 
 * conveyor_belt_enabled:=true/false
 
@@ -22,7 +22,7 @@ In any of this two launch you can add the parameters:
 
 * vgc10_enabled:=true/false  
 
-By default all parameters are set to true.
+By default, all parameters are set to true.
 
 ### Example
 ```
@@ -31,7 +31,7 @@ roslaunch sema_gzsim sema_gzsim.launch conveyor_belt_enabled:=false oak_d_enable
 
 ![Alt text](/imgs/all_disable.png)
 
-**Note:** It will appear errors with the VGC10 controller and the conveyor belt controller, you can just ignore it or fix it by editing the **robot_ctrl** argument in the launch file, more information inside the launch file.
+**Note:** It will appear errors with the VGC10 controller and the conveyor belt controller, you can ignore them. You may also disable those controllers by editing the **robot_ctrl** argument in the launch file. More information inside the launch file.
 
 ## Next tutorial
  [Control the conveyor belt.](https://github.com/MonkyDCristian/SEMA_Sim/blob/main/documentation/conveyor_belt%20_control.md)
